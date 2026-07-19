@@ -97,7 +97,7 @@ export default function HomePage() {
           className="absolute -left-16 top-20 size-44 rounded-full border border-gold/35"
           aria-hidden="true"
         />
-        <div className="section-shell relative grid min-h-[760px] items-center gap-14 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20 lg:py-20">
+        <div className="section-shell relative grid min-h-190 items-center gap-14 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-20 lg:py-20">
           <Reveal direction="left" className="relative z-10 max-w-2xl">
             <div className="flex items-center gap-4">
               <span className="h-px w-10 bg-gold-dark" />
@@ -157,13 +157,13 @@ export default function HomePage() {
           <Reveal
             direction="right"
             delay={0.12}
-            className="relative min-h-[540px] lg:min-h-[650px]"
+            className="relative min-h-135 lg:min-h-162.5"
           >
             <div
               className="absolute right-0 top-0 h-[82%] w-[92%] bg-gold"
               aria-hidden="true"
             />
-            <div className="absolute bottom-0 left-0 h-[90%] w-[92%] overflow-hidden border-[10px] border-cream sm:border-[14px]">
+            <div className="absolute bottom-0 left-0 h-[90%] w-[92%] overflow-hidden border-10 border-cream sm:border-14">
               <Image
                 src={nepaliSchoolImages.campus}
                 alt="Students outside a school campus in Kailali, Nepal"
@@ -175,7 +175,7 @@ export default function HomePage() {
             </div>
 
             <div
-              className="academic-mark absolute left-[-14px] top-6 hidden size-28 items-center justify-center bg-forest text-gold-light shadow-xl sm:flex"
+              className="academic-mark absolute -left-3.5 top-6 hidden size-28 items-center justify-center bg-forest text-gold-light shadow-xl sm:flex"
               aria-hidden="true"
             >
               <svg
@@ -199,7 +199,7 @@ export default function HomePage() {
               <BookOpenCheck size={34} strokeWidth={1.4} />
             </div>
 
-            <div className="absolute bottom-8 right-0 max-w-[260px] bg-forest px-6 py-5 text-white shadow-xl sm:px-7 sm:py-6">
+            <div className="absolute bottom-8 right-0 max-w-65 bg-forest px-6 py-5 text-white shadow-xl sm:px-7 sm:py-6">
               <p className="font-serif text-3xl text-gold-light">700+</p>
               <p className="mt-1 text-sm leading-6 text-white/70">
                 students learning, creating and growing together
@@ -210,7 +210,7 @@ export default function HomePage() {
       </section>
 
       <section className="border-b border-line bg-paper">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-2 divide-x divide-line px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
+        <div className="mx-auto grid max-w-360 grid-cols-2 divide-x divide-line px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
           {[
             ["24", "Years of learning"],
             ["14:1", "Student–teacher ratio"],
@@ -231,7 +231,7 @@ export default function HomePage() {
 
       <section id="about" className="section bg-cream">
         <Reveal className="section-shell grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          <div className="relative min-h-[520px]">
+          <div className="relative min-h-130">
             <Image
               src={nepaliSchoolImages.villageStudents}
               alt="School students in rural Nepal"
@@ -239,7 +239,7 @@ export default function HomePage() {
               sizes="(max-width: 1024px) 100vw, 44vw"
               className="object-cover"
             />
-            <div className="absolute -bottom-7 right-0 max-w-[260px] border-l-4 border-gold bg-forest p-6 text-white sm:right-[-28px]">
+            <div className="absolute -bottom-7 right-0 max-w-65 border-l-4 border-gold bg-forest p-6 text-white sm:-right-7">
               <p className="font-serif text-xl leading-snug">
                 “Every child should feel known, capable and inspired.”
               </p>
@@ -306,7 +306,7 @@ export default function HomePage() {
           <div className="mt-14 grid gap-px bg-line md:grid-cols-3">
             {programs.map((program) => (
               <article key={program.title} className="group bg-paper">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-4/3 overflow-hidden">
                   <Image
                     src={program.image}
                     alt=""
@@ -365,7 +365,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative min-h-[650px]">
+          <div className="relative min-h-162.5">
             <Image
               src={nepaliSchoolImages.classroom}
               alt="Students learning together in a Nepali classroom"
@@ -390,7 +390,7 @@ export default function HomePage() {
               Explore the gallery <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="mt-12 grid auto-rows-[230px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid auto-rows-57.5 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="group relative overflow-hidden sm:row-span-2 lg:col-span-2">
               <Image
                 src={nepaliSchoolImages.students}
@@ -473,7 +473,7 @@ export default function HomePage() {
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {news.map((item) => (
               <article key={item.title} className="group">
-                <div className="relative aspect-[3/2] overflow-hidden bg-line">
+                <div className="relative aspect-3/2 overflow-hidden bg-line">
                   <Image
                     src={item.image}
                     alt=""
@@ -506,7 +506,7 @@ export default function HomePage() {
 
       <section className="section bg-paper">
         <Reveal className="section-shell grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:items-center lg:gap-20">
-          <div className="relative aspect-[4/5] max-w-md">
+          <div className="relative aspect-4/5 max-w-md">
             <Image
               src={nepaliSchoolImages.schoolJourney}
               alt="Students walking to school in Lalitpur, Nepal"
