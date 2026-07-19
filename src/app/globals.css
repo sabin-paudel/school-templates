@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+:root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --paper: #fffdf8;
+  --cream: #f4f0e6;
+  --ink: #17201c;
+  --muted: #5d6963;
+  --forest: #123c33;
+  --forest-dark: #0b2b24;
+  --gold: #d6a94f;
+  --gold-light: #edc778;
+  --gold-dark: #9c6f19;
+  --line: #dcd7ca;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-line: var(--line);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--forest-dark);
+}
+
+.section {
+  padding-block: clamp(5rem, 9vw, 8rem);
+}
+
+.section-shell {
+  width: min(100% - 2.5rem, 1344px);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.section-title {
+  max-width: 760px;
+  color: var(--gold);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgb(18 60 51 / 9%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(18 60 51 / 9%) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to left, black 25%, transparent 95%);
+}
+
+.academic-mark {
+  animation: mark-float 5s ease-in-out infinite;
+}
+
+@keyframes mark-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+}
+
+.button {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.button-gold {
+  background: var(--gold);
+  color: var(--forest-dark);
+}
+
+.button-gold:hover {
+  background: var(--gold-light);
+}
+
+.button-dark {
+  background: var(--forest);
+  color: white;
+}
+
+.button-dark:hover {
+  background: var(--forest-dark);
+  box-shadow: 0 12px 30px rgb(11 43 36 / 18%);
+  transform: translateY(-2px);
+}
+
+.button-outline-light {
+  border-color: rgb(255 255 255 / 45%);
+  color: white;
+}
+
+.button-outline-light:hover {
+  border-color: white;
+  background: white;
+  color: var(--forest);
+}
+
+.button-outline-dark {
+  border-color: rgb(18 60 51 / 45%);
+  color: var(--forest);
+}
+
+.button-outline-dark:hover {
+  border-color: var(--forest);
+  background: var(--forest);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--forest);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    width: min(100% - 4rem, 1344px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    width: min(100% - 6rem, 1344px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
