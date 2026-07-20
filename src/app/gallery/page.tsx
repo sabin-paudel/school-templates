@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PageHero from "../_components/page-hero";
 import { nepaliSchoolImages } from "../_data/site-images";
+import ProgramsSection from "../_components/programs-section";
 
 export const metadata: Metadata = {
   title: "Gallery | Aatreya Academy",

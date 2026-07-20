@@ -1,12 +1,4 @@
 import { Music2, Sparkles, Trophy, Users } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardIcon,
-  CardTitle,
-} from "../../components/ui/card";
 
 const items = [
   {
@@ -36,27 +28,25 @@ export default function ProgramsSection() {
     <section className="section bg-cream/40">
       <div className="section-shell">
         <div className="mb-12 max-w-2xl">
-          <p className="eyebrow text-gold-dark">How students spend their days</p>
+          <p className="eyebrow text-gold-dark">
+            How students spend their days
+          </p>
           <h2 className="section-title mt-5">More than a timetable.</h2>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {items.map(({ icon: Icon, title, text }) => (
-            <Card key={title}>
-              <CardHeader>
-                <CardIcon>
-                  <Icon size={22} strokeWidth={1.8} />
-                </CardIcon>
-                <CardTitle className="mt-5">{title}</CardTitle>
-                <CardDescription>{text}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-[0.12em] text-gold-dark">
-                  <span>Explore {title.toLowerCase()}</span>
-                  <span className="text-sm">→</span>
-                </div>
-              </CardContent>
-            </Card>
+            <div key={title} className="flex gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+                <Icon size={20} />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg font-bold text-forest">
+                  {title}
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-muted">{text}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
