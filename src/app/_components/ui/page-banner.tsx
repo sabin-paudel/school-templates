@@ -20,7 +20,10 @@ export default function PageBanner({
   return (
     <section className="border-b border-line bg-snow">
       <div className="container-main">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 pt-6 text-xs text-slate">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1.5 pt-6 text-xs text-slate"
+        >
           <Link href="/" className="hover:text-navy">
             Home
           </Link>
@@ -31,10 +34,12 @@ export default function PageBanner({
         <div className="grid items-center gap-10 py-12 lg:grid-cols-[1fr_380px] lg:gap-16 lg:py-16">
           <div>
             <p className="label">{label}</p>
-            <h1 className="heading-display mt-4 max-w-2xl text-navy">{title}</h1>
+            <h1 className="heading-display mt-4 max-w-2xl text-navy">
+              {title}
+            </h1>
             <p className="prose-body mt-5 max-w-xl">{description}</p>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden lg:aspect-[5/4]">
+          <div className="relative aspect-4/3 overflow-hidden lg:aspect-5/4">
             <Image
               src={image}
               alt={imageAlt}

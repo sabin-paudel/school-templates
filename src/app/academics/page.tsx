@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, FlaskConical, Languages, Palette } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  FlaskConical,
+  Languages,
+  Palette,
+} from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import Reveal from "../_components/ui/reveal";
 import { programs, school } from "../_data/site-content";
@@ -39,11 +45,16 @@ export default function AcademicsPage() {
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                   <p className="label">{item.ages}</p>
-                  <h2 className="heading-section mt-3 text-navy">{item.title}</h2>
+                  <h2 className="heading-section mt-3 text-navy">
+                    {item.title}
+                  </h2>
                   <p className="prose-body mt-4 text-sm">{item.description}</p>
                   <ul className="mt-5 space-y-2">
                     {item.highlights.map((h) => (
-                      <li key={h} className="flex items-center gap-2 text-sm text-navy">
+                      <li
+                        key={h}
+                        className="flex items-center gap-2 text-sm text-navy"
+                      >
                         <span className="size-1 bg-accent" />
                         {h}
                       </li>
@@ -51,7 +62,7 @@ export default function AcademicsPage() {
                   </ul>
                 </div>
                 <div
-                  className={`relative aspect-[16/10] overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}
+                  className={`relative aspect-16/10 overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}
                 >
                   <Image
                     src={item.image}
@@ -71,7 +82,9 @@ export default function AcademicsPage() {
         <div className="container-main">
           <Reveal>
             <p className="label text-accent-bright">A Balanced Curriculum</p>
-            <h2 className="mt-4 font-serif text-3xl">Knowledge, skills, and character.</h2>
+            <h2 className="mt-4 font-serif text-3xl">
+              Knowledge, skills, and character.
+            </h2>
           </Reveal>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map(({ icon: Icon, title }, index) => (

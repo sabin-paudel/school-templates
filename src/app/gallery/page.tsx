@@ -44,7 +44,7 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          <div className="grid auto-rows-[240px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid auto-rows-60 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {galleryPhotos.map((photo, index) => (
               <Reveal key={photo.title} delay={index * 0.04}>
                 <figure
@@ -58,7 +58,9 @@ export default function GalleryPage() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-navy/90 px-4 py-3 transition-transform duration-300 group-hover:translate-y-0">
-                    <p className="text-sm font-medium text-white">{photo.title}</p>
+                    <p className="text-sm font-medium text-white">
+                      {photo.title}
+                    </p>
                     <p className="mt-0.5 text-[10px] uppercase tracking-wider text-slate-light">
                       {photo.credit} · Wikimedia Commons
                     </p>

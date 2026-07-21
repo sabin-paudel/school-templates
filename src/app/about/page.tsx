@@ -38,15 +38,15 @@ export default function AboutPage() {
                   relationships are strong, and learning connects to real life.
                 </p>
                 <p>
-                  Today, our community brings together families and educators from
-                  across Gandaki Province. We honour Nepali identity while giving
-                  students the knowledge, communication skills, and confidence to
-                  participate anywhere in the world.
+                  Today, our community brings together families and educators
+                  from across Gandaki Province. We honour Nepali identity while
+                  giving students the knowledge, communication skills, and
+                  confidence to participate anywhere in the world.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-4/5 overflow-hidden">
                 <Image
                   src={nepaliSchoolImages.villageStudents}
                   alt="Nepali students standing together"
@@ -64,13 +64,17 @@ export default function AboutPage() {
         <div className="container-main">
           <Reveal>
             <p className="label">What Guides Us</p>
-            <h2 className="heading-section mt-4 text-navy">Values made visible every day.</h2>
+            <h2 className="heading-section mt-4 text-navy">
+              Values made visible every day.
+            </h2>
           </Reveal>
           <div className="mt-12 space-y-0">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.06}>
                 <div className="grid gap-4 border-t border-line py-8 sm:grid-cols-[200px_1fr] sm:gap-12">
-                  <h3 className="font-serif text-2xl text-navy">{value.title}</h3>
+                  <h3 className="font-serif text-2xl text-navy">
+                    {value.title}
+                  </h3>
                   <p className="prose-body text-sm">{value.description}</p>
                 </div>
               </Reveal>

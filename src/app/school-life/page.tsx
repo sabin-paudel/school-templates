@@ -52,7 +52,9 @@ export default function SchoolLifePage() {
             {activities.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
                 <div className="border-l-2 border-accent pl-6">
-                  <h2 className="font-serif text-2xl text-navy">{item.title}</h2>
+                  <h2 className="font-serif text-2xl text-navy">
+                    {item.title}
+                  </h2>
                   <p className="prose-body mt-3 text-sm">{item.description}</p>
                 </div>
               </Reveal>
@@ -65,12 +67,14 @@ export default function SchoolLifePage() {
         <div className="container-main">
           <Reveal>
             <p className="label">In Pictures</p>
-            <h2 className="heading-section mt-4 text-navy">Life beyond the classroom.</h2>
+            <h2 className="heading-section mt-4 text-navy">
+              Life beyond the classroom.
+            </h2>
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {studentLife.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
-                <div className="group relative aspect-[3/4] overflow-hidden">
+                <div className="group relative aspect-3/4 overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -79,7 +83,9 @@ export default function SchoolLifePage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-navy/80 p-4">
-                    <p className="text-sm font-medium text-white">{item.title}</p>
+                    <p className="text-sm font-medium text-white">
+                      {item.title}
+                    </p>
                   </div>
                 </div>
               </Reveal>

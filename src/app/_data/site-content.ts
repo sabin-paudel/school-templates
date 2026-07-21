@@ -80,11 +80,35 @@ export const facilities = [
 ] as const;
 
 export const achievements = [
-  { year: "2026", title: "Regional science fair champions", detail: "Three projects advanced to national finals." },
-  { year: "2025", title: "District football cup winners", detail: "Senior team undefeated across the season." },
-  { year: "2025", title: "98% board examination pass rate", detail: "Consistent above-national-average results." },
-  { year: "2024", title: "Environmental leadership award", detail: "Recognised for campus sustainability initiatives." },
-] as const;
+  {
+    year: "2026",
+    category: "nepal",
+    title: "Regional science fair champions",
+    detail: "Three projects advanced to national finals.",
+    image: nepaliSchoolImages.villageStudents,
+  },
+  {
+    year: "2025",
+    category: "nepal",
+    title: "District football cup winners",
+    detail: "Senior team undefeated across the season.",
+    image: nepaliSchoolImages.villageStudents,
+  },
+  {
+    year: "2025",
+    category: "nepal",
+    title: "98% board examination pass rate",
+    detail: "Consistent above-national-average results.",
+    image: nepaliSchoolImages.villageStudents,
+  },
+  {
+    year: "2024",
+    category: "nepal",
+    title: "Environmental leadership award",
+    detail: "Recognised for campus sustainability initiatives.",
+    image: nepaliSchoolImages.villageStudents,
+  },
+] ;
 
 export const studentLife = [
   {
