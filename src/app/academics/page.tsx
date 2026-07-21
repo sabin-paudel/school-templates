@@ -1,104 +1,90 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpen,
-  FlaskConical,
-  Languages,
-  Palette,
-} from "lucide-react";
-import PageHero from "../_components/page-hero";
+import { ArrowRight, BookOpen, FlaskConical, Languages, Palette } from "lucide-react";
+import PageBanner from "../_components/ui/page-banner";
+import Reveal from "../_components/ui/reveal";
+import { programs, school } from "../_data/site-content";
 import { nepaliSchoolImages } from "../_data/site-images";
 
 export const metadata: Metadata = {
-  title: "Academics | Aatreya Academy",
+  title: `Academics | ${school.name}`,
   description: "Explore academic programs from Early Years through Grade 10.",
 };
-const stages = [
-  {
-    stage: "Early Years",
-    years: "Ages 3–5",
-    text: "Play-rich learning develops language, independence and a confident relationship with school.",
-    image: nepaliSchoolImages.students,
-  },
-  {
-    stage: "Primary School",
-    years: "Grades 1–5",
-    text: "Strong literacy and numeracy foundations expand through inquiry, projects, arts and practical science.",
-    image: nepaliSchoolImages.classroom,
-  },
-  {
-    stage: "Secondary School",
-    years: "Grades 6–10",
-    text: "Subject depth, careful guidance and real responsibility prepare students for examinations and life beyond school.",
-    image: nepaliSchoolImages.schoolGroup,
-  },
+
+const pillars = [
+  { icon: BookOpen, title: "Languages & Humanities" },
+  { icon: FlaskConical, title: "Science & Technology" },
+  { icon: Palette, title: "Arts & Expression" },
+  { icon: Languages, title: "Nepali & Global Outlook" },
 ];
 
 export default function AcademicsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Academic programs"
-        title="Learning with depth, purpose and joy."
-        description="Our program follows Nepal's national curriculum and enriches it with practical inquiry, communication, creativity and digital fluency."
+      <PageBanner
+        label="Academics"
+        title="Learning with depth, purpose, and discipline."
+        description="Our programme follows Nepal's national curriculum and enriches it with practical inquiry, communication, creativity, and digital fluency."
         image={nepaliSchoolImages.classroom}
         imageAlt="Students learning in a classroom in Nepal"
       />
-      <section className="section bg-paper">
-        <div className="section-shell grid gap-8 lg:grid-cols-3">
-          {stages.map((item) => (
-            <article key={item.stage} className="border border-line">
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={item.image}
-                  alt=""
-                  fill
-                  sizes="(max-width:1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <p className="eyebrow text-gold-dark">{item.years}</p>
-                <h2 className="mt-4 font-serif text-3xl text-forest">
-                  {item.stage}
-                </h2>
-                <p className="mt-4 leading-7 text-muted">{item.text}</p>
-              </div>
-            </article>
+
+      <section className="section-pad bg-white">
+        <div className="container-main space-y-0">
+          {programs.map((item, index) => (
+            <Reveal key={item.id} delay={index * 0.06}>
+              <article
+                className={`grid items-center gap-8 border-t border-line py-10 lg:grid-cols-2 lg:gap-16 ${index === programs.length - 1 ? "border-b" : ""}`}
+              >
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <p className="label">{item.ages}</p>
+                  <h2 className="heading-section mt-3 text-navy">{item.title}</h2>
+                  <p className="prose-body mt-4 text-sm">{item.description}</p>
+                  <ul className="mt-5 space-y-2">
+                    {item.highlights.map((h) => (
+                      <li key={h} className="flex items-center gap-2 text-sm text-navy">
+                        <span className="size-1 bg-accent" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div
+                  className={`relative aspect-[16/10] overflow-hidden ${index % 2 === 1 ? "lg:order-1" : ""}`}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
-      <section className="section bg-cream">
-        <div className="section-shell">
-          <p className="eyebrow text-gold-dark">A balanced curriculum</p>
-          <h2 className="section-title mt-5">
-            Knowledge, skills and character.
-          </h2>
+
+      <section className="section-pad bg-navy text-white">
+        <div className="container-main">
+          <Reveal>
+            <p className="label text-accent-bright">A Balanced Curriculum</p>
+            <h2 className="mt-4 font-serif text-3xl">Knowledge, skills, and character.</h2>
+          </Reveal>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              [BookOpen, "Languages & humanities"],
-              [FlaskConical, "Science & technology"],
-              [Palette, "Arts & expression"],
-              [Languages, "Nepali & global outlook"],
-            ].map(([Icon, title]) => {
-              const SubjectIcon = Icon as typeof BookOpen;
-              return (
-                <div
-                  key={title as string}
-                  className="border-t-2 border-gold pt-6"
-                >
-                  <SubjectIcon className="text-forest" />
-                  <h3 className="mt-5 font-serif text-xl text-forest">
-                    {title as string}
-                  </h3>
+            {pillars.map(({ icon: Icon, title }, index) => (
+              <Reveal key={title} delay={index * 0.06}>
+                <div className="border-t border-white/20 pt-6">
+                  <Icon size={22} className="text-accent-bright" />
+                  <h3 className="mt-4 font-medium">{title}</h3>
                 </div>
-              );
-            })}
+              </Reveal>
+            ))}
           </div>
-          <Link href="/admissions" className="button button-dark mt-12">
-            Apply to Aatreya <ArrowRight size={17} />
+          <Link href="/admissions" className="btn btn-light mt-12">
+            Apply to {school.name} <ArrowRight size={16} />
           </Link>
         </div>
       </section>

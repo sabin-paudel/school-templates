@@ -1,105 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Bell, CalendarDays, Download, Pin } from "lucide-react";
-import PageHero from "../_components/page-hero";
+import PageBanner from "../_components/ui/page-banner";
+import Reveal from "../_components/ui/reveal";
+import { notices, school } from "../_data/site-content";
 import { nepaliSchoolImages } from "../_data/site-images";
 
 export const metadata: Metadata = {
-  title: "Notices | Aatreya Academy",
-  description:
-    "Read current notices, announcements and important dates from Aatreya Academy.",
+  title: `Notices | ${school.name}`,
+  description: `Read current notices, announcements, and important dates from ${school.name}.`,
 };
-const notices = [
-  {
-    date: "19 July 2026",
-    category: "Admissions",
-    title: "Admissions open for the 2026–27 academic session",
-    text: "Applications are now being accepted from Early Years through Grade 9. Families may apply online or arrange a campus visit.",
-  },
-  {
-    date: "16 July 2026",
-    category: "Academic",
-    title: "First term assessment schedule published",
-    text: "The assessment timetable and subject guidance have been shared with students and are available through the school office.",
-  },
-  {
-    date: "11 July 2026",
-    category: "Event",
-    title: "Parent–teacher meeting: Saturday, 25 July",
-    text: "Appointments will run from 9:00 AM to 2:00 PM. Families are asked to confirm their preferred slot with the class teacher.",
-  },
-  {
-    date: "05 July 2026",
-    category: "Transport",
-    title: "Monsoon transport route update",
-    text: "Two morning bus routes have revised collection times due to seasonal road conditions. Please review the updated schedule.",
-  },
-  {
-    date: "28 June 2026",
-    category: "Activities",
-    title: "Inter-house sports registration",
-    text: "Students interested in football, basketball, badminton and athletics can register with their house coordinator this week.",
-  },
-];
+
 export default function NoticesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Notices & updates"
+      <PageBanner
+        label="Notices"
         title="Everything families need to know."
-        description="Current announcements, important dates and practical updates from the school office—all in one place."
+        description="Current announcements, important dates, and practical updates from the school office — all in one place."
         image={nepaliSchoolImages.schoolGroup}
         imageAlt="Students and teachers at a school in Nepal"
       />
-      <section className="section bg-cream">
-        <div className="section-shell grid gap-10 lg:grid-cols-[1fr_320px]">
-          <div className="space-y-4">
+
+      <section className="section-pad bg-snow">
+        <div className="container-main grid gap-12 lg:grid-cols-[1fr_300px]">
+          <div className="space-y-0">
             {notices.map((notice, index) => (
-              <article
-                key={notice.title}
-                className="border border-line bg-paper p-7 sm:p-8"
-              >
-                <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.12em]">
-                  <span className="text-gold-dark">{notice.category}</span>
-                  <span className="text-muted">{notice.date}</span>
-                  {index === 0 && (
-                    <span className="flex items-center gap-1 bg-gold/25 px-2 py-1 text-forest">
-                      <Pin size={12} /> Pinned
-                    </span>
-                  )}
-                </div>
-                <h2 className="mt-4 font-serif text-2xl text-forest sm:text-3xl">
-                  {notice.title}
-                </h2>
-                <p className="mt-4 leading-7 text-muted">{notice.text}</p>
-                <Link
-                  href="/contact"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-forest"
-                >
-                  Contact school <ArrowRight size={15} />
-                </Link>
-              </article>
+              <Reveal key={notice.title} delay={index * 0.05}>
+                <article className="border-t border-line py-7 first:border-t-0">
+                  <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-wider">
+                    <span className="text-accent">{notice.category}</span>
+                    <span className="text-slate-light">{notice.date}</span>
+                    {notice.pinned && (
+                      <span className="flex items-center gap-1 bg-accent/10 px-2 py-0.5 text-navy">
+                        <Pin size={11} /> Pinned
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="mt-3 font-serif text-xl text-navy sm:text-2xl">
+                    {notice.title}
+                  </h2>
+                  <p className="prose-body mt-3 text-sm">{notice.text}</p>
+                  <Link href="/contact" className="link-arrow mt-4">
+                    Contact school <ArrowRight size={14} />
+                  </Link>
+                </article>
+              </Reveal>
             ))}
           </div>
+
           <aside>
-            <div className="sticky top-28 bg-forest p-7 text-white">
-              <Bell className="text-gold-light" />
-              <h2 className="mt-5 font-serif text-2xl">Notice board</h2>
-              <p className="mt-3 text-sm leading-6 text-white/60">
-                For urgent questions or printed copies, contact the school
-                office.
+            <div className="sticky top-24 border border-line bg-white p-6">
+              <Bell size={20} className="text-accent" />
+              <h2 className="mt-4 font-serif text-xl text-navy">Notice board</h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate">
+                For urgent questions or printed copies, contact the school office.
               </p>
-              <div className="mt-6 space-y-4 border-t border-white/15 pt-6 text-sm">
-                <p className="flex items-center gap-3">
-                  <CalendarDays size={17} className="text-gold-light" /> Office:
-                  Sun–Fri
+              <div className="mt-6 space-y-3 border-t border-line pt-6 text-sm text-slate">
+                <p className="flex items-center gap-2">
+                  <CalendarDays size={15} className="text-accent" />
+                  Office: Sun–Fri
                 </p>
-                <p className="flex items-center gap-3">
-                  <Download size={17} className="text-gold-light" /> PDF archive
-                  on request
+                <p className="flex items-center gap-2">
+                  <Download size={15} className="text-accent" />
+                  PDF archive on request
                 </p>
               </div>
-              <Link href="/contact" className="button button-gold mt-7 w-full">
+              <Link href="/contact" className="btn btn-primary mt-6 w-full text-[13px]">
                 Contact office
               </Link>
             </div>

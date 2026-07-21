@@ -1,96 +1,96 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ClipboardCheck,
-  School,
-  UserRoundCheck,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { AdmissionForm } from "../_components/forms";
-import PageHero from "../_components/page-hero";
+import PageBanner from "../_components/ui/page-banner";
+import Reveal from "../_components/ui/reveal";
+import { school } from "../_data/site-content";
 import { nepaliSchoolImages } from "../_data/site-images";
 
 export const metadata: Metadata = {
-  title: "Admissions | Aatreya Academy",
-  description: "Apply for student admission to Aatreya Academy in Pokhara.",
+  title: `Admissions | ${school.name}`,
+  description: `Apply for student admission to ${school.name} in Pokhara.`,
 };
+
+const steps = [
+  {
+    step: "01",
+    title: "Submit the form",
+    text: "Tell us about your child and the grade you are considering.",
+  },
+  {
+    step: "02",
+    title: "Visit the school",
+    text: "Tour the campus and speak with our academic team.",
+  },
+  {
+    step: "03",
+    title: "Meet and confirm",
+    text: "A short student interaction is followed by an admission decision.",
+  },
+];
+
 export default function AdmissionsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Admissions 2026–27"
-        title="Start your child’s Aatreya journey."
+      <PageBanner
+        label="Admissions"
+        title="Start your child's Aatreya journey."
         description="Our admissions team makes the process clear and personal, from your first enquiry through the first day of school."
         image={nepaliSchoolImages.students}
         imageAlt="Students outside their school in Nepal"
       />
-      <section className="section bg-paper">
-        <div className="section-shell">
-          <div className="grid gap-px bg-line md:grid-cols-3">
-            {[
-              [
-                ClipboardCheck,
-                "1. Submit the form",
-                "Tell us about your child and the grade you are considering.",
-              ],
-              [
-                School,
-                "2. Visit the school",
-                "Tour the campus and speak with our academic team.",
-              ],
-              [
-                UserRoundCheck,
-                "3. Meet and confirm",
-                "A short student interaction is followed by an admission decision.",
-              ],
-            ].map(([Icon, title, text]) => {
-              const StepIcon = Icon as typeof School;
-              return (
-                <div key={title as string} className="bg-cream p-8">
-                  <StepIcon className="text-gold-dark" />
-                  <h2 className="mt-6 font-serif text-2xl text-forest">
-                    {title as string}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-muted">
-                    {text as string}
-                  </p>
+
+      <section className="section-pad bg-snow">
+        <div className="container-main">
+          <Reveal>
+            <p className="label">How It Works</p>
+            <h2 className="heading-section mt-4 text-navy">Three simple steps to enrolment.</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {steps.map((item, index) => (
+              <Reveal key={item.step} delay={index * 0.08}>
+                <div className="border-l-2 border-accent pl-6">
+                  <p className="font-serif text-3xl text-line-dark">{item.step}</p>
+                  <h3 className="mt-3 font-medium text-navy">{item.title}</h3>
+                  <p className="prose-body mt-2 text-sm">{item.text}</p>
                 </div>
-              );
-            })}
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
-      <section className="section bg-cream">
-        <div className="section-shell grid gap-14 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
-          <aside>
-            <p className="eyebrow text-gold-dark">Student application</p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight text-forest">
-              Apply for admission
-            </h2>
-            <p className="mt-5 leading-7 text-muted">
+
+      <section className="section-pad bg-white">
+        <div className="container-main grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+          <Reveal>
+            <p className="label">Student Application</p>
+            <h2 className="heading-section mt-4 text-navy">Apply for admission</h2>
+            <p className="prose-body mt-5 text-sm">
               Complete this initial enquiry form. Our admissions office will
               contact you within two working days.
             </p>
-            <ul className="mt-8 space-y-4 text-sm font-semibold text-forest">
+            <ul className="mt-8 space-y-3">
               {[
                 "No application fee for initial enquiry",
                 "Information treated confidentially",
                 "Campus visit available before decision",
               ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <CheckCircle2 size={18} className="shrink-0 text-gold-dark" />
+                <li key={item} className="flex gap-3 text-sm text-navy">
+                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-accent" />
                   {item}
                 </li>
               ))}
             </ul>
-            <Link href="/contact" className="text-link mt-9">
-              Ask an admissions question <ArrowRight size={16} />
+            <Link href="/contact" className="link-arrow mt-8">
+              Ask an admissions question <ArrowRight size={14} />
             </Link>
-          </aside>
-          <div className="border border-line bg-paper p-6 sm:p-9 lg:p-12">
-            <AdmissionForm />
-          </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="border border-line bg-snow p-6 sm:p-10">
+              <AdmissionForm />
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

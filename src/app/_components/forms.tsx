@@ -4,15 +4,15 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-2 w-full border border-line bg-paper px-4 py-3.5 text-sm text-ink outline-none transition focus:border-forest focus:ring-2 focus:ring-gold/35";
-const labelClass = "text-sm font-bold text-forest";
+  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
+const labelClass = "text-sm font-medium text-navy";
 
 function SuccessMessage({ title }: { title: string }) {
   return (
-    <div className="border border-forest/20 bg-cream p-8 text-center">
-      <CheckCircle2 className="mx-auto text-forest" size={38} />
-      <h3 className="mt-4 font-serif text-2xl text-forest">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted">
+    <div className="border border-line bg-snow p-8 text-center">
+      <CheckCircle2 className="mx-auto text-accent" size={36} />
+      <h3 className="mt-4 font-serif text-2xl text-navy">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate">
         This demo saved no personal data. Connect the form to your school
         backend before launch.
       </p>
@@ -36,7 +36,7 @@ export function AdmissionForm() {
     >
       <div className="grid gap-6 sm:grid-cols-2">
         <label className={labelClass}>
-          Student’s full name
+          Student&apos;s full name
           <input
             className={fieldClass}
             name="studentName"
@@ -122,17 +122,17 @@ export function AdmissionForm() {
           placeholder="Learning needs, interests or questions for our admissions team"
         />
       </label>
-      <label className="flex items-start gap-3 text-sm leading-6 text-muted">
+      <label className="flex items-start gap-3 text-sm leading-6 text-slate">
         <input
           type="checkbox"
           required
-          className="mt-1 size-4 accent-[#123c33]"
+          className="mt-1 size-4 accent-[#0c2340]"
         />
         I confirm that the information provided is correct and agree to be
         contacted about this application.
       </label>
-      <button type="submit" className="button button-dark w-fit">
-        Submit application <Send size={17} />
+      <button type="submit" className="btn btn-primary w-fit">
+        Submit application <Send size={16} />
       </button>
     </form>
   );
@@ -195,8 +195,8 @@ export function ContactForm() {
           required
         />
       </label>
-      <button type="submit" className="button button-dark w-fit">
-        Send message <Send size={17} />
+      <button type="submit" className="btn btn-primary w-fit">
+        Send message <Send size={16} />
       </button>
     </form>
   );

@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import Footer from "./_components/footer";
-import Navbar from "./_components/navbar";
+import SiteFooter from "./_components/layout/site-footer";
+import SiteHeader from "./_components/layout/site-header";
+import { school } from "./_data/site-content";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Horizon Academy | Learn, Lead, Inspire",
+  title: `${school.name} | ${school.motto}`,
   description:
-    "Horizon Academy is a welcoming school in Pokhara offering excellent academics, caring teachers and a rich student life from early years through secondary school.",
+    "Aatreya Academy is a prestigious school in Pokhara offering excellent academics, caring teachers, and a rich student life from early years through secondary school.",
 };
 
-type PublicLayoutProps = Readonly<{
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function PublicLayout({ children }: PublicLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body>
-        <Navbar />
+      <body className="font-sans antialiased">
+        <SiteHeader />
         <main>{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );
