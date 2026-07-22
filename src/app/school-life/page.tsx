@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Dumbbell, Palette, Cpu, Users } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import Reveal from "../_components/ui/reveal";
 import { school, studentLife } from "../_data/site-content";
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: `School Life | ${school.name}`,
   description: `Discover clubs, sports, arts, and student life at ${school.name}.`,
 };
+
+const activityIcons = [Dumbbell, Palette, Cpu, Users];
 
 const activities = [
   {
@@ -46,43 +48,58 @@ export default function SchoolLifePage() {
         imageAlt="Students on their way to school in Lalitpur, Nepal"
       />
 
-      <section className="section-pad bg-white">
+      <section className="section-pad bg-warm">
         <div className="container-main">
-          <div className="grid gap-12 lg:grid-cols-2">
-            {activities.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.06}>
-                <div className="border-l-2 border-accent pl-6">
-                  <h2 className="font-serif text-2xl text-navy">
-                    {item.title}
-                  </h2>
-                  <p className="prose-body mt-3 text-sm">{item.description}</p>
-                </div>
-              </Reveal>
-            ))}
+          <Reveal>
+            <p className="label">Activities</p>
+            <h2 className="heading-md mt-4 text-ink">
+              Every student finds their place here.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {activities.map((item, index) => {
+              const Icon = activityIcons[index];
+              return (
+                <Reveal key={item.title} delay={index * 0.06}>
+                  <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-start gap-5">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light group-hover:bg-primary transition-colors duration-300 shrink-0">
+                      <Icon size={22} className="text-primary group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-ink">
+                        {item.title}
+                      </h3>
+                      <p className="text-body mt-1.5 text-sm">{item.description}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="section-pad bg-snow">
+      <section className="section-pad bg-white">
         <div className="container-main">
           <Reveal>
             <p className="label">In Pictures</p>
-            <h2 className="heading-section mt-4 text-navy">
+            <h2 className="heading-md mt-4 text-ink">
               Life beyond the classroom.
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {studentLife.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
-                <div className="group relative aspect-3/4 overflow-hidden">
+                <div className="group relative aspect-3/4 overflow-hidden rounded-xl shadow-sm">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-navy/80 p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
                     <p className="text-sm font-medium text-white">
                       {item.title}
                     </p>
@@ -94,15 +111,18 @@ export default function SchoolLifePage() {
         </div>
       </section>
 
-      <section className="bg-navy py-14">
-        <div className="container-main flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+      <section className="bg-primary py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <p className="label text-accent-bright">See School Life</p>
-            <h2 className="mt-3 font-serif text-2xl text-white sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+              See School Life
+            </p>
+            <h2 className="mt-3 heading-md text-white sm:text-2xl">
               A community best seen in pictures.
             </h2>
           </div>
-          <Link href="/gallery" className="btn btn-light">
+          <Link href="/gallery" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200">
             Open gallery <ArrowRight size={16} />
           </Link>
         </div>

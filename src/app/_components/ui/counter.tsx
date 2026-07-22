@@ -9,7 +9,7 @@ type CounterProps = {
   light?: boolean;
 };
 
-export default function Counter({ value, suffix = "", label, light }: CounterProps) {
+export default function Counter({ value, suffix = "", label, light = false }: CounterProps) {
   const [display, setDisplay] = useState("0");
   const ref = useRef<HTMLDivElement>(null);
   const animated = useRef(false);
@@ -30,7 +30,7 @@ export default function Counter({ value, suffix = "", label, light }: CounterPro
           return;
         }
 
-        const duration = 1400;
+        const duration = 1200;
         const start = performance.now();
 
         function tick(now: number) {
@@ -51,15 +51,11 @@ export default function Counter({ value, suffix = "", label, light }: CounterPro
 
   return (
     <div ref={ref} className="text-center">
-      <p
-        className={`font-serif text-4xl tracking-tight sm:text-5xl ${light ? "text-white" : "text-navy"}`}
-      >
+      <p className={`text-3xl font-bold tracking-tight sm:text-4xl ${light ? "text-white" : "text-primary"}`}>
         {display}
         {suffix}
       </p>
-      <p
-        className={`mt-2 text-xs font-medium uppercase tracking-wider ${light ? "text-slate-light" : "text-slate"}`}
-      >
+      <p className={`mt-1 text-xs font-medium uppercase tracking-wider ${light ? "text-white/60" : "text-ink-light"}`}>
         {label}
       </p>
     </div>

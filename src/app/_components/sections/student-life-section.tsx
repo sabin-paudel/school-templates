@@ -14,8 +14,11 @@ export default function StudentLifeSection() {
             label="Student Life"
             title="Beyond the classroom, students find their interests and their voice."
             action={
-              <Link href="/school-life" className="link-arrow">
-                Explore school life <ArrowRight size={14} />
+              <Link
+                href="/school-life"
+                className="btn btn-ghost rounded-md text-sm"
+              >
+                Explore school life <ArrowRight size={16} />
               </Link>
             }
           />
@@ -23,19 +26,22 @@ export default function StudentLifeSection() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {studentLife.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.08}>
+            <Reveal key={item.title} delay={index * 0.1}>
               <article className="group">
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-sm">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep/90 to-transparent p-6 pt-16">
-                    <h3 className="font-serif text-xl text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-light">
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="text-lg font-bold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-white/70">
                       {item.description}
                     </p>
                   </div>

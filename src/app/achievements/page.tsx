@@ -1,97 +1,97 @@
 import Image from "next/image";
-import { achievements } from "../_data/site-content";
+import Link from "next/link";
+import { ArrowRight, Trophy } from "lucide-react";
+import { achievements, school } from "../_data/site-content";
+import PageBanner from "../_components/ui/page-banner";
+import { nepaliSchoolImages } from "../_data/site-images";
 import Reveal from "../_components/ui/reveal";
 
 export default function AchievementsPage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-24">
-      {/* Hero */}
-      <section className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.35em] text-accent-bright">
-          Achievements
-        </p>
+    <>
+      <PageBanner
+        label="Achievements"
+        title="Every milestone tells a story."
+        description="A collection of competitions, awards, championships, and milestones that reflect our continuous journey of growth and excellence."
+        image={nepaliSchoolImages.students}
+        imageAlt="Students at Aatreya Academy"
+      />
 
-        <h1 className="mt-4 text-5xl font-bold  md:text-7xl text-blue-950">
-          Every milestone tells a story.
-        </h1>
-
-        <p className="mt-6 text-lg leading-8 text-slate-400">
-          A collection of competitions, awards, championships, and milestones
-          that reflect our continuous journey of growth and excellence.
-        </p>
-      </section>
-
-      {/* Divider */}
-      <div className="my-20 h-px bg-white/10" />
-
-      {/* Achievements */}
-      <section className="space-y-24">
-        {achievements.map((item, index) => (
-          <Reveal key={item.title} delay={index * 0.05}>
-            <article
-              className={`grid items-center gap-14 ${
-                index % 2 === 0
-                  ? "lg:grid-cols-[1fr_1.2fr]"
-                  : "lg:grid-cols-[1.2fr_1fr]"
-              }`}
-            >
-              {/* Image */}
-              <div className={index % 2 ? "lg:order-2" : ""}>
-                <div className="group relative aspect-4/3 overflow-hidden rounded-4xl">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-105"
-                  />
-
-                  <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-
-                  <div className="absolute bottom-6 left-6 rounded-full bg-black/40 px-4 py-2 backdrop-blur-md">
-                    <span className="text-xs uppercase tracking-[0.3em] text-white">
-                      {item.category}
-                    </span>
+      <section className="section-pad bg-warm">
+        <div className="container-main">
+          <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary shadow-lg">
+              <Trophy size={28} className="text-white" />
+            </div>
+            <div>
+              <p className="label">Our Milestones</p>
+              <h2 className="heading-md mt-1 text-ink">A legacy of excellence</h2>
+            </div>
+          </div>
+          <div className="space-y-16">
+            {achievements.map((item, index) => (
+              <Reveal key={item.title} delay={index * 0.05}>
+                <article
+                  className={`grid items-center gap-12 ${
+                    index % 2 === 0
+                      ? "lg:grid-cols-[1fr_1.2fr]"
+                      : "lg:grid-cols-[1.2fr_1fr]"
+                  }`}
+                >
+                  <div className={index % 2 ? "lg:order-2" : ""}>
+                    <div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-lg shadow-sm">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-ink">
+                          {item.category}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Content */}
-              <div className={index % 2 ? "lg:order-1" : ""}>
-                <span className="text-sm uppercase tracking-[0.35em] text-accent-bright">
-                  {item.year}
-                </span>
-
-                <h2 className="mt-4 text-4xl font-semibold text-shadow-blue-950 md:text-5xl">
-                  {item.title}
-                </h2>
-
-                <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
-                  {item.detail}
-                </p>
-
-                <div className="mt-10 flex items-center gap-5">
-                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-slate-300">
-                    {item.category}
-                  </span>
-
-                  <div className="h-px w-20 bg-accent-bright" />
-                </div>
-              </div>
-            </article>
-          </Reveal>
-        ))}
+                  <div className={index % 2 ? "lg:order-1" : ""}>
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                      <span className="w-6 h-px bg-primary" />
+                      {item.year}
+                    </span>
+                    <h2 className="mt-4 text-2xl font-bold text-ink sm:text-3xl">
+                      {item.title}
+                    </h2>
+                    <p className="text-body mt-4 max-w-xl">
+                      {item.detail}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="mt-32 border-t border-white/10 pt-16 text-center">
-        <h3 className="text-3xl font-semibold text-white">
-          More milestones are on the way.
-        </h3>
-
-        <p className="mt-4 text-slate-400">
-          Every achievement motivates us to aim even higher.
-        </p>
+      <section className="bg-primary py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="container-main relative text-center">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="w-8 h-px bg-white/30" />
+            <Trophy size={24} className="text-primary-light" />
+            <span className="w-8 h-px bg-white/30" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">
+            More milestones are on the way.
+          </h3>
+          <p className="mt-3 text-white/60">
+            Every achievement motivates us to aim even higher.
+          </p>
+          <Link href="/about" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200 mt-8">
+            Learn more about us <ArrowRight size={16} />
+          </Link>
+        </div>
       </section>
-    </main>
+    </>
   );
 }

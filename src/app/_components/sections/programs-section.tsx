@@ -14,42 +14,55 @@ export default function ProgramsSection() {
             label="Academic Programs"
             title="A clear path from first questions to bold ambitions."
             action={
-              <Link href="/academics" className="link-arrow">
-                View all programs <ArrowRight size={14} />
+              <Link
+                href="/academics"
+                className="btn btn-ghost rounded-md text-sm"
+              >
+                View all programs <ArrowRight size={16} />
               </Link>
             }
           />
         </Reveal>
 
-        <div className="mt-14 space-y-0">
+        <div className="mt-12 space-y-6">
           {programs.map((program, index) => (
-            <Reveal key={program.id} delay={index * 0.08}>
-              <article
-                className={`grid items-center gap-8 border-t border-line py-10 lg:grid-cols-[80px_1fr_320px] lg:gap-12 ${index === programs.length - 1 ? "border-b" : ""}`}
-              >
-                <span className="font-serif text-4xl text-line-dark lg:text-5xl">
-                  {program.stage}
-                </span>
-                <div>
-                  <p className="label">{program.ages}</p>
-                  <h3 className="mt-2 font-serif text-2xl text-navy">{program.title}</h3>
-                  <p className="prose-body mt-3 max-w-lg text-sm">{program.description}</p>
-                  <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
-                    {program.highlights.map((h) => (
-                      <li key={h} className="text-xs font-medium text-slate">
-                        · {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="relative aspect-[3/2] overflow-hidden">
-                  <Image
-                    src={program.image}
-                    alt={program.title}
-                    fill
-                    sizes="320px"
-                    className="object-cover transition-transform duration-500 hover:scale-[1.03]"
-                  />
+            <Reveal key={program.id} delay={index * 0.06}>
+              <article className={`group relative bg-warm rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg ${index === 1 ? "lg:ml-12" : index === 2 ? "lg:ml-24" : ""}`}>
+                <div className="grid items-stretch md:grid-cols-[1fr_280px]">
+                  <div className="p-6 sm:p-8 lg:p-10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="text-4xl font-bold text-primary/15">
+                        {program.stage}
+                      </span>
+                      <span className="inline-flex items-center rounded-full bg-primary-light px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+                        {program.ages}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-ink">
+                      {program.title}
+                    </h3>
+                    <p className="text-body mt-2 max-w-lg text-sm">
+                      {program.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {program.highlights.map((h) => (
+                        <span key={h} className="inline-flex items-center gap-1.5 rounded-md bg-white px-3 py-1.5 text-xs font-medium text-ink-light shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="relative min-h-[200px] md:min-h-full overflow-hidden">
+                    <Image
+                      src={program.image}
+                      alt={program.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 280px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:bg-gradient-to-r" />
+                  </div>
                 </div>
               </article>
             </Reveal>

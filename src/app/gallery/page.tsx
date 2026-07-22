@@ -30,39 +30,46 @@ export default function GalleryPage() {
         imageAlt="A school building and students in Kathmandu, Nepal"
       />
 
-      <section className="section-pad bg-white">
+      <section className="section-pad bg-warm">
         <div className="container-main">
-          <div className="mb-8 flex flex-wrap gap-2 text-xs font-medium">
-            <span className="bg-navy px-4 py-2 text-white">All moments</span>
-            {["Learning", "Community", "Campus"].map((filter) => (
-              <span
-                key={filter}
-                className="border border-line px-4 py-2 text-slate"
-              >
-                {filter}
-              </span>
-            ))}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+            <div>
+              <p className="label">Photos</p>
+              <h2 className="heading-md mt-2 text-ink">Moments captured</h2>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-medium">
+              <span className="bg-primary px-4 py-2 text-white rounded-lg">All moments</span>
+              {["Learning", "Community", "Campus"].map((filter) => (
+                <span
+                  key={filter}
+                  className="border border-line bg-white px-4 py-2 text-ink-light rounded-lg hover:border-primary hover:text-primary hover:bg-primary-light transition-all duration-150 cursor-pointer"
+                >
+                  {filter}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="grid auto-rows-60 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {galleryPhotos.map((photo, index) => (
               <Reveal key={photo.title} delay={index * 0.04}>
                 <figure
-                  className={`group relative h-full overflow-hidden ${spanClasses[photo.span]}`}
+                  className={`group relative h-full overflow-hidden rounded-xl shadow-sm ${spanClasses[photo.span]}`}
                 >
                   <Image
                     src={photo.src}
                     alt={photo.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-navy/90 px-4 py-3 transition-transform duration-300 group-hover:translate-y-0">
+                  <div className="absolute inset-0 bg-primary-dark/0 group-hover:bg-primary-dark/40 transition-colors duration-300" />
+                  <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-primary-dark/90 px-4 py-3 transition-transform duration-300 group-hover:translate-y-0">
                     <p className="text-sm font-medium text-white">
                       {photo.title}
                     </p>
-                    <p className="mt-0.5 text-[10px] uppercase tracking-wider text-slate-light">
-                      {photo.credit} · Wikimedia Commons
+                    <p className="mt-0.5 text-[10px] uppercase tracking-wider text-white/60">
+                      {photo.credit} &middot; Wikimedia Commons
                     </p>
                   </figcaption>
                 </figure>
@@ -70,13 +77,30 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          <p className="mt-10 border border-line bg-snow p-5 text-sm leading-relaxed text-slate">
+          <p className="mt-10 bg-white p-5 text-sm leading-relaxed text-ink-light rounded-xl shadow-sm">
             Photography is sourced from Wikimedia Commons and depicts school
             communities across Nepal. Images are used under their respective
             Creative Commons licences.
           </p>
           <Link href="/contact" className="btn btn-primary mt-8">
             Arrange a school visit <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-primary py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+              See It Live
+            </p>
+            <h2 className="mt-3 heading-md text-white sm:text-2xl">
+              Pictures tell only part of the story.
+            </h2>
+          </div>
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200">
+            Visit our campus <ArrowRight size={16} />
           </Link>
         </div>
       </section>

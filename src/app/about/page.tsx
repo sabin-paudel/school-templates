@@ -23,15 +23,19 @@ export default function AboutPage() {
         imageAlt="Students and a teacher outside a school in Nepal"
       />
 
-      <section className="section-pad bg-white">
-        <div className="container-main">
-          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
+      <section className="section-pad bg-warm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary-light/50 -skew-x-12 origin-top-right hidden lg:block" />
+        <div className="container-main relative">
+          <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
             <Reveal>
-              <p className="label">Our Story</p>
-              <h2 className="heading-section mt-4 text-navy">
+              <div className="inline-flex items-center gap-3 rounded-full bg-primary-light px-4 py-1.5 mb-4">
+                <span className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-xs font-semibold tracking-wider text-primary">Since {school.founded}</span>
+              </div>
+              <h2 className="heading-md text-ink">
                 A school where every learner is known.
               </h2>
-              <div className="prose-body mt-6 space-y-4 text-sm">
+              <div className="text-body mt-6 space-y-4 text-sm">
                 <p>
                   Aatreya Academy began in {school.founded} with a clear idea:
                   children do their best work when expectations are high,
@@ -46,25 +50,31 @@ export default function AboutPage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="relative aspect-4/5 overflow-hidden">
-                <Image
-                  src={nepaliSchoolImages.villageStudents}
-                  alt="Nepali students standing together"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
+              <div className="relative">
+                <div className="relative aspect-4/5 overflow-hidden rounded-xl shadow-lg">
+                  <Image
+                    src={nepaliSchoolImages.villageStudents}
+                    alt="Nepali students standing together"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-4 -left-4 bg-primary rounded-xl px-5 py-3 shadow-lg hidden lg:block">
+                  <p className="text-2xl font-bold text-white">700+</p>
+                  <p className="text-xs text-primary-light">Students</p>
+                </div>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section-pad bg-snow">
+      <section className="section-pad bg-white">
         <div className="container-main">
           <Reveal>
             <p className="label">What Guides Us</p>
-            <h2 className="heading-section mt-4 text-navy">
+            <h2 className="heading-md mt-4 text-ink">
               Values made visible every day.
             </h2>
           </Reveal>
@@ -72,16 +82,33 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.06}>
                 <div className="grid gap-4 border-t border-line py-8 sm:grid-cols-[200px_1fr] sm:gap-12">
-                  <h3 className="font-serif text-2xl text-navy">
+                  <h3 className="text-xl font-bold text-ink">
                     {value.title}
                   </h3>
-                  <p className="prose-body text-sm">{value.description}</p>
+                  <p className="text-body text-sm">{value.description}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Link href="/contact" className="btn btn-primary mt-10">
             Visit our campus <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-primary py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+              Visit Us
+            </p>
+            <h2 className="mt-3 heading-md text-white sm:text-2xl">
+              Experience our campus firsthand.
+            </h2>
+          </div>
+          <Link href="/contact" className="btn bg-white/15 text-white hover:bg-white/25 shadow-md rounded-lg">
+            Schedule a visit <ArrowRight size={16} />
           </Link>
         </div>
       </section>

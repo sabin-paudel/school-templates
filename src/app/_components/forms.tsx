@@ -4,15 +4,15 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
-const labelClass = "text-sm font-medium text-navy";
+  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary rounded-md shadow-sm";
+const labelClass = "text-sm font-medium text-ink";
 
 function SuccessMessage({ title }: { title: string }) {
   return (
-    <div className="border border-line bg-snow p-8 text-center">
-      <CheckCircle2 className="mx-auto text-accent" size={36} />
-      <h3 className="mt-4 font-serif text-2xl text-navy">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate">
+    <div className="bg-warm p-8 text-center rounded-lg">
+      <CheckCircle2 className="mx-auto text-primary" size={36} />
+      <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-ink-light">
         This demo saved no personal data. Connect the form to your school
         backend before launch.
       </p>
@@ -122,11 +122,11 @@ export function AdmissionForm() {
           placeholder="Learning needs, interests or questions for our admissions team"
         />
       </label>
-      <label className="flex items-start gap-3 text-sm leading-6 text-slate">
+      <label className="flex items-start gap-3 text-sm leading-6 text-ink-light">
         <input
           type="checkbox"
           required
-          className="mt-1 size-4 accent-[#0c2340]"
+          className="mt-1 size-4 accent-primary"
         />
         I confirm that the information provided is correct and agree to be
         contacted about this application.

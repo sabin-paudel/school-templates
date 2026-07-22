@@ -17,22 +17,20 @@ export default function SectionHeading({
   light = false,
   action,
 }: SectionHeadingProps) {
-  const alignClass = align === "center" ? "text-center mx-auto" : "";
-
   return (
     <div
-      className={`flex flex-col gap-5 ${align === "center" ? "items-center" : "md:flex-row md:items-end md:justify-between"} ${alignClass}`}
+      className={`flex flex-col gap-5 ${align === "center" ? "items-center text-center" : "md:flex-row md:items-end md:justify-between"}`}
     >
       <div className={align === "center" ? "max-w-2xl" : "max-w-xl"}>
-        <p className={`label ${light ? "text-accent-bright" : ""}`}>{label}</p>
+        <p className={`label ${light ? "text-primary-light" : ""}`}>{label}</p>
         <h2
-          className={`heading-section mt-3 ${light ? "text-white" : "text-navy"} ${alignClass}`}
+          className={`heading-md mt-3 ${light ? "text-white" : "text-ink"}`}
         >
           {title}
         </h2>
         {description && (
           <p
-            className={`prose-body mt-4 ${light ? "text-slate-light" : ""} ${alignClass}`}
+            className={`text-body mt-4 ${light ? "text-white/70" : ""}`}
           >
             {description}
           </p>
