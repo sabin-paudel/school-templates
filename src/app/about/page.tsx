@@ -51,7 +51,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="relative">
-                <div className="relative aspect-4/5 overflow-hidden rounded-xl shadow-lg">
+                <div className="relative aspect-4/5 overflow-hidden rounded-2xl shadow-xl">
                   <Image
                     src={nepaliSchoolImages.villageStudents}
                     alt="Nepali students standing together"
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 </div>
                 <div className="absolute -bottom-4 -left-4 bg-primary rounded-xl px-5 py-3 shadow-lg hidden lg:block">
                   <p className="text-2xl font-bold text-white">700+</p>
-                  <p className="text-xs text-primary-light">Students</p>
+                  <p className="text-xs text-white/70">Students</p>
                 </div>
               </div>
             </Reveal>
@@ -70,8 +70,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-white">
-        <div className="container-main">
+      <section className="section-pad bg-white relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-light/40 rounded-full blur-[100px] pointer-events-none" />
+        <div className="container-main relative">
           <Reveal>
             <p className="label">What Guides Us</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -96,18 +97,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-primary py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="bg-ink py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot opacity-20" />
         <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               Visit Us
             </p>
             <h2 className="mt-3 heading-md text-white sm:text-2xl">
               Experience our campus firsthand.
             </h2>
           </div>
-          <Link href="/contact" className="btn bg-white/15 text-white hover:bg-white/25 shadow-md rounded-lg">
+          <Link href="/contact" className="btn bg-white text-ink hover:bg-white/90 shadow-lg rounded-xl">
             Schedule a visit <ArrowRight size={16} />
           </Link>
         </div>

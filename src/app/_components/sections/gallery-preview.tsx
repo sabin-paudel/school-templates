@@ -1,47 +1,57 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { galleryPhotos } from "../../_data/site-content";
-import Reveal from "../ui/reveal";
 import SectionHeading from "../ui/section-heading";
 
 export default function GalleryPreview() {
-  const preview = galleryPhotos.slice(0, 6);
+  const preview = galleryPhotos.slice(0, 5);
 
   return (
-    <section className="section-pad bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-10" />
+    <section className="relative bg-white overflow-hidden py-24 lg:py-32">
+      <div className="absolute inset-0 bg-noise pointer-events-none" />
       <div className="container-main relative">
-        <Reveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <SectionHeading
             label="Gallery"
             title="Moments from our school community."
             action={
               <Link
                 href="/gallery"
-                className="btn bg-white/15 text-white hover:bg-white/25 shadow-md rounded-lg"
+                className="group inline-flex items-center gap-2 btn btn-ghost rounded-xl text-sm"
               >
-                View full gallery <ArrowRight size={16} />
+                View full gallery
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             }
-            light
           />
-        </Reveal>
+        </motion.div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
-          {preview.map((photo, index) => (
-            <Reveal key={photo.title} delay={0.06 * (index + 1)}>
-              <div className={`relative overflow-hidden rounded-xl ${index === 0 || index === 5 ? "col-span-2 aspect-[16/9]" : "aspect-[4/3]"}`}>
-                <Image
-                  src={photo.src}
-                  alt={photo.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-primary-dark/0 hover:bg-primary-dark/30 transition-colors duration-300" />
+        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {preview.map((photo, i) => (
+            <div
+              key={photo.title}
+              className={`relative overflow-hidden rounded-2xl group shadow-sm hover:shadow-xl transition-all duration-500 ${i === 0 ? "col-span-2 row-span-2" : "aspect-square"}`}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-sm font-medium text-white">{photo.title}</p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </div>

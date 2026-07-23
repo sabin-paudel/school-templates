@@ -19,12 +19,6 @@ const pillars = [
   { icon: Languages, title: "Nepali & Global Outlook" },
 ];
 
-const programIcons = [
-  { id: "early-years", icon: "01" },
-  { id: "primary", icon: "02" },
-  { id: "secondary", icon: "03" },
-];
-
 export default function AcademicsPage() {
   return (
     <>
@@ -66,7 +60,7 @@ export default function AcademicsPage() {
                 <div
                   className={`relative ${index % 2 === 1 ? "lg:order-1" : ""}`}
                 >
-                  <div className="relative aspect-16/10 overflow-hidden rounded-xl shadow-lg">
+                  <div className="relative aspect-16/10 overflow-hidden rounded-2xl shadow-xl">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -76,7 +70,7 @@ export default function AcademicsPage() {
                     />
                   </div>
                   <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-primary rounded-xl flex items-center justify-center shadow-lg hidden lg:flex">
-                    <span className="text-2xl font-bold text-white">{programIcons.find(p => p.id === item.id)?.icon}</span>
+                    <span className="text-2xl font-bold text-white">{index + 1 < 10 ? `0${index + 1}` : index + 1}</span>
                   </div>
                 </div>
               </article>
@@ -85,11 +79,11 @@ export default function AcademicsPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="section-pad bg-ink text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot opacity-20" />
         <div className="container-main relative">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               A Balanced Curriculum
             </p>
             <h2 className="mt-4 heading-md">
@@ -99,16 +93,16 @@ export default function AcademicsPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map(({ icon: Icon, title }, index) => (
               <Reveal key={title} delay={index * 0.06}>
-                <div className="border-t border-white/20 pt-6">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/10">
-                    <Icon size={22} className="text-primary-light" />
+                <div className="border-t border-white/15 pt-6">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/8">
+                    <Icon size={22} className="text-primary" />
                   </div>
                   <h3 className="mt-4 font-semibold">{title}</h3>
                 </div>
               </Reveal>
             ))}
           </div>
-          <Link href="/admissions" className="inline-flex items-center gap-2 mt-12 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-primary shadow-md hover:bg-white/90 transition-all duration-200">
+          <Link href="/admissions" className="inline-flex items-center gap-2 mt-12 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-ink shadow-md hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200">
             Apply to {school.name} <ArrowRight size={16} />
           </Link>
         </div>

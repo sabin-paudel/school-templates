@@ -17,8 +17,9 @@ export default function AchievementsPage() {
         imageAlt="Students at Aatreya Academy"
       />
 
-      <section className="section-pad bg-warm">
-        <div className="container-main">
+      <section className="section-pad bg-warm relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="container-main relative">
           <div className="flex items-center gap-4 mb-12">
             <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary shadow-lg">
               <Trophy size={28} className="text-white" />
@@ -39,14 +40,14 @@ export default function AchievementsPage() {
                   }`}
                 >
                   <div className={index % 2 ? "lg:order-2" : ""}>
-                    <div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
+                    <div className="relative aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-lg shadow-sm">
+                      <div className="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-xl shadow-sm">
                         <span className="text-xs font-semibold uppercase tracking-wider text-ink">
                           {item.category}
                         </span>
@@ -73,21 +74,21 @@ export default function AchievementsPage() {
         </div>
       </section>
 
-      <section className="bg-primary py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="bg-ink py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot opacity-20" />
         <div className="container-main relative text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className="w-8 h-px bg-white/30" />
-            <Trophy size={24} className="text-primary-light" />
-            <span className="w-8 h-px bg-white/30" />
+            <span className="w-8 h-px bg-white/15" />
+            <Trophy size={24} className="text-white/40" />
+            <span className="w-8 h-px bg-white/15" />
           </div>
           <h3 className="text-2xl font-bold text-white">
             More milestones are on the way.
           </h3>
-          <p className="mt-3 text-white/60">
+          <p className="mt-3 text-white/55">
             Every achievement motivates us to aim even higher.
           </p>
-          <Link href="/about" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200 mt-8">
+          <Link href="/about" className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/20 px-6 py-3 text-sm font-semibold transition-all duration-200 mt-8">
             Learn more about us <ArrowRight size={16} />
           </Link>
         </div>

@@ -22,7 +22,7 @@ export default function SectionHeading({
       className={`flex flex-col gap-5 ${align === "center" ? "items-center text-center" : "md:flex-row md:items-end md:justify-between"}`}
     >
       <div className={align === "center" ? "max-w-2xl" : "max-w-xl"}>
-        <p className={`label ${light ? "text-primary-light" : ""}`}>{label}</p>
+        <p className={`label ${light ? "text-primary" : ""}`}>{label}</p>
         <h2
           className={`heading-md mt-3 ${light ? "text-white" : "text-ink"}`}
         >
@@ -30,7 +30,7 @@ export default function SectionHeading({
         </h2>
         {description && (
           <p
-            className={`text-body mt-4 ${light ? "text-white/70" : ""}`}
+            className={`text-body mt-4 ${light ? "text-white/65" : ""}`}
           >
             {description}
           </p>

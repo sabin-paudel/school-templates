@@ -48,8 +48,9 @@ export default function SchoolLifePage() {
         imageAlt="Students on their way to school in Lalitpur, Nepal"
       />
 
-      <section className="section-pad bg-warm">
-        <div className="container-main">
+      <section className="section-pad bg-warm relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
+        <div className="container-main relative">
           <Reveal>
             <p className="label">Activities</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -61,7 +62,7 @@ export default function SchoolLifePage() {
               const Icon = activityIcons[index];
               return (
                 <Reveal key={item.title} delay={index * 0.06}>
-                  <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-start gap-5">
+                  <div className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-start gap-5">
                     <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light group-hover:bg-primary transition-colors duration-300 shrink-0">
                       <Icon size={22} className="text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
@@ -79,8 +80,9 @@ export default function SchoolLifePage() {
         </div>
       </section>
 
-      <section className="section-pad bg-white">
-        <div className="container-main">
+      <section className="section-pad bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-primary-light/50 rounded-full blur-[100px] pointer-events-none" />
+        <div className="container-main relative">
           <Reveal>
             <p className="label">In Pictures</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -90,7 +92,7 @@ export default function SchoolLifePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {studentLife.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.06}>
-                <div className="group relative aspect-3/4 overflow-hidden rounded-xl shadow-sm">
+                <div className="group relative aspect-3/4 overflow-hidden rounded-2xl shadow-sm">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -98,7 +100,7 @@ export default function SchoolLifePage() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <p className="text-sm font-medium text-white">
                       {item.title}
@@ -111,18 +113,18 @@ export default function SchoolLifePage() {
         </div>
       </section>
 
-      <section className="bg-primary py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="bg-ink py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot opacity-20" />
         <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               See School Life
             </p>
             <h2 className="mt-3 heading-md text-white sm:text-2xl">
               A community best seen in pictures.
             </h2>
           </div>
-          <Link href="/gallery" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200">
+          <Link href="/gallery" className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/20 px-6 py-3 text-sm font-semibold transition-all duration-200">
             Open gallery <ArrowRight size={16} />
           </Link>
         </div>

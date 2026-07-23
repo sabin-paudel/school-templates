@@ -19,7 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className="font-sans antialiased">
         <SiteHeader />
-        <main>{children}</main>
+        <main className="pt-[72px]">{children}</main>
         <SiteFooter />
       </body>
     </html>

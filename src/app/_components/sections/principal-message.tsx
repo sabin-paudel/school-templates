@@ -1,49 +1,72 @@
+"use client";
+
 import Image from "next/image";
 import { principal } from "../../_data/site-content";
-import Reveal from "../ui/reveal";
+import { motion } from "motion/react";
 import { Quote } from "lucide-react";
 
 export default function PrincipalMessage() {
   return (
-    <section className="section-pad bg-warm">
-      <div className="container-main">
-        <Reveal>
-          <div className="grid items-center gap-8 lg:grid-cols-[380px_1fr] lg:gap-16">
-            <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-lg lg:aspect-auto lg:h-full lg:min-h-[460px]">
+    <section className="relative bg-gradient-to-b from-white to-primary-light/10 overflow-hidden py-24 lg:py-32">
+      <div className="absolute inset-0 bg-noise pointer-events-none" />
+      <div className="container-main relative">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-4 -left-4 w-full h-full rounded-[20px] bg-primary/10" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[16px] border border-primary/10 lg:aspect-auto lg:h-full lg:min-h-[480px]">
                 <Image
                   src={principal.image}
                   alt={principal.name}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 380px"
+                  sizes="(max-width: 1024px) 100vw, 400px"
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-primary rounded-lg px-5 py-3 shadow-lg hidden lg:block">
-                <p className="text-2xl font-bold text-white">24+</p>
-                <p className="text-xs text-primary-light">Years Leading</p>
+              <div className="absolute -bottom-6 -right-6 bg-ink rounded-2xl px-6 py-4 shadow-xl border border-white/10">
+                <p className="text-3xl font-bold text-white">24+</p>
+                <p className="text-xs text-white/50 uppercase tracking-wider mt-1">Years Leading</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink/40">
                 <Quote size={14} /> Principal Message
               </span>
               <h2 className="heading-md mt-3 text-ink">
                 A word from our leadership.
               </h2>
-              <blockquote className="mt-6">
-                <p className="text-lg leading-relaxed text-ink/80 sm:text-xl">
+              <blockquote className="mt-8 relative">
+                <Quote className="w-14 h-14 text-primary/10 absolute -top-4 -left-4" />
+                <p className="text-lg leading-relaxed text-ink/80 sm:text-xl relative z-10 pl-4">
                   &ldquo;{principal.message}&rdquo;
                 </p>
               </blockquote>
-              <div className="mt-6 pt-6 border-t border-line">
-                <p className="font-medium text-ink">{principal.name}</p>
-                <p className="text-sm text-ink-light mt-0.5">{principal.title}</p>
+              <div className="mt-8 pt-6 border-t border-ink/8">
+                <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg shrink-0">
+                    {principal.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-ink text-lg">{principal.name}</p>
+                    <p className="text-sm text-ink/50 mt-0.5">{principal.title}</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

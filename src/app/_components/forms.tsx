@@ -4,12 +4,12 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary rounded-md shadow-sm";
+  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary rounded-xl shadow-sm";
 const labelClass = "text-sm font-medium text-ink";
 
 function SuccessMessage({ title }: { title: string }) {
   return (
-    <div className="bg-warm p-8 text-center rounded-lg">
+    <div className="bg-warm p-8 text-center rounded-2xl">
       <CheckCircle2 className="mx-auto text-primary" size={36} />
       <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-ink-light">

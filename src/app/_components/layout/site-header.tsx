@@ -9,7 +9,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95  shadow-sm">
       <div className="border-b border-line">
         <div className="container-main flex h-[72px] items-center justify-between">
           <Link
@@ -17,10 +17,10 @@ export default function SiteHeader() {
             className="flex items-baseline gap-2"
             onClick={() => setOpen(false)}
           >
-            <span className="text-lg font-bold tracking-tight text-primary">
+            <span className="text-lg font-bold tracking-tight text-ink">
               {school.name}
             </span>
-            <span className="hidden text-[10px] font-medium uppercase tracking-[0.12em] text-ink-light sm:inline">
+            <span className="hidden text-[10px] font-medium uppercase tracking-[0.12em] text-ink/50 sm:inline">
               Pokhara
             </span>
           </Link>
@@ -33,20 +33,20 @@ export default function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-ink-light hover:bg-primary-light hover:text-primary transition-colors duration-150"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-ink/70 hover:bg-ink/5 hover:text-ink transition-all duration-150"
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="rounded-md px-3 py-2 text-sm font-medium text-ink-light hover:bg-primary-light hover:text-primary transition-colors duration-150"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-ink/70 hover:bg-ink/5 hover:text-ink transition-all duration-150"
             >
               Contact
             </Link>
             <Link
               href="/admissions"
-              className="ml-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark transition-colors duration-150 shadow-sm"
+              className="ml-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark shadow-sm shadow-primary/20 transition-all duration-200"
             >
               Apply Now
             </Link>
@@ -54,7 +54,7 @@ export default function SiteHeader() {
 
           <button
             type="button"
-            className="flex size-10 items-center justify-center rounded-md text-ink hover:bg-primary-light transition-colors duration-150 md:hidden"
+            className="flex size-10 items-center justify-center rounded-lg text-ink hover:bg-ink/5 transition-colors duration-150 md:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -73,7 +73,7 @@ export default function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="py-3 text-sm font-medium text-ink-light hover:text-primary transition-colors duration-150"
+                  className="py-3 text-sm font-medium text-ink/70 hover:text-ink transition-colors duration-150"
                 >
                   {item.label}
                 </Link>
@@ -81,14 +81,14 @@ export default function SiteHeader() {
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-medium text-ink-light hover:text-primary transition-colors duration-150"
+                className="py-3 text-sm font-medium text-ink/70 hover:text-ink transition-colors duration-150"
               >
                 Contact
               </Link>
               <Link
                 href="/admissions"
                 onClick={() => setOpen(false)}
-                className="mt-3 rounded-md bg-primary px-4 py-3 text-center text-sm font-semibold text-white hover:bg-primary-dark transition-colors duration-150 shadow-sm"
+                className="mt-3 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white hover:bg-primary-dark transition-colors duration-150 shadow-sm"
               >
                 Apply Now
               </Link>

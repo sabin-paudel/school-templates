@@ -55,7 +55,7 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
         {display}
         {suffix}
       </p>
-      <p className={`mt-1 text-xs font-medium uppercase tracking-wider ${light ? "text-white/60" : "text-ink-light"}`}>
+      <p className={`mt-1 text-xs font-medium uppercase tracking-wider ${light ? "text-white/55" : "text-ink-light"}`}>
         {label}
       </p>
     </div>

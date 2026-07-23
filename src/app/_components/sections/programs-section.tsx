@@ -1,72 +1,83 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { programs } from "../../_data/site-content";
-import Reveal from "../ui/reveal";
 import SectionHeading from "../ui/section-heading";
 
 export default function ProgramsSection() {
   return (
-    <section id="academics" className="section-pad bg-white">
-      <div className="container-main">
-        <Reveal>
+    <section className="relative bg-white overflow-hidden py-24 lg:py-32">
+      <div className="absolute inset-0 bg-noise pointer-events-none" />
+      <div className="container-main relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <SectionHeading
             label="Academic Programs"
             title="A clear path from first questions to bold ambitions."
             action={
               <Link
                 href="/academics"
-                className="btn btn-ghost rounded-md text-sm"
+                className="group inline-flex items-center gap-2 btn btn-ghost rounded-xl text-sm"
               >
-                View all programs <ArrowRight size={16} />
+                View all programs
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             }
           />
-        </Reveal>
+        </motion.div>
 
-        <div className="mt-12 space-y-6">
-          {programs.map((program, index) => (
-            <Reveal key={program.id} delay={index * 0.06}>
-              <article className={`group relative bg-warm rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg ${index === 1 ? "lg:ml-12" : index === 2 ? "lg:ml-24" : ""}`}>
-                <div className="grid items-stretch md:grid-cols-[1fr_280px]">
-                  <div className="p-6 sm:p-8 lg:p-10">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-4xl font-bold text-primary/15">
-                        {program.stage}
-                      </span>
-                      <span className="inline-flex items-center rounded-full bg-primary-light px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {programs.map((program, i) => {
+            const stageNum = String(i + 1).padStart(2, "0");
+            return (
+              <motion.article
+                key={program.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.12 * i }}
+                className="group relative"
+              >
+                <div className="relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="px-8 pt-8 pb-7 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-white bg-primary px-3 py-1.5 rounded-lg">
                         {program.ages}
                       </span>
+                      <span className="text-4xl font-bold text-line select-none">
+                        {stageNum}
+                      </span>
                     </div>
-                    <h3 className="text-xl font-bold text-ink">
-                      {program.title}
-                    </h3>
-                    <p className="text-body mt-2 max-w-lg text-sm">
-                      {program.description}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {program.highlights.map((h) => (
-                        <span key={h} className="inline-flex items-center gap-1.5 rounded-md bg-white px-3 py-1.5 text-xs font-medium text-ink-light shadow-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          {h}
-                        </span>
-                      ))}
+                    <h3 className="text-xl font-bold text-ink">{program.title}</h3>
+                    <p className="text-body mt-3 text-sm flex-1 leading-relaxed">{program.description}</p>
+                    <div className="mt-6 pt-5 border-t border-stone">
+                      <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+                        {program.highlights.map((h) => (
+                          <span key={h} className="flex items-center gap-1.5 text-xs text-ink-light">
+                            <span className="w-1 h-1 rounded-full bg-primary" />
+                            {h}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  <div className="relative min-h-[200px] md:min-h-full overflow-hidden">
-                    <Image
-                      src={program.image}
-                      alt={program.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 280px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:bg-gradient-to-r" />
+                    <Link
+                      href="/academics"
+                      className="group inline-flex items-center gap-2 mt-6 text-sm font-semibold text-primary hover:text-primary-dark transition-colors duration-200"
+                    >
+                      Learn more
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                 </div>
-              </article>
-            </Reveal>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

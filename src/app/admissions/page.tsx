@@ -53,12 +53,12 @@ export default function AdmissionsPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {steps.map(({ step, icon: Icon, title, text }, index) => (
               <Reveal key={step} delay={index * 0.08}>
-                <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <div className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light group-hover:bg-primary transition-colors duration-300">
                       <Icon size={22} className="text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <span className="text-3xl font-bold text-primary/10">{step}</span>
+                    <span className="text-3xl font-bold text-primary/8">{step}</span>
                   </div>
                   <h3 className="font-semibold text-ink">{title}</h3>
                   <p className="text-body mt-2 text-sm">{text}</p>
@@ -69,8 +69,9 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-white">
-        <div className="container-main grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+      <section className="section-pad bg-white relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary-light/40 rounded-full blur-[100px] pointer-events-none" />
+        <div className="container-main relative grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <Reveal>
             <p className="label">Student Application</p>
             <h2 className="heading-md mt-4 text-ink">Apply for admission</h2>
@@ -95,25 +96,25 @@ export default function AdmissionsPage() {
             </Link>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="bg-warm p-6 sm:p-10 rounded-lg shadow-sm">
+            <div className="bg-warm p-6 sm:p-10 rounded-2xl shadow-sm">
               <AdmissionForm />
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-primary py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+      <section className="bg-ink py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot opacity-20" />
         <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               Questions?
             </p>
             <h2 className="mt-3 heading-md text-white sm:text-2xl">
               We are here to help with your application.
             </h2>
           </div>
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-white/15 text-white hover:bg-white/25 px-6 py-3 text-sm font-semibold shadow-md transition-all duration-200">
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/20 px-6 py-3 text-sm font-semibold transition-all duration-200">
             Contact admissions <ArrowRight size={16} />
           </Link>
         </div>

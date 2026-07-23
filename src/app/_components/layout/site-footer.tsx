@@ -1,59 +1,75 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowUpRight, GraduationCap } from "lucide-react";
 import { navigation, school } from "../../_data/site-content";
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-primary-dark">
-      <div className="container-main section-pad">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
+    <footer className="bg-primary-dark relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+      <div className="absolute inset-0 bg-grid opacity-[0.06]" />
+      <div className="container-main section-pad relative">
+        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-16">
           <div>
-            <Link href="/" className="inline-block">
-              <span className="text-lg font-bold tracking-tight text-white">
+            <Link href="/" className="inline-flex items-center gap-2">
+              <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary">
+                <GraduationCap size={20} className="text-white" />
+              </span>
+              <span className="text-xl font-bold tracking-tight text-white">
                 {school.name}
               </span>
             </Link>
-            <p className="mt-1 text-xs uppercase tracking-wider text-white/50">
+            <p className="mt-2 text-xs uppercase tracking-wider text-stone font-medium">
               {school.motto}
             </p>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-stone">
               A forward-looking school in Pokhara helping young people learn
               with purpose, grow with confidence, and contribute with care.
             </p>
-            <div className="mt-6 space-y-2 text-sm">
-              <div className="flex items-start gap-2 text-white/60">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary-light" />
-                <span>{school.location}</span>
+            <div className="mt-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary shrink-0">
+                  <MapPin className="w-4 h-4 text-white" />
+                </span>
+                <span className="text-sm text-white">{school.location}</span>
               </div>
               <a
                 href={`tel:${school.phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-2 text-white/60 hover:text-white transition-colors duration-150"
+                className="flex items-center gap-3 group"
               >
-                <Phone className="w-4 h-4 shrink-0 text-primary-light" />
-                {school.phone}
+                <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary shrink-0">
+                  <Phone className="w-4 h-4 text-white" />
+                </span>
+                <span className="text-sm text-white group-hover:text-stone transition-colors duration-150">
+                  {school.phone}
+                </span>
               </a>
               <a
                 href={`mailto:${school.email}`}
-                className="flex items-center gap-2 text-white/60 hover:text-white transition-colors duration-150"
+                className="flex items-center gap-3 group"
               >
-                <Mail className="w-4 h-4 shrink-0 text-primary-light" />
-                {school.email}
+                <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary shrink-0">
+                  <Mail className="w-4 h-4 text-white" />
+                </span>
+                <span className="text-sm text-white group-hover:text-stone transition-colors duration-150">
+                  {school.email}
+                </span>
               </a>
             </div>
           </div>
 
           <div>
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-white/50">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-stone">
               Explore
-            </h2>
-            <ul className="mt-4 space-y-2">
+            </h3>
+            <ul className="mt-6 space-y-3">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors duration-150"
+                    className="group inline-flex items-center gap-1.5 text-sm text-stone hover:text-white transition-colors duration-150"
                   >
                     {item.label}
+                    <ArrowUpRight size={12} className="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
                   </Link>
                 </li>
               ))}
@@ -61,21 +77,23 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-white/50">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-stone">
               Quick Links
-            </h2>
-            <ul className="mt-4 space-y-2">
+            </h3>
+            <ul className="mt-6 space-y-3">
               {[
                 ["Admissions", "/admissions"],
                 ["Contact Us", "/contact"],
                 ["School Notices", "/notices"],
+                ["School Life", "/school-life"],
               ].map(([label, href]) => (
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-sm text-white/60 hover:text-white transition-colors duration-150"
+                    className="group inline-flex items-center gap-1.5 text-sm text-stone hover:text-white transition-colors duration-150"
                   >
                     {label}
+                    <ArrowUpRight size={12} className="opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
                   </Link>
                 </li>
               ))}
@@ -83,56 +101,47 @@ export default function SiteFooter() {
           </div>
 
           <div>
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-white/50">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-stone">
               School Info
-            </h2>
-            <ul className="mt-4 space-y-3 text-sm">
+            </h3>
+            <ul className="mt-6 space-y-5">
               <li>
-                <span className="text-white/60">Est. {school.founded}</span>
+                <span className="text-xs text-line uppercase tracking-wider font-medium">Established</span>
+                <p className="text-base text-white font-semibold mt-0.5">{school.founded}</p>
               </li>
               <li>
-                <span className="text-white/60">NEB Curriculum</span>
+                <span className="text-xs text-line uppercase tracking-wider font-medium">Curriculum</span>
+                <p className="text-base text-white font-semibold mt-0.5">NEB Curriculum</p>
               </li>
               <li>
-                <span className="text-white/60">{school.ages}</span>
+                <span className="text-xs text-line uppercase tracking-wider font-medium">Age Range</span>
+                <p className="text-base text-white font-semibold mt-0.5">{school.ages}</p>
               </li>
               <li>
-                <span className="text-white/60">{school.hours}</span>
+                <span className="text-xs text-line uppercase tracking-wider font-medium">School Hours</span>
+                <p className="text-base text-white font-semibold mt-0.5">{school.hours}</p>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-main flex flex-col gap-4 py-5 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-stone">
+        <div className="container-main flex flex-col gap-4 py-6 text-sm text-stone sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} {school.name}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} {school.name}. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-5">
-            <Link
-              href="/privacy"
-              className="hover:text-white transition-colors duration-150"
-            >
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/privacy" className="hover:text-white transition-colors duration-150">
               Privacy Policy
             </Link>
-            <Link
-              href="/terms"
-              className="hover:text-white transition-colors duration-150"
-            >
+            <Link href="/terms" className="hover:text-white transition-colors duration-150">
               Terms of Use
             </Link>
-            <Link
-              href="/safeguarding"
-              className="hover:text-white transition-colors duration-150"
-            >
+            <Link href="/safeguarding" className="hover:text-white transition-colors duration-150">
               Safeguarding
             </Link>
-            <Link
-              href="/sitemap"
-              className="hover:text-white transition-colors duration-150"
-            >
+            <Link href="/sitemap" className="hover:text-white transition-colors duration-150">
               Sitemap
             </Link>
           </div>
