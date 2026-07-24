@@ -52,20 +52,6 @@ export default function HeroSection() {
               Schedule a Visit
             </Link>
           </div>
-          <div className="mt-16 flex items-center gap-8 text-xs text-white/40">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-              NEB Curriculum
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-              Ages 3&ndash;16
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary-light" />
-              14:1 Ratio
-            </span>
-          </div>
         </div>
       </div>
     </section>
