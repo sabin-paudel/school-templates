@@ -4,7 +4,10 @@ import Reveal from "../ui/reveal";
 
 export default function AdmissionsCta() {
   return (
-    <section id="admissions" className="bg-primary-dark py-16 sm:py-20 relative overflow-hidden">
+    <section
+      id="admissions"
+      className="bg-primary-dark py-16 sm:py-20 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="container-main relative">
         <Reveal>
@@ -17,15 +20,13 @@ export default function AdmissionsCta() {
                 The best way to understand Aatreya is to experience it.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-white/60">
-                Tour the campus, meet our educators, and see a regular school day
-                in action. Our admissions team will guide you through every step.
+                Tour the campus, meet our educators, and see a regular school
+                day in action. Our admissions team will guide you through every
+                step.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="btn btn-light shadow-md"
-              >
+              <Link href="/contact" className="btn btn-light shadow-md">
                 Schedule a Visit <ArrowRight size={16} />
               </Link>
               <Link
