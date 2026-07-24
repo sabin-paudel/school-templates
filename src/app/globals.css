@@ -3,21 +3,28 @@
 
 :root {
   --font-dm-sans: "DM Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* neutrals — warm parchment through to a near-black ink, never cold gray */
   --white: #ffffff;
-  --warm: #f7f8f9;
-  --stone: #eef0f2;
-  --line: #d9d9d9;
-  --ink-light: #6b6e7a;
-  --ink: #353535;
-  --primary: #3c6e71;
-  --primary-dark: #284b63;
-  --primary-light: #eef6f6;
-  --accent: #3c6e71;
-  --accent-light: #eef6f6;
-  --shadow-sm: 0 1px 3px rgb(53 53 53 / 6%);
-  --shadow-md: 0 4px 16px rgb(53 53 53 / 8%);
-  --shadow-lg: 0 8px 40px rgb(53 53 53 / 10%);
-  --shadow-xl: 0 16px 60px rgb(53 53 53 / 12%);
+  --warm: #f8f6f0;
+  --stone: #efece2;
+  --line: #ddd8ca;
+  --ink-light: #6e6a5f;
+  --ink: #1c1b17;
+
+  /* primary — a deep, bottle-green rather than the expected teal or navy */
+  --primary: #1f4d3e;
+  --primary-dark: #0f2e24;
+  --primary-light: #e7efe9;
+
+  /* accent — an antique brass, reserved for plaques, spines, and small premium touches */
+  --accent: #ab8a54;
+  --accent-light: #f4ecd9;
+
+  --shadow-sm: 0 1px 3px rgb(28 27 23 / 7%);
+  --shadow-md: 0 4px 16px rgb(28 27 23 / 9%);
+  --shadow-lg: 0 8px 40px rgb(28 27 23 / 12%);
+  --shadow-xl: 0 16px 60px rgb(28 27 23 / 14%);
 }
 
 @theme inline {
@@ -108,7 +115,11 @@ body {
   line-height: 1;
   border: none;
   cursor: pointer;
-  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
   border-radius: 8px;
 }
 
@@ -119,12 +130,12 @@ body {
 .btn-primary {
   background: var(--primary);
   color: var(--white);
-  box-shadow: 0 1px 3px rgb(60 110 113 / 25%);
+  box-shadow: 0 1px 3px rgb(31 77 62 / 25%);
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  box-shadow: 0 4px 14px rgb(60 110 113 / 35%);
+  box-shadow: 0 4px 14px rgb(31 77 62 / 35%);
 }
 
 .btn-outline {
@@ -162,7 +173,9 @@ body {
   background: var(--white);
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 300ms ease, transform 300ms ease;
+  transition:
+    box-shadow 300ms ease,
+    transform 300ms ease;
 }
 
 .card:hover {
@@ -192,68 +205,127 @@ body {
 
 .bg-grid {
   background-image:
-    linear-gradient(rgb(60 110 113 / 6%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(60 110 113 / 6%) 1px, transparent 1px);
+    linear-gradient(rgb(31 77 62 / 6%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(31 77 62 / 6%) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .bg-dot {
-  background-image: radial-gradient(rgb(60 110 113 / 10%) 1px, transparent 1px);
+  background-image: radial-gradient(rgb(31 77 62 / 10%) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(2deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(2deg);
+  }
 }
 
 @keyframes float-reverse {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(16px) rotate(-2deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(16px) rotate(-2deg);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes drift {
-  0% { transform: translateX(0) translateY(0); }
-  33% { transform: translateX(30px) translateY(-20px); }
-  66% { transform: translateX(-20px) translateY(15px); }
-  100% { transform: translateX(0) translateY(0); }
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  33% {
+    transform: translateX(30px) translateY(-20px);
+  }
+  66% {
+    transform: translateX(-20px) translateY(15px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes scroll-hint {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(6px); opacity: 1; }
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
 }
 
 @keyframes scale-in {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes blob {
-  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  50% { border-radius: 50% 60% 30% 70% / 40% 50% 60% 50%; }
-  75% { border-radius: 60% 30% 50% 50% / 30% 60% 40% 70%; }
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 70% / 40% 50% 60% 50%;
+  }
+  75% {
+    border-radius: 60% 30% 50% 50% / 30% 60% 40% 70%;
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .bg-noise {
@@ -267,11 +339,17 @@ body {
 }
 
 .glow-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgb(60 110 113 / 0.2), transparent 40%, transparent 60%, rgb(60 110 113 / 0.1));
+  background: linear-gradient(
+    135deg,
+    rgb(31 77 62 / 0.2),
+    transparent 40%,
+    transparent 60%,
+    rgb(171 138 84 / 0.15)
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -289,6 +367,23 @@ body {
 .tilt-card {
   transform-style: preserve-3d;
   transition: transform 0.1s ease;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  a,
+  button {
+    min-height: 44px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

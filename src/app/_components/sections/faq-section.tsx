@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function FaqSection() {
   return (
-    <section className="relative bg-gradient-to-b from-white to-primary-light/5 overflow-hidden py-24 lg:py-32">
+    <section className="relative bg-stone overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
       <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-20">

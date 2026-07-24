@@ -1,21 +1,18 @@
 "use client";
 
-import { Trophy, ArrowUpRight, ArrowRight } from "lucide-react";
+import { Trophy, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
 import { achievements } from "../../_data/site-content";
 import SectionHeading from "../ui/section-heading";
 
 export default function AchievementsSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const x = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], ["10%", "0%", "0%", "-10%"]);
+  const items = achievements.slice(0, 5);
 
   return (
-    <section ref={ref} className="relative bg-warm overflow-hidden py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-stone py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
+      <div className="container relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,44 +27,45 @@ export default function AchievementsSection() {
                 className="group inline-flex items-center gap-2 btn btn-ghost rounded-xl text-sm"
               >
                 View all
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-1"
+                />
               </Link>
             }
           />
         </motion.div>
 
-        <motion.div className="mt-14 flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none" style={{ x }}>
-          {achievements.slice(0, 5).map((item, i) => (
+        {/* "a record" — read literally: a ledger, not a carousel */}
+        <div className="mx-auto mt-14 max-w-4xl border-t border-ink/10">
+          {items.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-              className="min-w-[320px] md:min-w-[380px] snap-start"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.45, delay: 0.08 * i }}
+              className="group flex items-start gap-6 border-b border-ink/10 py-6"
             >
-              <div className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full border border-ink/5">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 shrink-0">
-                    <Trophy size={20} className="text-primary" />
-                  </span>
-                  <span className="shrink-0 inline-flex items-center rounded-full bg-ink/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink/50">
-                    {item.year}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs text-ink/40 uppercase tracking-wider">{item.category}</span>
-                  <ArrowUpRight size={13} className="text-primary/30 group-hover:text-primary transition-colors shrink-0" />
-                </div>
-                <h3 className="text-lg font-bold text-ink">{item.title}</h3>
-                <p className="text-body text-sm mt-2">{item.detail}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              <span className="w-16 shrink-0 pt-0.5 font-serif text-2xl text-primary sm:w-20">
+                {item.year}
+              </span>
 
-        <div className="mt-8 flex justify-center gap-2">
-          {achievements.slice(0, 5).map((_, i) => (
-            <div key={i} className="w-2 h-2 rounded-full bg-primary/20" />
+              <div className="min-w-0 flex-1">
+                <span className="text-xs font-semibold uppercase tracking-wider text-ink/40">
+                  {item.category}
+                </span>
+                <h3 className="mt-1 text-lg font-bold text-ink">
+                  {item.title}
+                </h3>
+                <p className="text-body mt-1.5 text-sm">{item.detail}</p>
+              </div>
+
+              <Trophy
+                size={18}
+                className="mt-1 shrink-0 text-primary/30 transition-colors duration-300 group-hover:text-primary"
+              />
+            </motion.div>
           ))}
         </div>
       </div>

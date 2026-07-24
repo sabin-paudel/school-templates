@@ -8,7 +8,7 @@ export default function SiteFooter() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       <div className="absolute inset-0 bg-grid opacity-[0.06]" />
       <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 section-pad relative">
-        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-16">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-16">
           <div>
             <Link href="/" className="inline-flex items-center gap-2">
               <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary">

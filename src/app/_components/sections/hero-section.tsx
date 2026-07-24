@@ -9,10 +9,8 @@ import {
   Phone,
   FileText,
   MapPin,
-  ChevronDown,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
 import { nepaliSchoolImages } from "../../_data/site-images";
 import { school } from "../../_data/site-content";
 
@@ -23,227 +21,222 @@ const quickActions = [
   { icon: MapPin, label: "Visit Campus", href: "/contact" },
 ];
 
-const headingWords = [
-  "Where",
-  "academic",
-  "rigour",
-  "meets",
-  "genuine",
-  "care.",
-];
-
-type Particle = {
-  left: string;
-  top: string;
-  size: number;
-};
-
 export default function HeroSection() {
-  const [particles] = useState<Particle[]>(() =>
-    Array.from({ length: 20 }, () => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      size: Math.random() * 4 + 1,
-    })),
-  );
-
   return (
-    <motion.section className="relative min-h-[100dvh] overflow-hidden bg-white">
-      <svg
-        className="absolute inset-0 h-full w-full pointer-events-none"
-        viewBox="0 0 1440 900"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient
-            id="hero-line-grad"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="#3c6e71" stopOpacity="0.08" />
-            <stop offset="50%" stopColor="#3c6e71" stopOpacity="0.02" />
-            <stop offset="100%" stopColor="#3c6e71" stopOpacity="0.08" />
-          </linearGradient>
-        </defs>
+    <section className="relative overflow-hidden bg-warm ">
+      <div className="grid min-h-dvh lg:grid-cols-[1.15fr_0.85fr] container mx-auto">
+        {/* ---------- Left: content column ---------- */}
+        <div className="relative flex flex-col justify-center overflow-hidden px-6 pb-32 pt-32 sm:px-10 lg:px-16 lg:pb-40 lg:pt-28">
+          {/* faint ruled "notebook" lines behind the copy — a quiet nod to the school register */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 hidden lg:block"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, transparent, transparent 43px, rgba(60,110,113,0.07) 43px, rgba(60,110,113,0.07) 44px)",
+              maskImage:
+                "linear-gradient(to bottom, transparent, black 15%, black 75%, transparent)",
+            }}
+          />
 
-        <path
-          d="M0,100 C360,200 540,0 720,150 C900,300 1080,50 1440,120 L1440,0 L0,0 Z"
-          fill="url(#hero-line-grad)"
-        />
-
-        <path
-          d="M0,200 C240,50 480,250 720,100 C960,-50 1200,200 1440,80 L1440,0 L0,0 Z"
-          fill="url(#hero-line-grad)"
-          opacity="0.5"
-        />
-      </svg>
-
-      {particles.map((p, i) => (
-        <div
-          key={i}
-          suppressHydrationWarning
-          className="absolute rounded-full bg-primary/10"
-          style={{
-            left: p.left,
-            top: p.top,
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-          }}
-        />
-      ))}
-
-      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex min-h-[100dvh] flex-col justify-center pb-16 pt-28">
-        <div className="grid items-center gap-14 lg:grid-cols-[1fr_440px] lg:gap-24">
-          <div>
+          <div className="container relative mx-auto max-w-150 lg:max-w-none">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 rounded-full bg-primary/10 px-4 py-2 mb-8 border border-primary/15"
+              transition={{ duration: 0.5 }}
+              className="inline-flex w-fit items-center gap-2.5 border-b border-primary/30 pb-2"
             >
-              <span className="relative flex size-2">
-                <span className="absolute inset-0 rounded-full bg-primary animate-ping" />
-                <span className="relative rounded-full bg-primary size-2" />
+              <span className="relative flex size-1.5">
+                <span className="absolute inset-0 animate-ping rounded-full bg-primary" />
+                <span className="relative size-1.5 rounded-full bg-primary" />
               </span>
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
                 Admissions Open 2026&ndash;27
               </span>
             </motion.div>
 
-            <h1 className="text-[clamp(2.8rem,7vw,5rem)] font-bold leading-[1.02] tracking-tight text-ink overflow-hidden">
-              {headingWords.map((word, i) => (
+            <h1 className="mt-8 font-serif text-[clamp(2.2rem,5vw,4.6rem)] font-medium leading-[1.08] tracking-tight text-ink">
+              <span className="block overflow-hidden">
                 <motion.span
-                  key={word}
-                  className={`inline-block mr-[0.3em] ${word === "care." ? "text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-primary-dark" : ""}`}
-                  initial={{ y: 60, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.3 + i * 0.08,
-                    ease: [0.2, 0.65, 0.3, 0.9],
+                    duration: 0.8,
+                    delay: 0.25,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  {word}
+                  Where academic rigour
                 </motion.span>
-              ))}
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.38,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  meets{" "}
+                  <span className="relative inline-block">
+                    genuine care.
+                    <motion.svg
+                      className="absolute -bottom-2 left-0 w-full stroke-primary"
+                      height="10"
+                      viewBox="0 0 300 10"
+                      preserveAspectRatio="none"
+                      fill="none"
+                    >
+                      <motion.path
+                        d="M2,6 C60,2 240,10 298,4"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{
+                          duration: 0.7,
+                          delay: 1.15,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </motion.svg>
+                  </span>
+                </motion.span>
+              </span>
             </h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-ink/55 sm:text-lg"
+              className="mt-7 max-w-md text-base leading-relaxed text-ink/55 sm:text-lg"
             >
               Aatreya Academy prepares students from early years through
               secondary school to learn with purpose and lead with integrity.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.1 }}
+              transition={{ duration: 0.5, delay: 1.05 }}
               className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
               <Link
                 href="/admissions"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-ink/20 hover:bg-primary hover:shadow-primary/30 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-ink/20 transition-all duration-300 hover:bg-primary hover:shadow-primary/30"
               >
                 <GraduationCap size={18} />
                 Begin Application
                 <ArrowRight
                   size={16}
-                  className="group-hover:translate-x-1 transition-transform"
+                  className="transition-transform group-hover:translate-x-1"
                 />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-ink/10 px-8 py-4 text-sm font-semibold text-ink/70 hover:border-primary/30 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-2 py-4 text-sm font-semibold text-ink/70 transition-colors duration-300 hover:text-primary"
               >
                 Schedule a Visit
+                <span className="h-px w-6 bg-ink/30 transition-all duration-300 group-hover:w-9 group-hover:bg-primary" />
               </Link>
             </motion.div>
-          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.6,
-              ease: [0.2, 0.65, 0.3, 0.9],
-            }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative">
-              <div className="absolute -top-5 -right-5 w-full h-full rounded-[20px] border-2 border-primary/20" />
-              <div className="relative aspect-[4/5] rounded-[16px] overflow-hidden shadow-2xl">
-                <Image
-                  src={nepaliSchoolImages.villageStudents}
-                  alt="Students at Aatreya Academy"
-                  fill
-                  priority
-                  sizes="440px"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="inline-flex items-center gap-2 rounded-lg bg-white/20 px-3 py-1.5 border border-white/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white/80">
-                      Est. {school.founded}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm text-white/70 leading-relaxed">
-                    Where every learner is known, challenged, and supported.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            {/* Trust strip — small credibility row under the CTAs */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+              className="mt-14 flex items-center gap-6 border-t border-ink/10 pt-6 text-[11px] uppercase tracking-wider text-ink/40"
+            >
+              <span>Est. {school.founded}</span>
+              <span className="h-3 w-px bg-ink/15" />
+              <span>Nationally Accredited</span>
+              <span className="hidden h-3 w-px bg-ink/15 sm:block" />
+              <span className="hidden sm:block">
+                Early Years &ndash; Grade 12
+              </span>
+            </motion.div>
+          </div>
         </div>
 
+        {/* ---------- Right: full-bleed portrait column ---------- */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.3 }}
-          className="mt-14 border-t border-ink/8 pt-6"
+          initial={{ opacity: 0, clipPath: "inset(0 0 0 100%)" }}
+          animate={{ opacity: 1, clipPath: "inset(0 0 0 0%)" }}
+          transition={{
+            duration: 0.9,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="relative hidden min-h-dvh lg:block"
         >
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/30 mb-4">
-            Quick Actions
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {quickActions.map((action) => (
-              <Link
-                key={action.label}
-                href={action.href}
-                className="group inline-flex items-center gap-2.5 rounded-xl border border-ink/8 bg-white px-5 py-3 text-xs font-medium text-ink/60 shadow-sm hover:border-primary/30 hover:text-primary hover:shadow-md transition-all duration-200"
-              >
-                <action.icon
-                  size={15}
-                  className="text-primary/60 group-hover:text-primary transition-colors"
-                />
-                {action.label}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
+          <Image
+            src={nepaliSchoolImages.villageStudents}
+            alt="Students at Aatreya Academy"
+            fill
+            priority
+            sizes="45vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-b from-ink/25 via-transparent to-ink/40" />
+          <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
-        >
-          <div className="flex flex-col items-center gap-1 text-ink/25">
-            <span className="text-[9px] font-semibold uppercase tracking-widest">
+          {/* ledger spine tab — the signature element, sitting on the seam like a register's binder tab */}
+          <div className="absolute left-4 top-16 flex -translate-x-1/2 items-center gap-2 rounded-sm border border-ink/10 bg-white px-3 py-2 shadow-lg">
+            <span
+              className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/60"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              Est. {school.founded} &middot; Aatreya Academy
+            </span>
+          </div>
+
+          {/* vertical scroll cue, echoing the spine tab */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="absolute bottom-24 right-6 hidden lg:block"
+          >
+            <span
+              className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/70"
+              style={{ writingMode: "vertical-rl" }}
+            >
               Scroll
             </span>
-            <ChevronDown size={14} />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
-    </motion.section>
+
+      {/* ---------- Utility bar: quick actions as a pinned ticket strip ---------- */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.3 }}
+        className="absolute inset-x-0 bottom-0 z-10 border-t border-ink/10 bg-white/90 backdrop-blur-sm"
+      >
+        <div className="container mx-auto grid max-w-300 grid-cols-2 sm:grid-cols-4">
+          {quickActions.map((action, i) => (
+            <Link
+              key={action.label}
+              href={action.href}
+              className={`group flex items-center justify-center gap-2 py-4 text-[11px] font-medium text-ink/60 transition-colors duration-200 hover:bg-primary/5 hover:text-primary sm:gap-2.5 sm:py-5 sm:text-xs ${
+                i !== 0 ? "border-l border-ink/10" : ""
+              }`}
+            >
+              <action.icon
+                size={15}
+                className="text-primary/60 transition-colors group-hover:text-primary"
+              />
+              {action.label}
+            </Link>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }

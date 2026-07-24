@@ -14,7 +14,9 @@ const nextConfig: NextConfig = {
         pathname: "/wiki/Special:FilePath/**",
       },
     ],
+    
   },
+   allowedDevOrigins: ['dev.sabinpaudel.com.np'],
 };
 
 export default nextConfig;

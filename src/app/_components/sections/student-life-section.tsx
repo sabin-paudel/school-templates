@@ -11,9 +11,12 @@ const badges = ["Athletics", "Creative Arts", "Community"];
 
 export default function StudentLifeSection() {
   return (
-    <section id="student-life" className="relative bg-gradient-to-b from-white to-primary-light/10 overflow-hidden py-24 lg:py-32">
+    <section
+      id="student-life"
+      className="relative overflow-hidden bg-white py-24 lg:py-32"
+    >
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
+      <div className="container relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,42 +31,55 @@ export default function StudentLifeSection() {
                 className="group inline-flex items-center gap-2 btn btn-ghost rounded-xl text-sm"
               >
                 Explore school life
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-1"
+                />
               </Link>
             }
           />
         </motion.div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+        {/* a browsable strip rather than a fixed grid — captions live below the frame, not burned into it */}
+        <div className="mt-14 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 scrollbar-none sm:mx-0 sm:px-0">
           {studentLife.map((item, i) => (
-            <article
+            <motion.article
               key={item.title}
-              className={`group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 ${i === 0 ? "sm:col-span-2 sm:row-span-2" : ""}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.1 * i }}
+              className="w-[78vw] shrink-0 snap-start sm:w-[320px]"
             >
-              <div className={`relative ${i === 0 ? "aspect-[4/5] sm:aspect-auto sm:h-full min-h-[420px]" : "aspect-[4/5]"}`}>
+              <div className="relative aspect-[4/5] overflow-hidden border border-ink/10">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 78vw, 320px"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
-                <div className="absolute top-5 left-5">
-                  <span className="inline-flex items-center rounded-lg bg-white/15 border border-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                     {badges[i]}
                   </span>
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-7">
-                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60 max-w-md">
-                    {item.description}
-                  </p>
+                  <h3 className="mt-1 font-serif text-lg text-ink">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
-            </article>
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-ink/55">
+                {item.description}
+              </p>
+            </motion.article>
           ))}
         </div>
+
+        <p className="mt-2 text-xs text-ink/30 sm:hidden">
+          Swipe to explore &rarr;
+        </p>
       </div>
     </section>
   );
