@@ -25,7 +25,7 @@ export default function AboutPage() {
 
       <section className="section-pad bg-warm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-primary-light/50 -skew-x-12 origin-top-right hidden lg:block" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
             <Reveal>
               <div className="inline-flex items-center gap-3 rounded-full bg-primary-light px-4 py-1.5 mb-4">
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
       <section className="section-pad bg-white relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-light/40 rounded-full blur-[100px] pointer-events-none" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <Reveal>
             <p className="label">What Guides Us</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -99,7 +99,7 @@ export default function AboutPage() {
 
       <section className="bg-ink py-14 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               Visit Us

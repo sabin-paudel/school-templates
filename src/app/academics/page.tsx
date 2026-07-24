@@ -31,7 +31,7 @@ export default function AcademicsPage() {
       />
 
       <section className="section-pad bg-warm">
-        <div className="container-main space-y-0">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 space-y-0">
           {programs.map((item, index) => (
             <Reveal key={item.id} delay={index * 0.06}>
               <article
@@ -81,7 +81,7 @@ export default function AcademicsPage() {
 
       <section className="section-pad bg-ink text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               A Balanced Curriculum

@@ -19,7 +19,7 @@ export default function AchievementsPage() {
 
       <section className="section-pad bg-warm relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center gap-4 mb-12">
             <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary shadow-lg">
               <Trophy size={28} className="text-white" />
@@ -45,6 +45,7 @@ export default function AchievementsPage() {
                         src={item.image}
                         alt={item.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className="object-cover hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute top-4 left-4 bg-white/90 px-3 py-1.5 rounded-xl shadow-sm">
@@ -76,7 +77,7 @@ export default function AchievementsPage() {
 
       <section className="bg-ink py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative text-center">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
             <span className="w-8 h-px bg-white/15" />
             <Trophy size={24} className="text-white/40" />

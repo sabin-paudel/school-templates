@@ -13,7 +13,7 @@ export default function GalleryPreview() {
   return (
     <section className="relative bg-white overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function GalleryPreview() {
                 src={photo.src}
                 alt={photo.title}
                 fill
-                sizes="(max-width: 768px) 100vw, 25vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, 25vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

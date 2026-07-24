@@ -30,7 +30,7 @@ export default function PageBanner({
       <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/85 to-ink/70" />
 
 
-      <div className="container-main relative w-full">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <nav
           aria-label="Breadcrumb"
           className="flex items-center gap-1.5 pt-6 text-xs text-white/40"

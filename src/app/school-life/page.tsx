@@ -50,7 +50,7 @@ export default function SchoolLifePage() {
 
       <section className="section-pad bg-warm relative overflow-hidden">
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <Reveal>
             <p className="label">Activities</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -82,7 +82,7 @@ export default function SchoolLifePage() {
 
       <section className="section-pad bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary-light/50 rounded-full blur-[100px] pointer-events-none" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <Reveal>
             <p className="label">In Pictures</p>
             <h2 className="heading-md mt-4 text-ink">
@@ -97,7 +97,7 @@ export default function SchoolLifePage() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
@@ -115,7 +115,7 @@ export default function SchoolLifePage() {
 
       <section className="bg-ink py-14 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               See School Life

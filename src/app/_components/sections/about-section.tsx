@@ -18,7 +18,7 @@ export default function AboutSection() {
   return (
     <section className="relative bg-white overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

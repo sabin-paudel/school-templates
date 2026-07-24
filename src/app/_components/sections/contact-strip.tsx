@@ -16,7 +16,7 @@ export default function ContactStrip() {
     <section id="contact" className="relative bg-ink overflow-hidden py-16">
       <div className="absolute inset-0 bg-dot opacity-[0.06]" />
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <div className="grid gap-4 md:grid-cols-3">
           {contactItems.map((item, i) => (
             <motion.div

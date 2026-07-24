@@ -11,8 +11,8 @@ import {
   MapPin,
   ChevronDown,
 } from "lucide-react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
+import { useState } from "react";
 import { nepaliSchoolImages } from "../../_data/site-images";
 import { school } from "../../_data/site-content";
 
@@ -23,15 +23,6 @@ const quickActions = [
   { icon: MapPin, label: "Visit Campus", href: "/contact" },
 ];
 
-const particles = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 4 + 1,
-  delay: Math.random() * 5,
-  duration: Math.random() * 6 + 4,
-}));
-
 const headingWords = [
   "Where",
   "academic",
@@ -41,16 +32,25 @@ const headingWords = [
   "care.",
 ];
 
+type Particle = {
+  left: string;
+  top: string;
+  size: number;
+};
+
 export default function HeroSection() {
-  const ref = useRef(null);
+  const [particles] = useState<Particle[]>(() =>
+    Array.from({ length: 20 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      size: Math.random() * 4 + 1,
+    })),
+  );
 
   return (
-    <motion.section
-      ref={ref}
-      className="relative min-h-[100dvh] overflow-hidden bg-white"
-    >
+    <motion.section className="relative min-h-[100dvh] overflow-hidden bg-white">
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="absolute inset-0 h-full w-full pointer-events-none"
         viewBox="0 0 1440 900"
         preserveAspectRatio="none"
       >
@@ -67,10 +67,12 @@ export default function HeroSection() {
             <stop offset="100%" stopColor="#3c6e71" stopOpacity="0.08" />
           </linearGradient>
         </defs>
+
         <path
           d="M0,100 C360,200 540,0 720,150 C900,300 1080,50 1440,120 L1440,0 L0,0 Z"
           fill="url(#hero-line-grad)"
         />
+
         <path
           d="M0,200 C240,50 480,250 720,100 C960,-50 1200,200 1440,80 L1440,0 L0,0 Z"
           fill="url(#hero-line-grad)"
@@ -78,20 +80,21 @@ export default function HeroSection() {
         />
       </svg>
 
-      {particles.map((p) => (
+      {particles.map((p, i) => (
         <div
-          key={p.id}
+          key={i}
+          suppressHydrationWarning
           className="absolute rounded-full bg-primary/10"
           style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
+            left: p.left,
+            top: p.top,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
           }}
         />
       ))}
 
-      <div className="container-main relative flex min-h-[100dvh] flex-col justify-center pb-16 pt-28">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex min-h-[100dvh] flex-col justify-center pb-16 pt-28">
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_440px] lg:gap-24">
           <div>
             <motion.div
@@ -180,6 +183,7 @@ export default function HeroSection() {
                   src={nepaliSchoolImages.villageStudents}
                   alt="Students at Aatreya Academy"
                   fill
+                  priority
                   sizes="440px"
                   className="object-cover"
                 />

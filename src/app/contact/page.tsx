@@ -31,7 +31,7 @@ export default function ContactPage() {
 
       <section className="section-pad bg-warm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary-light to-transparent hidden lg:block" />
-        <div className="container-main relative">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
             <div>
               <p className="label">School Office</p>
@@ -84,7 +84,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-br from-primary-dark via-primary to-primary py-16 sm:py-20">
           <div className="absolute inset-0 bg-grid opacity-[0.06]" />
-          <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-stone">
                 Visit Us

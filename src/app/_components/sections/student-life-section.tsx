@@ -13,7 +13,7 @@ export default function StudentLifeSection() {
   return (
     <section id="student-life" className="relative bg-gradient-to-b from-white to-primary-light/10 overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function StudentLifeSection() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />

@@ -57,23 +57,6 @@ body {
   color: var(--primary-dark);
 }
 
-.container-main {
-  width: min(100% - 2rem, 1200px);
-  margin-inline: auto;
-}
-
-@media (min-width: 640px) {
-  .container-main {
-    width: min(100% - 3rem, 1200px);
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-main {
-    width: min(100% - 4rem, 1200px);
-  }
-}
-
 .section-pad {
   padding-block: clamp(4rem, 8vw, 6.5rem);
 }

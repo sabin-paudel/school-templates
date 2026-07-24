@@ -11,7 +11,7 @@ export default function StatsBand() {
   return (
     <section className="relative bg-ink overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-[0.06]" />
-      <div className="container-main relative py-16 lg:py-20">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative py-16 lg:py-20">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           {stats.map((stat, i) => {
             const Icon = icons[i];

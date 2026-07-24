@@ -31,7 +31,7 @@ export default function GalleryPage() {
       />
 
       <section className="section-pad bg-warm">
-        <div className="container-main">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
             <div>
               <p className="label">Photos</p>
@@ -60,7 +60,7 @@ export default function GalleryPage() {
                     src={photo.src}
                     alt={photo.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/40 transition-colors duration-300" />
@@ -90,7 +90,7 @@ export default function GalleryPage() {
 
       <section className="bg-ink py-14 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               See It Live

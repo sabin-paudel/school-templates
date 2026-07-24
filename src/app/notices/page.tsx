@@ -23,7 +23,7 @@ export default function NoticesPage() {
       />
 
       <section className="section-pad bg-warm">
-        <div className="container-main grid gap-12 lg:grid-cols-[1fr_300px]">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 grid gap-12 lg:grid-cols-[1fr_300px]">
           <div className="space-y-0">
             <div className="mb-8">
               <p className="label">Announcements</p>
@@ -90,7 +90,7 @@ export default function NoticesPage() {
 
       <section className="bg-ink py-14 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container-main relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
               Stay Updated

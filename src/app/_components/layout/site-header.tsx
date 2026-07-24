@@ -11,7 +11,7 @@ export default function SiteHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95  shadow-sm">
       <div className="border-b border-line">
-        <div className="container-main flex h-[72px] items-center justify-between">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 flex h-[72px] items-center justify-between">
           <Link
             href="/"
             className="flex items-baseline gap-2"
@@ -66,7 +66,7 @@ export default function SiteHeader() {
 
       {open && (
         <div className="border-b border-line bg-white md:hidden">
-          <nav aria-label="Mobile navigation" className="container-main py-4">
+          <nav aria-label="Mobile navigation" className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col">
               {navigation.map((item) => (
                 <Link

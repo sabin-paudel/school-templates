@@ -15,7 +15,7 @@ export default function AchievementsSection() {
   return (
     <section ref={ref} className="relative bg-warm overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -7,7 +7,7 @@ export default function SiteFooter() {
     <footer className="bg-primary-dark relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       <div className="absolute inset-0 bg-grid opacity-[0.06]" />
-      <div className="container-main section-pad relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 section-pad relative">
         <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-16">
           <div>
             <Link href="/" className="inline-flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-stone">
-        <div className="container-main flex flex-col gap-4 py-6 text-sm text-stone sm:flex-row sm:items-center sm:justify-between">
+        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 flex flex-col gap-4 py-6 text-sm text-stone sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {new Date().getFullYear()} {school.name}. All rights reserved.
           </p>

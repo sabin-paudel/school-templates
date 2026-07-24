@@ -9,7 +9,7 @@ export default function PrincipalMessage() {
   return (
     <section className="relative bg-gradient-to-b from-white to-primary-light/10 overflow-hidden py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container-main relative">
+      <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative">
         <div className="mx-auto max-w-5xl">
           <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-20">
             <motion.div
