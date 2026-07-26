@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2, FileText, CalendarCheck, Handshake } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileText,
+  CalendarCheck,
+  Handshake,
+  HelpCircle,
+} from "lucide-react";
 import { AdmissionForm } from "../_components/forms";
-import PageBanner from "../_components/ui/page-banner";
+import CtaSection from "../_components/ui/cta-section";
+import PageHero from "../_components/ui/page-hero";
 import Reveal from "../_components/ui/reveal";
-import { school } from "../_data/site-content";
+import { school, faqs } from "../_data/site-content";
 import { nepaliSchoolImages } from "../_data/site-images";
 
 export const metadata: Metadata = {
@@ -36,32 +43,42 @@ const steps = [
 export default function AdmissionsPage() {
   return (
     <>
-      <PageBanner
+      <PageHero
         label="Admissions"
         title="Start your child's Aatreya journey."
         description="Our admissions team makes the process clear and personal, from your first enquiry through the first day of school."
-        image={nepaliSchoolImages.students}
-        imageAlt="Students outside their school in Nepal"
       />
 
-      <section className="section-pad bg-warm">
-        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-          <Reveal>
+      {/* Steps */}
+      <section className="section-pad bg-white">
+        <div className="container">
+          <Reveal className="text-center">
             <p className="label">How It Works</p>
-            <h2 className="heading-md mt-4 text-ink">Three simple steps to enrolment.</h2>
+            <h2 className="heading-md mt-4 text-ink">
+              Three simple steps to enrolment.
+            </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
             {steps.map(({ step, icon: Icon, title, text }, index) => (
               <Reveal key={step} delay={index * 0.08}>
-                <div className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light group-hover:bg-primary transition-colors duration-300">
-                      <Icon size={22} className="text-primary group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <span className="text-3xl font-bold text-primary/8">{step}</span>
+                <div className="relative text-center">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+                    <Icon size={32} />
                   </div>
-                  <h3 className="font-semibold text-ink">{title}</h3>
-                  <p className="text-body mt-2 text-sm">{text}</p>
+                  <div className="mt-6">
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary">
+                      Step {step}
+                    </span>
+                    <h3 className="heading-lg mt-2 text-ink">{title}</h3>
+                    <p className="text-body mt-3 text-sm max-w-xs mx-auto">
+                      {text}
+                    </p>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-10 -right-4 text-primary/20">
+                      <ArrowRight size={24} />
+                    </div>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -69,9 +86,10 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-white relative overflow-hidden">
+      {/* Form + FAQ split */}
+      <section className="section-pad bg-warm relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary-light/40 rounded-full blur-[100px] pointer-events-none" />
-        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        <div className="container relative grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
           <Reveal>
             <p className="label">Student Application</p>
             <h2 className="heading-md mt-4 text-ink">Apply for admission</h2>
@@ -86,39 +104,72 @@ export default function AdmissionsPage() {
                 "Campus visit available before decision",
               ].map((item) => (
                 <li key={item} className="flex gap-3 text-sm text-ink">
-                  <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-primary" />
+                  <CheckCircle2
+                    size={18}
+                    className="mt-0.5 shrink-0 text-primary"
+                  />
                   {item}
                 </li>
               ))}
             </ul>
-            <Link href="/contact" className="inline-flex items-center gap-1.5 mt-8 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-150">
-              Ask an admissions question <ArrowRight size={14} />
-            </Link>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="bg-warm p-6 sm:p-10 rounded-2xl shadow-sm">
+            <div className="card p-6 sm:p-10">
               <AdmissionForm />
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-ink py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-dot opacity-20" />
-        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
-              Questions?
-            </p>
-            <h2 className="mt-3 heading-md text-white sm:text-2xl">
-              We are here to help with your application.
+      {/* FAQ accordion */}
+      <section className="section-pad bg-white">
+        <div className="container max-w-3xl">
+          <Reveal className="text-center">
+            <p className="label">Common Questions</p>
+            <h2 className="heading-md mt-4 text-ink">
+              Everything you need to know.
             </h2>
+          </Reveal>
+          <div className="mt-12 space-y-4">
+            {faqs.map((faq, index) => (
+              <Reveal key={faq.question} delay={index * 0.04}>
+                <details className="group cursor-pointer rounded-2xl border border-line bg-warm transition-colors duration-150 open:bg-white">
+                  <summary className="flex items-center justify-between gap-4 px-6 py-5 text-sm font-semibold text-ink">
+                    {faq.question}
+                    <HelpCircle
+                      size={16}
+                      className="shrink-0 text-primary transition-transform duration-200 group-open:rotate-45"
+                    />
+                  </summary>
+                  <div className="border-t border-line px-6 pb-5 pt-4">
+                    <p className="text-sm leading-relaxed text-muted">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </details>
+              </Reveal>
+            ))}
           </div>
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/10 text-white hover:bg-white/20 px-6 py-3 text-sm font-semibold transition-all duration-200">
-            Contact admissions <ArrowRight size={16} />
-          </Link>
+          <Reveal className="mt-10 text-center">
+            <p className="text-body text-sm">
+              Still have questions?{" "}
+              <a
+                href="/contact"
+                className="font-semibold text-primary underline underline-offset-2"
+              >
+                Contact our admissions team
+              </a>
+            </p>
+          </Reveal>
         </div>
       </section>
+
+      <CtaSection
+        label="Questions?"
+        title="We are here to help with your application."
+        href="/contact"
+        buttonText="Contact admissions"
+      />
     </>
   );
 }

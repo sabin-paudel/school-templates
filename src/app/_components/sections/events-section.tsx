@@ -8,7 +8,7 @@ import SectionHeading from "../ui/section-heading";
 
 export default function EventsSection() {
   return (
-    <section className="relative overflow-hidden bg-stone py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-warm py-24 lg:py-32">
       <div className="absolute inset-0 bg-noise pointer-events-none" />
       <div className="container relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <motion.div

@@ -2,101 +2,115 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Users, Globe, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Users, Globe, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 import { nepaliSchoolImages } from "../../_data/site-images";
 import { school } from "../../_data/site-content";
 
 const highlights = [
-  { icon: BookOpen, text: "National curriculum with global outlook" },
-  { icon: Users, text: "Experienced, dedicated faculty" },
-  { icon: Globe, text: "Strong partnership with families" },
-  { icon: ShieldCheck, text: "Safe and inclusive campus environment" },
+  "National curriculum with global outlook",
+  "Experienced, dedicated faculty",
+  "Strong partnership with families",
+  "Safe and inclusive campus environment",
 ];
 
 export default function AboutSection() {
   return (
-    <section className="relative overflow-hidden bg-stone py-24 lg:py-32">
-      <div className="container relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-        <div className="grid items-start gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
-          {/* ---------- image, framed like a placard rather than a layered card ---------- */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/5] overflow-hidden border border-ink/10">
+    <section className="section-pad bg-white overflow-hidden">
+      <div className="container">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+          
+          {/* Images Column */}
+          <div className="lg:col-span-6 relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative z-10 aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl"
+            >
               <Image
                 src={nepaliSchoolImages.villageStudents}
                 alt="Students at Aatreya Academy"
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-            </div>
-            {/* caption plaque, attached to the frame like a wall label under a photograph */}
-            <div className="flex items-center justify-between border-x border-b border-ink/10 bg-ink px-6 py-4">
-              <span className="text-sm font-semibold text-white">
-                Serving Pokhara since {school.founded}
-              </span>
-              <span className="font-serif text-lg text-primary">
-                {school.founded}
-              </span>
-            </div>
-          </motion.div>
-
-          {/* ---------- copy column ---------- */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            viewport={{ once: true }}
-          >
-            <p className="label">Our Story</p>
-            <h2 className="heading-md mt-3 font-serif text-ink">
-              A tradition of purposeful education in Pokhara.
-            </h2>
-            <p className="text-body mt-4">
-              Since {school.founded}, Aatreya Academy has brought together
-              ambitious teaching and genuine care. Our students are challenged
-              to think deeply, communicate clearly, and act with integrity.
-            </p>
-
-            {/* highlights as a ledger list — hairline-divided rows instead of boxed cards */}
-            <div className="mt-10 border-t border-ink/10">
-              {highlights.map((item, i) => (
-                <motion.div
-                  key={item.text}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 * i }}
-                  className="group flex items-center gap-4 border-b border-ink/10 py-4"
-                >
-                  <item.icon
-                    size={17}
-                    className="shrink-0 text-primary/70 transition-colors group-hover:text-primary"
-                  />
-                  <span className="text-sm font-medium text-ink">
-                    {item.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            <Link
-              href="/about"
-              className="group mt-8 inline-flex items-center gap-2 btn btn-primary"
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
+            </motion.div>
+            
+            {/* Secondary Floating Image/Element */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="absolute -right-8 -bottom-8 z-20 glass p-6 rounded-3xl shadow-2xl max-w-[240px] hidden md:block"
             >
-              Our story
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </Link>
-          </motion.div>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="size-12 rounded-2xl bg-success/10 flex items-center justify-center text-success">
+                  <ShieldCheck size={24} />
+                </div>
+                <div>
+                  <div className="text-lg font-bold">Safe Haven</div>
+                  <div className="text-xs text-light uppercase font-bold tracking-widest">Environment</div>
+                </div>
+              </div>
+              <p className="text-sm text-muted">A nurturing and secure space where every child belongs and thrives.</p>
+            </motion.div>
+
+            {/* Decorative background circle */}
+            <div className="absolute -left-12 -top-12 size-64 bg-accent/5 rounded-full blur-3xl -z-10" />
+          </div>
+
+          {/* Content Column */}
+          <div className="lg:col-span-6 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-sm font-bold text-primary uppercase tracking-widest mb-4 block">
+                Our Heritage
+              </span>
+              <h2 className="display-md text-ink mb-6">
+                A tradition of <span className="text-accent">purposeful</span> education in Pokhara.
+              </h2>
+              <p className="text-lg text-muted leading-relaxed">
+                Since {school.founded}, Aatreya Academy has been a beacon of excellence. 
+                We believe in nurturing not just minds, but hearts, preparing students for the challenges of a rapidly changing world.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="grid sm:grid-cols-2 gap-4"
+            >
+              {highlights.map((item, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-warm border border-line">
+                  <CheckCircle2 size={20} className="text-success mt-0.5 shrink-0" />
+                  <span className="text-sm font-bold text-ink">{item}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="pt-4"
+            >
+              <Link href="/about" className="btn btn-primary group">
+                <span>Our Full Story</span>
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

@@ -1,242 +1,190 @@
 "use client";
 
+import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  GraduationCap,
-  Play,
-  Phone,
-  FileText,
-  MapPin,
-} from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowRight, GraduationCap, Play, Sparkles } from "lucide-react";
 import { nepaliSchoolImages } from "../../_data/site-images";
 import { school } from "../../_data/site-content";
-
-const quickActions = [
-  { icon: Play, label: "Virtual Tour", href: "/gallery" },
-  { icon: FileText, label: "Prospectus", href: "/admissions" },
-  { icon: Phone, label: "Call Us", href: "tel:+97761555555" },
-  { icon: MapPin, label: "Visit Campus", href: "/contact" },
-];
+import { useRef } from "react";
 
 export default function HeroSection() {
-  return (
-    <section className="relative overflow-hidden bg-warm ">
-      <div className="grid min-h-dvh lg:grid-cols-[1.15fr_0.85fr] container mx-auto">
-        {/* ---------- Left: content column ---------- */}
-        <div className="relative flex flex-col justify-center overflow-hidden px-6 pb-32 pt-32 sm:px-10 lg:px-16 lg:pb-40 lg:pt-28">
-          {/* faint ruled "notebook" lines behind the copy — a quiet nod to the school register */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 hidden lg:block"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(to bottom, transparent, transparent 43px, rgba(60,110,113,0.07) 43px, rgba(60,110,113,0.07) 44px)",
-              maskImage:
-                "linear-gradient(to bottom, transparent, black 15%, black 75%, transparent)",
-            }}
-          />
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 100]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
 
-          <div className="container relative mx-auto max-w-150 lg:max-w-none">
+  return (
+    <section
+      ref={containerRef}
+      className="relative min-h-[90dvh] flex items-center overflow-hidden bg-white pt-20"
+    >
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[30%] h-[30%] bg-primary/5 blur-[100px] rounded-full" />
+        <div className="absolute inset-0 bg-noise opacity-[0.03]" />
+      </div>
+
+      <div className="container relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left Content */}
+          <div className="lg:col-span-7 space-y-8">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex w-fit items-center gap-2.5 border-b border-primary/30 pb-2"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-bold tracking-wider uppercase"
             >
-              <span className="relative flex size-1.5">
-                <span className="absolute inset-0 animate-ping rounded-full bg-primary" />
-                <span className="relative size-1.5 rounded-full bg-primary" />
-              </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
-                Admissions Open 2026&ndash;27
-              </span>
+              <Sparkles size={14} className="animate-pulse" />
+              Admissions Open 2026—27
             </motion.div>
 
-            <h1 className="mt-8 font-serif text-[clamp(2.2rem,5vw,4.6rem)] font-medium leading-[1.08] tracking-tight text-ink">
-              <span className="block overflow-hidden">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="display-lg text-ink text-balance"
+            >
+              Shaping <span className="text-accent">Visionaries</span>, <br />
+              Inspiring{" "}
+              <span className="relative">
+                Leaders.
                 <motion.span
-                  className="block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.25,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  Where academic rigour
-                </motion.span>
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 1, delay: 1 }}
+                  className="absolute bottom-2 left-0 h-3 bg-accent/10 -z-10 rounded-full"
+                />
               </span>
-              <span className="block overflow-hidden">
-                <motion.span
-                  className="block"
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.38,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  meets{" "}
-                  <span className="relative inline-block">
-                    genuine care.
-                    <motion.svg
-                      className="absolute -bottom-2 left-0 w-full stroke-primary"
-                      height="10"
-                      viewBox="0 0 300 10"
-                      preserveAspectRatio="none"
-                      fill="none"
-                    >
-                      <motion.path
-                        d="M2,6 C60,2 240,10 298,4"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{
-                          duration: 0.7,
-                          delay: 1.15,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </motion.svg>
-                  </span>
-                </motion.span>
-              </span>
-            </h1>
+            </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="mt-7 max-w-md text-base leading-relaxed text-ink/55 sm:text-lg"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg text-muted max-w-xl text-balance leading-relaxed"
             >
-              Aatreya Academy prepares students from early years through
-              secondary school to learn with purpose and lead with integrity.
+              Aatreya Academy is where academic excellence meets holistic
+              development. We nurture the next generation of thinkers, creators,
+              and compassionate leaders.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.05 }}
-              className="mt-10 flex flex-col gap-3 sm:flex-row"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-4"
             >
               <Link
                 href="/admissions"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-ink/20 transition-all duration-300 hover:bg-primary hover:shadow-primary/30"
+                className="btn btn-primary group"
               >
-                <GraduationCap size={18} />
-                Begin Application
+                <GraduationCap size={20} />
+                <span>Apply Now</span>
                 <ArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
               <Link
-                href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-2 py-4 text-sm font-semibold text-ink/70 transition-colors duration-300 hover:text-primary"
+                href="/gallery"
+                className="btn btn-outline group"
               >
-                Schedule a Visit
-                <span className="h-px w-6 bg-ink/30 transition-all duration-300 group-hover:w-9 group-hover:bg-primary" />
+                <Play size={18} className="text-accent" />
+                <span>Watch Video</span>
               </Link>
             </motion.div>
 
-            {/* Trust strip — small credibility row under the CTAs */}
+            {/* Stats Preview */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-              className="mt-14 flex items-center gap-6 border-t border-ink/10 pt-6 text-[11px] uppercase tracking-wider text-ink/40"
+              transition={{ duration: 1, delay: 0.6 }}
+              className="pt-8 flex items-center gap-8 border-t border-line"
             >
-              <span>Est. {school.founded}</span>
-              <span className="h-3 w-px bg-ink/15" />
-              <span>Nationally Accredited</span>
-              <span className="hidden h-3 w-px bg-ink/15 sm:block" />
-              <span className="hidden sm:block">
-                Early Years &ndash; Grade 12
-              </span>
+              <div>
+                <div className="text-2xl font-bold text-ink">22+</div>
+                <div className="text-xs text-light uppercase tracking-widest font-bold">
+                  Years Legacy
+                </div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div>
+                <div className="text-2xl font-bold text-ink">100%</div>
+                <div className="text-xs text-light uppercase tracking-widest font-bold">
+                  Results
+                </div>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div>
+                <div className="text-2xl font-bold text-ink">15:1</div>
+                <div className="text-xs text-light uppercase tracking-widest font-bold">
+                  Class Ratio
+                </div>
+              </div>
             </motion.div>
           </div>
-        </div>
 
-        {/* ---------- Right: full-bleed portrait column ---------- */}
-        <motion.div
-          initial={{ opacity: 0, clipPath: "inset(0 0 0 100%)" }}
-          animate={{ opacity: 1, clipPath: "inset(0 0 0 0%)" }}
-          transition={{
-            duration: 0.9,
-            delay: 0.15,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="relative hidden min-h-dvh lg:block"
-        >
-          <Image
-            src={nepaliSchoolImages.villageStudents}
-            alt="Students at Aatreya Academy"
-            fill
-            priority
-            sizes="45vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-ink/25 via-transparent to-ink/40" />
-          <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-
-          {/* ledger spine tab — the signature element, sitting on the seam like a register's binder tab */}
-          <div className="absolute left-4 top-16 flex -translate-x-1/2 items-center gap-2 rounded-sm border border-ink/10 bg-white px-3 py-2 shadow-lg">
-            <span
-              className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.2em] text-ink/60"
-              style={{ writingMode: "vertical-rl" }}
+          {/* Right Visuals */}
+          <div className="lg:col-span-5 relative">
+            <motion.div
+              style={{ y: y1 }}
+              className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl z-20"
             >
-              Est. {school.founded} &middot; Aatreya Academy
-            </span>
-          </div>
-
-          {/* vertical scroll cue, echoing the spine tab */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-24 right-6 hidden lg:block"
-          >
-            <span
-              className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/70"
-              style={{ writingMode: "vertical-rl" }}
-            >
-              Scroll
-            </span>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* ---------- Utility bar: quick actions as a pinned ticket strip ---------- */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.3 }}
-        className="absolute inset-x-0 bottom-0 z-10 border-t border-ink/10 bg-white/90 backdrop-blur-sm"
-      >
-        <div className="container mx-auto grid max-w-300 grid-cols-2 sm:grid-cols-4">
-          {quickActions.map((action, i) => (
-            <Link
-              key={action.label}
-              href={action.href}
-              className={`group flex items-center justify-center gap-2 py-4 text-[11px] font-medium text-ink/60 transition-colors duration-200 hover:bg-primary/5 hover:text-primary sm:gap-2.5 sm:py-5 sm:text-xs ${
-                i !== 0 ? "border-l border-ink/10" : ""
-              }`}
-            >
-              <action.icon
-                size={15}
-                className="text-primary/60 transition-colors group-hover:text-primary"
+              <Image
+                src={nepaliSchoolImages.villageStudents}
+                alt="Aatreya Students"
+                fill
+                className="object-cover"
+                priority
               />
-              {action.label}
-            </Link>
-          ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+            </motion.div>
+
+            {/* Floating Glass Cards */}
+            <motion.div
+              style={{ y: y2 }}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute -right-8 top-1/4 glass p-6 rounded-2xl shadow-xl z-30 max-w-[200px]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="size-8 rounded-full bg-success/20 flex items-center justify-center">
+                  <Sparkles size={16} className="text-success" />
+                </div>
+                <span className="text-sm font-bold">Academic Gold</span>
+              </div>
+              <p className="text-xs text-muted">
+                Consistent top rankings in regional science fairs and board
+                exams.
+              </p>
+            </motion.div>
+
+            <motion.div
+              style={{ y: y1 }}
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="absolute -left-12 bottom-1/4 glass p-6 rounded-2xl shadow-xl z-30 max-w-[200px]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="size-8 rounded-full bg-accent/20 flex items-center justify-center">
+                  <Play size={16} className="text-accent" />
+                </div>
+                <span className="text-sm font-bold">Global Reach</span>
+              </div>
+              <p className="text-xs text-muted">
+                Our alumni are thriving in top universities worldwide.
+              </p>
+            </motion.div>
+
+            {/* Decorative Background for Image */}
+            <div className="absolute -inset-4 border border-dashed border-primary/20 rounded-[2.5rem] -z-10" />
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

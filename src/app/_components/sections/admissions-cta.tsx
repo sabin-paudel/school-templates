@@ -15,13 +15,13 @@ export default function AdmissionsCta() {
         className="container mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-8"
       >
         <div className="max-w-xl border-l border-white/15 pl-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-light">
             Admissions 2026&ndash;27
           </p>
           <h2 className="mt-4 heading-md font-serif text-white">
             The best way to understand Aatreya is to experience it.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-stone">
+          <p className="mt-4 text-sm leading-relaxed text-light">
             Tour the campus, meet our educators, and see a regular school day in
             action. Our admissions team will guide you through every step.
           </p>
@@ -40,7 +40,7 @@ export default function AdmissionsCta() {
           </Link>
           <Link
             href="/admissions"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-stone px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:border-primary hover:bg-primary sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:border-primary hover:bg-primary sm:w-auto"
           >
             Apply for Admission
           </Link>

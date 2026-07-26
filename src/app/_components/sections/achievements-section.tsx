@@ -1,72 +1,81 @@
 "use client";
 
-import { Trophy, ArrowRight } from "lucide-react";
+import { Trophy, ArrowRight, Star, Target, Zap } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { achievements } from "../../_data/site-content";
-import SectionHeading from "../ui/section-heading";
+import Image from "next/image";
+
+const achievementIcons = [Star, Trophy, Target, Zap];
 
 export default function AchievementsSection() {
-  const items = achievements.slice(0, 5);
+  const items = achievements.slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden bg-stone py-24 lg:py-32">
-      <div className="absolute inset-0 bg-noise pointer-events-none" />
-      <div className="container relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+    <section className="section-pad bg-white overflow-hidden relative">
+      <div className="container relative z-10">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 text-center"
         >
-          <SectionHeading
-            label="Achievements"
-            title="A record of excellence across academics, sport, and community."
-            action={
-              <Link
-                href="/achievements"
-                className="group inline-flex items-center gap-2 btn btn-ghost rounded-xl text-sm"
-              >
-                View all
-                <ArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            }
-          />
+          <span className="text-sm font-bold text-accent uppercase tracking-widest mb-4 block">
+            Our Legacy
+          </span>
+          <h2 className="display-md text-ink mb-6 mx-auto max-w-3xl">
+            A record of <span className="text-primary">excellence</span> across academics, sport, and community.
+          </h2>
+          <Link href="/achievements" className="btn btn-outline group">
+            <span>Explore All Achievements</span>
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
-        {/* "a record" — read literally: a ledger, not a carousel */}
-        <div className="mx-auto mt-14 max-w-4xl border-t border-ink/10">
-          {items.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.45, delay: 0.08 * i }}
-              className="group flex items-start gap-6 border-b border-ink/10 py-6"
-            >
-              <span className="w-16 shrink-0 pt-0.5 font-serif text-2xl text-primary sm:w-20">
-                {item.year}
-              </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map((item, i) => {
+            const Icon = achievementIcons[i % achievementIcons.length];
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group"
+              >
+                <div className="card h-full p-8 flex flex-col items-center text-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+                  <div className="size-16 rounded-2xl bg-primary-light flex items-center justify-center text-primary mb-6 group-hover:bg-white group-hover:scale-110 transition-all duration-500">
+                    <Icon size={32} />
+                  </div>
+                  
+                  <div className="text-2xl font-black text-ink group-hover:text-white mb-2 transition-colors">
+                    {item.year}
+                  </div>
+                  
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent group-hover:text-accent-soft mb-4 block transition-colors">
+                    {item.category}
+                  </span>
+                  
+                  <h3 className="text-lg font-bold text-ink group-hover:text-white mb-4 transition-colors leading-tight">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted group-hover:text-white/70 transition-colors">
+                    {item.detail}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
-              <div className="min-w-0 flex-1">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ink/40">
-                  {item.category}
-                </span>
-                <h3 className="mt-1 text-lg font-bold text-ink">
-                  {item.title}
-                </h3>
-                <p className="text-body mt-1.5 text-sm">{item.detail}</p>
-              </div>
-
-              <Trophy
-                size={18}
-                className="mt-1 shrink-0 text-primary/30 transition-colors duration-300 group-hover:text-primary"
-              />
-            </motion.div>
-          ))}
+        {/* Decorative Background for Section */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
+          <div className="absolute top-0 left-0 size-96 bg-primary/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-0 size-96 bg-accent/10 rounded-full blur-[100px]" />
         </div>
       </div>
     </section>

@@ -275,4 +275,5 @@ export const navigation = [
   { label: "School Life", href: "/school-life" },
   { label: "Gallery", href: "/gallery" },
   { label: "Notices", href: "/notices" },
+  { label: "Contact", href: "/contact" },
 ] as const;

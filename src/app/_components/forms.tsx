@@ -12,7 +12,7 @@ function SuccessMessage({ title }: { title: string }) {
     <div className="bg-warm p-8 text-center rounded-2xl">
       <CheckCircle2 className="mx-auto text-primary" size={36} />
       <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-ink-light">
+      <p className="mt-2 text-sm leading-6 text-muted">
         This demo saved no personal data. Connect the form to your school
         backend before launch.
       </p>
@@ -122,7 +122,7 @@ export function AdmissionForm() {
           placeholder="Learning needs, interests or questions for our admissions team"
         />
       </label>
-      <label className="flex items-start gap-3 text-sm leading-6 text-ink-light">
+      <label className="flex items-start gap-3 text-sm leading-6 text-muted">
         <input
           type="checkbox"
           required

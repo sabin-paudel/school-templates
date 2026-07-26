@@ -30,7 +30,7 @@ export default function Accordion({ items }: AccordionProps) {
               <span className="text-sm font-medium text-ink sm:text-base">{item.question}</span>
               <ChevronDown
                 size={18}
-                className={`shrink-0 text-ink-light transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                className={`shrink-0 text-muted transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
               />
             </button>
             <div

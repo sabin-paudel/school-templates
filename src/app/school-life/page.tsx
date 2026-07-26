@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Dumbbell, Palette, Cpu, Users } from "lucide-react";
-import PageBanner from "../_components/ui/page-banner";
+import { Dumbbell, Palette, Cpu, Users } from "lucide-react";
+import PageHero from "../_components/ui/page-hero";
+import CtaSection from "../_components/ui/cta-section";
 import Reveal from "../_components/ui/reveal";
 import { school, studentLife } from "../_data/site-content";
 import { nepaliSchoolImages } from "../_data/site-images";
@@ -37,41 +37,46 @@ const activities = [
   },
 ];
 
+const iconColors = [
+  "bg-amber-100 text-amber-700",
+  "bg-rose-100 text-rose-700",
+  "bg-sky-100 text-sky-700",
+  "bg-emerald-100 text-emerald-700",
+];
+
 export default function SchoolLifePage() {
   return (
     <>
-      <PageBanner
+      <PageHero
         label="School Life"
         title="A place to participate, create, and belong."
         description="Some of the most important lessons happen beyond a timetable. Students find their interests, their people, and their voice here."
-        image={nepaliSchoolImages.schoolJourney}
-        imageAlt="Students on their way to school in Lalitpur, Nepal"
       />
 
-      {/* ---------- activities, as a ledger list rather than four icon cards ---------- */}
       <section className="section-pad bg-warm">
-        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="container">
           <Reveal>
             <p className="label">Activities</p>
-            <h2 className="heading-md mt-4 font-serif text-ink">
+            <h2 className="heading-md mt-4 text-ink">
               Every student finds their place here.
             </h2>
           </Reveal>
 
-          <div className="mt-10 border-t border-line">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {activities.map((item, index) => {
               const Icon = activityIcons[index];
+              const colorClass = iconColors[index];
               return (
                 <Reveal key={item.title} delay={index * 0.06}>
-                  <div className="flex items-start gap-5 border-b border-line py-7">
-                    <Icon size={20} className="mt-0.5 shrink-0 text-primary" />
+                  <div className="card flex flex-col items-start gap-5 p-8 h-full">
+                    <div
+                      className={`flex items-center justify-center w-14 h-14 rounded-full ${colorClass}`}
+                    >
+                      <Icon size={28} />
+                    </div>
                     <div>
-                      <h3 className="font-serif text-lg text-ink">
-                        {item.title}
-                      </h3>
-                      <p className="text-body mt-1.5 text-sm">
-                        {item.description}
-                      </p>
+                      <h3 className="heading-md text-ink">{item.title}</h3>
+                      <p className="text-body mt-3">{item.description}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -81,66 +86,47 @@ export default function SchoolLifePage() {
         </div>
       </section>
 
-      {/* ---------- in pictures — same filmstrip treatment as the homepage, for consistency ---------- */}
       <section className="section-pad bg-white">
-        <div className="container mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="container">
           <Reveal>
             <p className="label">In Pictures</p>
-            <h2 className="heading-md mt-4 font-serif text-ink">
+            <h2 className="heading-md mt-4 text-ink">
               Life beyond the classroom.
             </h2>
           </Reveal>
 
-          <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 scrollbar-none sm:mx-0 sm:px-0">
-            {studentLife.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.06}>
-                <div className="w-[78vw] shrink-0 snap-start sm:w-[300px]">
-                  <div className="relative aspect-[4/5] overflow-hidden border border-ink/10">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 78vw, 300px"
-                      className="object-cover"
-                    />
+          <div className="relative mt-10">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-white to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-white to-transparent" />
+            <div className="-mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 pb-4 scrollbar-none sm:mx-0 sm:px-0">
+              {studentLife.map((item, index) => (
+                <Reveal key={item.title} delay={index * 0.06}>
+                  <div className="w-[85vw] shrink-0 snap-start sm:w-[420px]">
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 85vw, 420px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="mt-4 heading-md text-ink">{item.title}</p>
+                    <p className="text-body mt-2">{item.description}</p>
                   </div>
-                  <p className="mt-3 font-serif text-base text-ink">
-                    {item.title}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ---------- see school life ---------- */}
-      <section className="relative overflow-hidden bg-ink py-14">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, transparent, transparent 43px, rgba(255,255,255,0.045) 43px, rgba(255,255,255,0.045) 44px)",
-          }}
-        />
-        <div className="container relative mx-auto flex w-full max-w-[1200px] flex-col items-start justify-between gap-6 px-4 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <div className="border-l border-white/15 pl-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
-              See School Life
-            </p>
-            <h2 className="heading-md mt-3 font-serif text-white sm:text-2xl">
-              A community best seen in pictures.
-            </h2>
-          </div>
-          <Link
-            href="/gallery"
-            className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-white/20"
-          >
-            Open gallery <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
+      <CtaSection
+        label="See School Life"
+        title="A community best seen in pictures."
+        href="/gallery"
+        buttonText="Open gallery"
+      />
     </>
   );
 }

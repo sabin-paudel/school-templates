@@ -31,7 +31,7 @@ export default function ContactStrip() {
               />
               <div>
                 <p className="text-sm font-medium text-white">{item.title}</p>
-                <p className="mt-0.5 text-xs text-stone">{item.desc}</p>
+                <p className="mt-0.5 text-xs text-light">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -46,7 +46,7 @@ export default function ContactStrip() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-stone transition-colors duration-200 hover:text-primary"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-light transition-colors duration-200 hover:text-primary"
           >
             View all contact details
             <ArrowRight
