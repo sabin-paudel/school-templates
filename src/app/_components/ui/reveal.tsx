@@ -1,8 +1,6 @@
 "use client";
 
-import { useInView } from "motion/react";
-import type { ReactNode } from "react";
-import { useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -10,20 +8,32 @@ type RevealProps = {
   delay?: number;
 };
 
-export default function Reveal({ children, className, delay = 0 }: RevealProps) {
+export default function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("active");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
       ref={ref}
-      className={className}
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? "translateY(0)" : "translateY(16px)",
-        transition: `opacity 0.5s ease, transform 0.5s ease`,
-        transitionDelay: `${delay}s`,
-      }}
+      className={`reveal-on-scroll ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
     </div>

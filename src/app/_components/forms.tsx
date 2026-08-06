@@ -4,17 +4,17 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-2 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary rounded-xl shadow-sm";
-const labelClass = "text-sm font-medium text-ink";
+  "mt-1.5 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15";
+const labelClass = "block text-sm font-semibold text-ink";
 
 function SuccessMessage({ title }: { title: string }) {
   return (
-    <div className="bg-warm p-8 text-center rounded-2xl">
-      <CheckCircle2 className="mx-auto text-primary" size={36} />
-      <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted">
-        This demo saved no personal data. Connect the form to your school
-        backend before launch.
+    <div className="rounded-lg border border-success/30 bg-success/5 p-8 text-center">
+      <CheckCircle2 className="mx-auto text-success" size={40} />
+      <h3 className="wp-title mt-4 text-xl">{title}</h3>
+      <p className="text-body mt-2 text-sm">
+        This demo saved no personal data. Connect the form to your school backend
+        before launch.
       </p>
     </div>
   );
@@ -29,14 +29,10 @@ export function AdmissionForm() {
   if (sent) return <SuccessMessage title="Application received" />;
 
   return (
-    <form
-      onSubmit={submit}
-      className="grid gap-6"
-      aria-label="Student admission form"
-    >
-      <div className="grid gap-6 sm:grid-cols-2">
+    <form onSubmit={submit} className="grid gap-5" aria-label="Student admission form">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className={labelClass}>
-          Student&apos;s full name
+          Student&apos;s full name *
           <input
             className={fieldClass}
             name="studentName"
@@ -45,7 +41,7 @@ export function AdmissionForm() {
           />
         </label>
         <label className={labelClass}>
-          Date of birth
+          Date of birth *
           <input
             className={fieldClass}
             type="date"
@@ -54,7 +50,7 @@ export function AdmissionForm() {
           />
         </label>
         <label className={labelClass}>
-          Applying for
+          Applying for *
           <select className={fieldClass} name="grade" required defaultValue="">
             <option value="" disabled>
               Select grade
@@ -77,7 +73,7 @@ export function AdmissionForm() {
           <input className={fieldClass} name="currentSchool" />
         </label>
         <label className={labelClass}>
-          Parent / guardian
+          Parent / guardian *
           <input
             className={fieldClass}
             name="guardianName"
@@ -86,7 +82,7 @@ export function AdmissionForm() {
           />
         </label>
         <label className={labelClass}>
-          Phone number
+          Phone number *
           <input
             className={fieldClass}
             type="tel"
@@ -96,7 +92,7 @@ export function AdmissionForm() {
           />
         </label>
         <label className={labelClass}>
-          Email address
+          Email address *
           <input
             className={fieldClass}
             type="email"
@@ -117,7 +113,7 @@ export function AdmissionForm() {
       <label className={labelClass}>
         Anything we should know?
         <textarea
-          className={`${fieldClass} min-h-32 resize-y`}
+          className={`${fieldClass} min-h-28 resize-y`}
           name="notes"
           placeholder="Learning needs, interests or questions for our admissions team"
         />
@@ -126,7 +122,7 @@ export function AdmissionForm() {
         <input
           type="checkbox"
           required
-          className="mt-1 size-4 accent-primary"
+          className="mt-1 size-4 accent-[#1e5a38]"
         />
         I confirm that the information provided is correct and agree to be
         contacted about this application.
@@ -147,10 +143,10 @@ export function ContactForm() {
   if (sent) return <SuccessMessage title="Message sent" />;
 
   return (
-    <form onSubmit={submit} className="grid gap-6" aria-label="Contact form">
-      <div className="grid gap-6 sm:grid-cols-2">
+    <form onSubmit={submit} className="grid gap-5" aria-label="Contact form">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className={labelClass}>
-          Full name
+          Full name *
           <input
             className={fieldClass}
             name="name"
@@ -159,7 +155,7 @@ export function ContactForm() {
           />
         </label>
         <label className={labelClass}>
-          Email address
+          Email address *
           <input
             className={fieldClass}
             type="email"
@@ -188,9 +184,9 @@ export function ContactForm() {
         </label>
       </div>
       <label className={labelClass}>
-        Your message
+        Your message *
         <textarea
-          className={`${fieldClass} min-h-40 resize-y`}
+          className={`${fieldClass} min-h-36 resize-y`}
           name="message"
           required
         />

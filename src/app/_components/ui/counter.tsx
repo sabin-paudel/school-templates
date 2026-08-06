@@ -30,7 +30,7 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
           return;
         }
 
-        const duration = 1200;
+        const duration = 1400;
         const start = performance.now();
 
         function tick(now: number) {
@@ -42,7 +42,7 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
 
         requestAnimationFrame(tick);
       },
-      { threshold: 0.5 },
+      { threshold: 0.4 },
     );
 
     observer.observe(el);
@@ -51,11 +51,19 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
 
   return (
     <div ref={ref} className="text-center">
-      <p className={`text-3xl font-bold tracking-tight sm:text-4xl ${light ? "text-white" : "text-primary"}`}>
+      <p
+        className={`whitespace-nowrap font-display text-4xl font-bold tracking-tight lg:text-5xl ${
+          light ? "text-white" : "text-primary"
+        }`}
+      >
         {display}
-        {suffix}
+        <span className={light ? "text-accent" : "text-accent-dark"}>{suffix}</span>
       </p>
-      <p className={`mt-1 text-xs font-medium uppercase tracking-wider ${light ? "text-white/55" : "text-muted"}`}>
+      <p
+        className={`mt-2 text-xs font-semibold uppercase tracking-[0.14em] ${
+          light ? "text-white/60" : "text-muted"
+        }`}
+      >
         {label}
       </p>
     </div>

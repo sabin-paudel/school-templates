@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Expand } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import PageBanner from "../_components/ui/page-banner";
 import CtaSection from "../_components/ui/cta-section";
-import PageHero from "../_components/ui/page-hero";
 import Reveal from "../_components/ui/reveal";
+import { Sidebar } from "../_components/layout/sidebar";
 import { galleryPhotos, school } from "../_data/site-content";
-import { nepaliSchoolImages } from "../_data/site-images";
 
 export const metadata: Metadata = {
-  title: `Gallery | ${school.name}`,
+  title: "Gallery",
   description: `Explore student life, learning, and community moments from ${school.name}.`,
 };
 
@@ -23,69 +23,75 @@ const spanClasses = {
 export default function GalleryPage() {
   return (
     <>
-      <PageHero
-        label="Gallery"
+      <PageBanner
+        breadcrumb="Gallery"
         title="Learning, friendship, and everyday discovery."
         description="A glimpse into the people, places, and shared experiences that make a school community feel alive."
       />
 
-      <section className="bg-warm">
-        <div className="container py-12">
-          <Reveal>
-            <p className="label">Campus Moments</p>
-            <h2 className="heading-md mt-2 text-ink">
-              A visual journey through school life.
-            </h2>
-          </Reveal>
-        </div>
-        <div className="mx-auto grid w-full max-w-none grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] sm:auto-rows-[260px]">
-          {galleryPhotos.map((photo, index) => (
-            <Reveal key={photo.title} delay={index * 0.04} className="contents">
-              <figure
-                className={`group relative overflow-hidden bg-white ${spanClasses[photo.span]}`}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-all duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                    <Expand size={18} className="text-white" />
-                  </span>
+      <section className="section-pad bg-warm">
+        <div className="container">
+          <div className="content-sidebar">
+            <div>
+              <Reveal>
+                <div className="mb-10">
+                  <p className="label">Campus Moments</p>
+                  <h2 className="wp-title mt-2 text-3xl">
+                    A visual journey through school life.
+                  </h2>
                 </div>
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-full px-4 pb-4 pt-10 transition-transform duration-300 group-hover:translate-y-0">
-                  <p className="text-sm font-medium text-white drop-shadow-sm">
-                    {photo.title}
-                  </p>
-                  <p className="mt-0.5 text-[10px] uppercase tracking-wider text-white/60 drop-shadow-sm">
-                    {photo.credit} &middot; Wikimedia Commons
-                  </p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-        <div className="section-pad container text-center">
-          <p className="text-body mx-auto max-w-lg text-sm leading-relaxed">
-            Photography is sourced from Wikimedia Commons and depicts school
-            communities across Nepal. Images are used under their respective
-            Creative Commons licences.
-          </p>
-          <Link href="/contact" className="btn btn-primary mt-8">
-            Arrange a school visit <ArrowRight size={16} />
-          </Link>
+              </Reveal>
+
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:auto-rows-[240px]">
+                {galleryPhotos.map((photo, index) => (
+                  <Reveal key={photo.title} delay={index * 0.04}>
+                    <figure
+                      className={`group relative h-full min-h-[180px] overflow-hidden rounded-lg border border-line ${
+                        spanClasses[photo.span]
+                      }`}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.title}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="object-cover"
+                      />
+                      <figcaption className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <p className="text-sm font-bold">{photo.title}</p>
+                        <p className="mt-0.5 text-[11px] text-white/70">
+                          {photo.credit} · Wikimedia Commons
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+
+              <div className="mt-14 rounded-lg border border-line bg-white p-8 text-center">
+                <p className="mx-auto max-w-2xl text-body text-sm leading-relaxed">
+                  Photography is sourced from Wikimedia Commons and depicts school
+                  communities across Nepal. Images are used under their respective
+                  Creative Commons licences.
+                </p>
+                <Link href="/contact" className="btn btn-primary mt-6">
+                  Arrange a School Visit <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+
+            <Sidebar />
+          </div>
         </div>
       </section>
 
       <CtaSection
         label="See It Live"
         title="Pictures tell only part of the story."
-        href="/contact"
-        buttonText="Visit our campus"
+        primaryHref="/contact"
+        primaryText="Visit Our Campus"
+        secondaryHref="/school-life"
+        secondaryText="Explore School Life"
       />
     </>
   );

@@ -1,55 +1,88 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { ReactNode } from "react";
 
 type CtaSectionProps = {
-  label: string;
+  label?: string;
   title: string;
   description?: string;
-  href: string;
-  buttonText: string;
-  variant?: "ink" | "primary";
+  primaryHref: string;
+  primaryText: string;
+  secondaryHref?: string;
+  secondaryText?: string;
+  variant?: "primary" | "accent";
 };
 
 export default function CtaSection({
   label,
   title,
   description,
-  href,
-  buttonText,
-  variant = "ink",
+  primaryHref,
+  primaryText,
+  secondaryHref,
+  secondaryText,
+  variant = "primary",
 }: CtaSectionProps) {
-  const isInk = variant === "ink";
-
   return (
-    <section className={`relative overflow-hidden py-16 ${isInk ? "bg-ink" : "bg-primary-dark"}`}>
+    <section
+      className={`relative overflow-hidden ${
+        variant === "accent" ? "bg-accent" : "bg-primary"
+      }`}
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent, transparent 43px, rgba(255,255,255,0.045) 43px, rgba(255,255,255,0.045) 44px)",
+            "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 14px)",
         }}
       />
-      <div className="container relative flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-        <div className="border-l border-white/15 pl-6 max-w-xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">
-            {label}
-          </p>
-          <h2 className="heading-md mt-3 font-serif text-white sm:text-2xl">
+      <div className="container relative flex flex-col items-start justify-between gap-8 py-14 lg:flex-row lg:items-center lg:py-16">
+        <div className="max-w-2xl">
+          {label && (
+            <p
+              className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+                variant === "accent" ? "text-white/80" : "text-accent"
+              }`}
+            >
+              {label}
+            </p>
+          )}
+          <h2
+            className={`display-md mt-2 ${
+              variant === "accent" ? "text-white" : "text-white"
+            }`}
+          >
             {title}
           </h2>
           {description && (
-            <p className="mt-2 text-sm text-white/50">{description}</p>
+            <p
+              className={`mt-3 text-base ${
+                variant === "accent" ? "text-white/80" : "text-white/70"
+              }`}
+            >
+              {description}
+            </p>
           )}
         </div>
-        <Link
-          href={href}
-          className="group inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-white/20 shrink-0"
-        >
-          {buttonText}
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-        </Link>
+        <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+          <Link
+            href={primaryHref}
+            className={`btn btn-lg ${
+              variant === "accent" ? "btn-primary" : "btn-accent"
+            } group`}
+          >
+            {primaryText}
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+          {secondaryHref && secondaryText && (
+            <Link
+              href={secondaryHref}
+              className="btn btn-lg btn-white-outline"
+            >
+              {secondaryText}
+            </Link>
+          )}
+        </div>
       </div>
     </section>
   );
