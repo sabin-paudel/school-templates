@@ -440,39 +440,19 @@ export type NavItem = {
 };
 
 export const navigation: NavItem[] = [
-  {
-    label: "About School",
-    href: "/about",
-    children: [
-      { label: "Our Story", href: "/about#story" },
-      { label: "Principal's Message", href: "/about#principal" },
-      { label: "Faculty", href: "/about#teachers" },
-    ],
-  },
-  {
-    label: "Academics",
-    href: "/academics",
-    children: [
-      { label: "Early Years", href: "/academics#early-years" },
-      { label: "Primary School", href: "/academics#primary" },
-      { label: "Secondary School", href: "/academics#secondary" },
-    ],
-  },
-  { label: "Admissions", href: "/admissions" },
-  { label: "News", href: "/news" },
-  { label: "Events", href: "/events" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Notices", href: "/notices" },
+  { label: "About", href: "/about" },
+  { label: "Academics", href: "/academics" },
+  { label: "School Life", href: "/school-life" },
+  { label: "News & Events", href: "/news" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerQuickLinks = [
-  { label: "About School", href: "/about" },
-  { label: "Admissions", href: "/admissions" },
-  { label: "News", href: "/news" },
-  { label: "Events", href: "/events" },
-  { label: "Notice Board", href: "/notices" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "About", href: "/about" },
+  { label: "Academics", href: "/academics" },
+  { label: "School Life", href: "/school-life" },
+  { label: "News & Events", href: "/news" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const footerProgramLinks = [

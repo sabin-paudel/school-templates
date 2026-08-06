@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import PageBanner from "../_components/ui/page-banner";
-import CtaSection from "../_components/ui/cta-section";
-import Reveal from "../_components/ui/reveal";
-import { Sidebar } from "../_components/layout/sidebar";
-import { galleryPhotos, school } from "../_data/site-content";
+import PageBanner from "./../_components/ui/page-banner";
+import CtaSection from "./../_components/ui/cta-section";
+import Reveal from "./../_components/ui/reveal";
+import { Sidebar } from "./../_components/layout/sidebar";
+import { galleryPhotos, school } from "./../_data/site-content";
 
 export const metadata: Metadata = {
   title: "Gallery",
