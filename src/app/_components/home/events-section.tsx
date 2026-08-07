@@ -13,7 +13,7 @@ export default function EventsSection() {
           title="Mark your calendar for school activities."
           description="Stay informed about parent-teacher meetings, sports days, cultural events, and academic milestones."
           action={
-            <Link href="/events" className="btn btn-outline group">
+            <Link href="/academic-calendar" className="btn btn-outline group">
               View Full Calendar
               <ArrowRight
                 size={18}

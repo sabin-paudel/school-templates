@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { news, events } from "../../_data/site-content";
+import { news, events, slugify } from "../../_data/site-content";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 
@@ -44,11 +44,11 @@ export default function NewsSection() {
                       <span className="font-medium text-light">{post.date}</span>
                     </div>
                     <h3 className="heading-md mt-3 leading-snug text-ink transition-colors group-hover:text-primary">
-                      <Link href="/news">{post.title}</Link>
+                      <Link href={`/news/${slugify(post.title)}`}>{post.title}</Link>
                     </h3>
                     <p className="text-body mt-2 text-sm">{post.excerpt}</p>
                     <Link
-                      href="/news"
+                      href={`/news/${slugify(post.title)}`}
                       className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
                     >
                       Read More
@@ -86,7 +86,7 @@ export default function NewsSection() {
                 ))}
               </ul>
               <Link
-                href="/notices"
+                href="/academic-calendar"
                 className="mt-7 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
               >
                 View Full Calendar

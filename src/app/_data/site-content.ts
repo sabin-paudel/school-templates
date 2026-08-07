@@ -439,11 +439,19 @@ export type NavItem = {
   children?: NavChild[];
 };
 
+export function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export const navigation: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Academics", href: "/academics" },
   { label: "School Life", href: "/school-life" },
   { label: "News & Events", href: "/news" },
+  { label: "Admissions", href: "/admissions" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -452,6 +460,7 @@ export const footerQuickLinks = [
   { label: "Academics", href: "/academics" },
   { label: "School Life", href: "/school-life" },
   { label: "News & Events", href: "/news" },
+  { label: "Admissions", href: "/admissions" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

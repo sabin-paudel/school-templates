@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, StickyNote } from "lucide-react";
-import { navigation, news, notices } from "../../_data/site-content";
+import { navigation, news, notices, slugify } from "../../_data/site-content";
 
 export function Sidebar() {
   return (
@@ -66,7 +65,7 @@ export function Sidebar() {
               </div>
               <div className="min-w-0">
                 <Link
-                  href="/news"
+                  href={`/news/${slugify(post.title)}`}
                   className="block text-sm font-bold leading-snug text-ink transition-colors hover:text-primary"
                 >
                   {post.title}
@@ -105,7 +104,7 @@ export function Sidebar() {
             <li key={notice.title} className="flex items-start gap-2.5 text-sm">
               <StickyNote size={14} className="mt-0.5 shrink-0 text-accent-dark" />
               <Link
-                href="/notices"
+                href="/news"
                 className="font-medium text-ink transition-colors hover:text-primary"
               >
                 {notice.title}

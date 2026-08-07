@@ -257,8 +257,8 @@ export default function AdmissionsPage() {
         title="We are here to help with your application."
         primaryHref="/contact"
         primaryText="Contact Admissions"
-        secondaryHref="/notices"
-        secondaryText="View Notices"
+        secondaryHref="/news"
+        secondaryText="Latest News"
       />
     </>
   );

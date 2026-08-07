@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
 import CtaSection from "../_components/ui/cta-section";
@@ -8,15 +8,15 @@ import { Sidebar } from "../_components/layout/sidebar";
 import { events, school } from "../_data/site-content";
 
 export const metadata: Metadata = {
-  title: "Events",
+  title: "Academic Calendar",
   description: `Upcoming school events, calendar and activities at ${school.name} in Pokhara.`,
 };
 
-export default function EventsPage() {
+export default function AcademicCalendarPage() {
   return (
     <>
       <PageBanner
-        breadcrumb="Events"
+        breadcrumb="Academic Calendar"
         title="School Calendar & Upcoming Events"
         description="Stay connected with parent meetings, sports competitions, cultural programmes, and term dates."
       />

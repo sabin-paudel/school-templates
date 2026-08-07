@@ -34,7 +34,7 @@ export default function AcademicsPage() {
               />
 
               <div className="mt-14 space-y-20">
-                {programs.map((program, index) => (
+                {programs.map((program) => (
                   <Reveal key={program.id}>
                     <article
                       id={program.id}
@@ -96,8 +96,8 @@ export default function AcademicsPage() {
               title="Key dates on the school calendar."
               description="Stay up to date with assessments, sports days, cultural programmes, and the start of the new academic session."
             />
-            <Link href="/notices" className="btn btn-outline mt-8 group">
-              View Notices &amp; Calendar
+            <Link href="/academic-calendar" className="btn btn-outline mt-8 group">
+              View Academic Calendar
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

@@ -6,7 +6,7 @@ import PageBanner from "../_components/ui/page-banner";
 import CtaSection from "../_components/ui/cta-section";
 import Reveal from "../_components/ui/reveal";
 import { Sidebar } from "../_components/layout/sidebar";
-import { news, school } from "../_data/site-content";
+import { news, school, slugify } from "../_data/site-content";
 
 export const metadata: Metadata = {
   title: "News & Events",
@@ -65,7 +65,7 @@ export default function NewsPage() {
                         Featured · {featured.category}
                       </span>
                       <h2 className="heading-lg mt-3 leading-tight">
-                        <Link href="/news" className="hover:text-accent">
+                        <Link href={`/news/${slugify(featured.title)}`} className="hover:text-accent">
                           {featured.title}
                         </Link>
                       </h2>
@@ -77,7 +77,7 @@ export default function NewsPage() {
                   <div className="p-7">
                     <p className="text-body">{featured.body}</p>
                     <Link
-                      href="/news"
+                      href={`/news/${slugify(featured.title)}`}
                       className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
                     >
                       Continue Reading <ArrowRight size={15} />
@@ -109,11 +109,11 @@ export default function NewsPage() {
                           <span className="post-date">{post.date}</span>
                         </p>
                         <h3 className="heading-md mt-3 leading-snug text-ink transition-colors group-hover:text-primary">
-                          <Link href="/news">{post.title}</Link>
+                          <Link href={`/news/${slugify(post.title)}`}>{post.title}</Link>
                         </h3>
                         <p className="text-body mt-2 text-sm">{post.excerpt}</p>
                         <Link
-                          href="/news"
+                          href={`/news/${slugify(post.title)}`}
                           className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-bold text-primary transition-all hover:gap-2.5"
                         >
                           Read More <ArrowRight size={15} />
@@ -161,8 +161,8 @@ export default function NewsPage() {
         description="Subscribe to receive school notices, event updates, and admission information."
         primaryHref="/contact"
         primaryText="Subscribe to Notices"
-        secondaryHref="/notices"
-        secondaryText="View Notice Board"
+        secondaryHref="/news"
+        secondaryText="Read Latest News"
       />
     </>
   );

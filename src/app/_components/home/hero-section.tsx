@@ -3,13 +3,6 @@ import Image from "next/image";
 import { school } from "../../_data/site-content";
 import { nepaliSchoolImages } from "../../_data/site-images";
 
-const quickFacts = [
-  { value: "24+", label: "Years of Excellence" },
-  { value: "700+", label: "Students" },
-  { value: "14:1", label: "Student–Teacher Ratio" },
-  { value: "98%", label: "Board Exam Success" },
-];
-
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-primary-darker text-white">
@@ -61,19 +54,6 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-
-        <dl className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/15 pt-8 sm:grid-cols-4">
-          {quickFacts.map((fact) => (
-            <div key={fact.label}>
-              <dd className="font-display text-3xl font-bold text-white">
-                {fact.value}
-              </dd>
-              <dt className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/55">
-                {fact.label}
-              </dt>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );
