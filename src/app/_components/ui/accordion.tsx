@@ -16,28 +16,30 @@ export default function Accordion({ items }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="space-y-3">
+    <div className="border-t border-line">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div
-            key={item.question}
-            className={`overflow-hidden rounded-lg border bg-white transition-colors ${
-              isOpen ? "border-primary/30" : "border-line"
-            }`}
-          >
+          <div key={item.question} className="border-b border-line">
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+              className="flex w-full items-center justify-between gap-6 py-6 text-left"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? null : index)}
             >
-              <span className="text-sm font-bold text-ink sm:text-base">{item.question}</span>
+              <span className="flex items-baseline gap-5">
+                <span className="hidden text-xs font-semibold tracking-[0.18em] text-light sm:inline">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
+                  {item.question}
+                </span>
+              </span>
               <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all ${
+                className={`flex h-9 w-9 shrink-0 items-center justify-center border transition-all duration-300 ${
                   isOpen
-                    ? "rotate-45 border-accent bg-accent text-primary-darker"
-                    : "border-line bg-warm text-primary"
+                    ? "rotate-45 border-ink bg-charcoal text-white"
+                    : "border-line text-ink"
                 }`}
               >
                 <Plus size={16} />
@@ -45,11 +47,11 @@ export default function Accordion({ items }: AccordionProps) {
             </button>
             <div
               className={`grid transition-all duration-300 ease-in-out ${
-                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
             >
               <div className="overflow-hidden">
-                <p className="text-body border-t border-line px-5 pb-5 pt-4 text-sm">
+                <p className="text-body max-w-2xl pb-7 pl-0 text-sm sm:pl-10">
                   {item.answer}
                 </p>
               </div>

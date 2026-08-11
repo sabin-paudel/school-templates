@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { school } from "../../_data/site-content";
+import PageBannerSlider from "./page-banner-slider";
 
 type PageBannerProps = {
   title: string;
@@ -13,35 +14,38 @@ export default function PageBanner({
   description,
 }: PageBannerProps) {
   return (
-    <section className="border-t-[6px] border-accent bg-warm">
-      <div className="container py-10 lg:py-14">
-        <nav
-          aria-label="Breadcrumb"
-          className="text-xs font-medium uppercase tracking-wider text-light"
-        >
-          <Link href="/" className="transition-colors hover:text-primary">
-            Home
-          </Link>
-          <span className="mx-2 text-accent" aria-hidden>
-            /
-          </span>
-          <span className="font-bold text-primary">{breadcrumb}</span>
-        </nav>
+    <section className="border-b border-line bg-warm">
+      <div className="container grid items-center gap-12 pb-14 pt-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:pb-20 lg:pt-16">
+        <div>
+          <nav
+            aria-label="Breadcrumb"
+            className="text-[11px] font-semibold uppercase tracking-[0.2em] text-light"
+          >
+            <Link href="/" className="transition-colors hover:text-ink">
+              Home
+            </Link>
+            <span className="mx-3 text-line" aria-hidden>
+              /
+            </span>
+            <span className="text-ink">{breadcrumb}</span>
+          </nav>
 
-        <div className="mt-4 max-w-2xl">
-          <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-accent-dark">
-            <span className="h-0.5 w-9 bg-accent" aria-hidden />
-            {school.name}
-          </p>
-          <h1 className="display-md mt-4 text-balance text-ink">{title}</h1>
-          {description && (
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-muted">
-              {description}
+          <div className="mt-7 max-w-2xl">
+            <p className="label mb-5 flex items-center gap-3">
+              <span className="h-px w-8 bg-charcoal/70" aria-hidden />
+              {school.name}
             </p>
-          )}
-          <span className="wp-rule mt-5" aria-hidden>
-            <span />
-          </span>
+            <h1 className="display-lg text-ink">{title}</h1>
+            {description && (
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
+                {description}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="relative aspect-[4/3] overflow-hidden lg:aspect-[4/3.4]">
+          <PageBannerSlider />
         </div>
       </div>
     </section>

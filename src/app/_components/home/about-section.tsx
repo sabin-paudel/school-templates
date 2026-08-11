@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { school } from "../../_data/site-content";
 import { nepaliSchoolImages } from "../../_data/site-images";
 import SectionHeading from "../ui/section-heading";
@@ -16,11 +16,11 @@ const highlights = [
 export default function AboutSection() {
   return (
     <section className="section-pad bg-white">
-      <div className="container grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        {/* Images */}
+      <div className="container grid items-center gap-16 lg:grid-cols-[1.05fr_1fr] lg:gap-24">
+        {/* Image composition */}
         <Reveal>
           <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-line">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <Image
                 src={nepaliSchoolImages.villageStudents}
                 alt="Students of Aatreya Academy"
@@ -29,20 +29,20 @@ export default function AboutSection() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-8 -right-4 hidden w-44 overflow-hidden rounded-lg border-4 border-white shadow-lg sm:block lg:-right-8">
+            <div className="absolute -bottom-10 -left-6 hidden w-56 overflow-hidden border-8 border-white sm:block lg:left-0">
               <div className="relative aspect-[4/5]">
                 <Image
                   src={nepaliSchoolImages.classroom}
                   alt="Focused learning in the classroom"
                   fill
-                  sizes="176px"
+                  sizes="224px"
                   className="object-cover"
                 />
               </div>
             </div>
-            <div className="absolute -left-4 -top-6 rounded-md bg-accent px-5 py-4 text-white shadow-lg">
-              <p className="font-display text-3xl font-bold">2002</p>
-              <p className="text-[10px] font-bold uppercase tracking-widest">
+            <div className="absolute right-6 top-6 border border-line bg-white/95 px-6 py-4 backdrop-blur">
+              <p className="font-display text-4xl font-semibold leading-none text-ink">2002</p>
+              <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
                 Founded
               </p>
             </div>
@@ -57,24 +57,24 @@ export default function AboutSection() {
             title="A tradition of purposeful education in Pokhara."
             description={`Since ${school.founded}, Aatreya Academy has been a beacon of excellence. We believe in nurturing not just minds, but hearts — preparing students for the challenges of a rapidly changing world.`}
           />
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {highlights.map((item) => (
-              <div key={item} className="flex items-start gap-2.5">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-success" aria-hidden />
+          <ul className="mt-9 grid sm:grid-cols-2 sm:gap-x-10">
+            {highlights.map((item, i) => (
+              <li key={item} className="flex items-baseline gap-4 border-t border-line py-4">
+                <span className="text-xs font-semibold tracking-[0.14em] text-light">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <span className="text-sm font-medium text-ink">{item}</span>
-              </div>
+              </li>
             ))}
-          </div>
-          <div className="mt-9 flex flex-wrap items-center gap-5">
-            <Link href="/about" className="btn btn-primary group">
+          </ul>
+          <div className="mt-10 flex flex-wrap items-center gap-8">
+            <Link href="/about" className="btn btn-primary btn-arrow group">
               Discover Our Story
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              <ArrowUpRight size={17} className="btn-arrow-icon" />
             </Link>
-            <Link
-              href="/admissions"
-              className="text-sm font-bold text-primary underline-offset-4 hover:underline"
-            >
-              Apply for Admission →
+            <Link href="/admissions" className="nav-arrow group">
+              Apply for Admission
+              <ArrowRight size={16} />
             </Link>
           </div>
         </div>

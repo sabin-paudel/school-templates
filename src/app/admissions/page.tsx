@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   FileText,
   CalendarCheck,
@@ -14,6 +13,7 @@ import { AdmissionForm } from "../_components/forms";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
 import CtaSection from "../_components/ui/cta-section";
+import Accordion from "../_components/ui/accordion";
 import Reveal from "../_components/ui/reveal";
 import { school, faqs, programs } from "../_data/site-content";
 
@@ -49,6 +49,12 @@ const guideRows = [
   { program: "Secondary School", ages: "Grades 6–10", intake: "Enrolment in all grades", notes: "NEB examination preparation" },
 ];
 
+const assurancePoints = [
+  "No application fee for initial enquiry",
+  "Information treated confidentially",
+  "Campus visit available before decision",
+];
+
 export default function AdmissionsPage() {
   return (
     <>
@@ -66,24 +72,20 @@ export default function AdmissionsPage() {
             title="Three simple steps to enrolment."
             description={`Admissions for the ${school.admissionSession} session are now open for Early Years through Grade 9.`}
           />
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
             {steps.map(({ step, icon: Icon, title, text }, index) => (
               <Reveal key={step} delay={index * 0.08}>
-                <div className="card relative h-full p-8 text-center">
-                  <span className="absolute right-5 top-4 font-display text-5xl font-bold text-primary-light">
-                    {step}
-                  </span>
-                  <div className="mx-auto flex h-18 w-18 items-center justify-center rounded-full bg-primary text-white shadow-md">
-                    <Icon size={30} />
+                <div className="h-full border-t-2 border-ink pt-7">
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-5xl font-semibold leading-none text-line">
+                      {step}
+                    </span>
+                    <span className="flex h-12 w-12 items-center justify-center border border-line text-ink">
+                      <Icon size={20} />
+                    </span>
                   </div>
-                  <h3 className="wp-title mt-6 text-2xl">{title}</h3>
+                  <h3 className="heading-lg mt-6 text-ink">{title}</h3>
                   <p className="text-body mt-3 text-sm">{text}</p>
-                  {index < steps.length - 1 && (
-                    <ArrowRight
-                      size={22}
-                      className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-accent md:block"
-                    />
-                  )}
                 </div>
               </Reveal>
             ))}
@@ -99,36 +101,38 @@ export default function AdmissionsPage() {
             title="Find the right stage for your child."
             description="Aatreya Academy welcomes students from age 3 through Grade 10 across three programmes."
           />
-          <div className="mt-12 overflow-x-auto">
-            <table className="w-full min-w-[640px] border-collapse overflow-hidden rounded-lg text-left">
+          <div className="mt-14 overflow-x-auto">
+            <table className="w-full min-w-[640px] text-left">
               <thead>
-                <tr className="bg-primary text-white">
-                  <th className="px-5 py-3.5 text-sm font-bold">Programme</th>
-                  <th className="px-5 py-3.5 text-sm font-bold">Age / Grade</th>
-                  <th className="px-5 py-3.5 text-sm font-bold">Intake</th>
-                  <th className="px-5 py-3.5 text-sm font-bold">Notes</th>
+                <tr className="border-b-2 border-ink text-[11px] uppercase tracking-[0.18em] text-muted">
+                  <th className="py-4 pr-6 font-semibold">Programme</th>
+                  <th className="py-4 pr-6 font-semibold">Age / Grade</th>
+                  <th className="py-4 pr-6 font-semibold">Intake</th>
+                  <th className="py-4 font-semibold">Notes</th>
                 </tr>
               </thead>
               <tbody>
-                {guideRows.map((row, i) => (
-                  <tr
-                    key={row.program}
-                    className={`border-b border-line ${i % 2 === 0 ? "bg-white" : "bg-white"}`}
-                  >
-                    <td className="px-5 py-4 font-bold text-ink">{row.program}</td>
-                    <td className="px-5 py-4 text-sm text-muted">{row.ages}</td>
-                    <td className="px-5 py-4 text-sm text-muted">{row.intake}</td>
-                    <td className="px-5 py-4 text-sm text-muted">{row.notes}</td>
+                {guideRows.map((row) => (
+                  <tr key={row.program} className="border-b border-line">
+                    <td className="py-5 pr-6 font-semibold text-ink">{row.program}</td>
+                    <td className="py-5 pr-6 text-sm text-muted">{row.ages}</td>
+                    <td className="py-5 pr-6 text-sm text-muted">{row.intake}</td>
+                    <td className="py-5 text-sm text-muted">{row.notes}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-12 grid gap-10 sm:grid-cols-3">
             {programs.map((p) => (
-              <div key={p.id} className="rounded-lg border border-line bg-white p-5">
-                <p className="font-bold text-ink">{p.title}</p>
-                <p className="mt-1 text-sm text-muted">{p.ages} — {p.highlights[0]}</p>
+              <div key={p.id} className="border-t border-line pt-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-light">
+                  {p.ages}
+                </p>
+                <p className="mt-2 font-display text-xl font-semibold tracking-tight text-ink">
+                  {p.title}
+                </p>
+                <p className="mt-1 text-sm text-muted">{p.highlights[0]}</p>
               </div>
             ))}
           </div>
@@ -137,76 +141,82 @@ export default function AdmissionsPage() {
 
       {/* Form + sidebar */}
       <section className="section-pad bg-white">
-        <div className="container grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <div className="container grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
           <Reveal>
-            <div className="rounded-lg border border-line p-6 sm:p-10">
-              <p className="label">Student Application</p>
-              <h2 className="wp-title mt-2 text-3xl">Apply for admission</h2>
+            <div className="border border-line bg-white p-7 sm:p-12">
+              <p className="label-dark">Student Application</p>
+              <h2 className="wp-title mt-3 text-3xl">Apply for admission</h2>
               <p className="text-body mt-4 text-sm">
                 Complete this initial enquiry form. Our admissions office will
                 contact you within two working days.
               </p>
               <ul className="mt-6 space-y-2.5">
-                {[
-                  "No application fee for initial enquiry",
-                  "Information treated confidentially",
-                  "Campus visit available before decision",
-                ].map((item) => (
+                {assurancePoints.map((item) => (
                   <li key={item} className="flex items-center gap-2.5 text-sm text-ink">
-                    <CheckCircle2 size={18} className="shrink-0 text-success" />
+                    <CheckCircle2 size={17} className="shrink-0 text-ink/50" />
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 border-t border-line pt-8">
+              <div className="mt-9 border-t border-line pt-9">
                 <AdmissionForm />
               </div>
             </div>
           </Reveal>
 
-          <aside className="space-y-6">
+          <aside className="space-y-8">
             <Reveal>
-              <div className="rounded-lg bg-primary p-7 text-white">
-                <h3 className="wp-title text-2xl !text-white">Admissions Office</h3>
-                <div className="mt-2 h-0.5 w-10 bg-accent" />
-                <ul className="mt-6 space-y-4 text-sm">
+              <div className="bg-charcoal p-8 text-white">
+                <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
+                  Admissions Office
+                </h3>
+                <div className="mt-3 h-px w-10 bg-white/30" />
+                <ul className="mt-7 space-y-5 text-sm">
                   <li className="flex items-start gap-3">
-                    <Phone size={16} className="mt-1 shrink-0 text-accent" />
+                    <Phone size={16} className="mt-0.5 shrink-0 text-white/40" />
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-white/60">Phone</p>
-                      <a href={`tel:${school.phone.replace(/\s/g, "")}`} className="hover:text-accent">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                        Phone
+                      </p>
+                      <a href={`tel:${school.phone.replace(/\s/g, "")}`} className="mt-0.5 block text-white/85 transition-colors hover:text-white">
                         {school.phone}
                       </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Mail size={16} className="mt-1 shrink-0 text-accent" />
+                    <Mail size={16} className="mt-0.5 shrink-0 text-white/40" />
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-white/60">Email</p>
-                      <a href={`mailto:${school.email}`} className="hover:text-accent">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                        Email
+                      </p>
+                      <a href={`mailto:${school.email}`} className="mt-0.5 block text-white/85 transition-colors hover:text-white">
                         {school.email}
                       </a>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Clock3 size={16} className="mt-1 shrink-0 text-accent" />
+                    <Clock3 size={16} className="mt-0.5 shrink-0 text-white/40" />
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-white/60">Hours</p>
-                      <p className="text-white/85">{school.hours}</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                        Hours
+                      </p>
+                      <p className="mt-0.5 text-white/85">{school.hours}</p>
                     </div>
                   </li>
                 </ul>
-                <Link href="/contact" className="btn btn-accent mt-7 w-full">
+                <Link href="/contact" className="btn btn-white mt-9 w-full">
                   Book a Campus Visit
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={0.08}>
-              <div className="wp-widget p-7">
-                <h3 className="wp-title text-2xl">Scholarships</h3>
-                <div className="mt-2 h-0.5 w-10 bg-accent" />
-                <p className="text-body mt-4 text-sm">
+              <div className="border border-line bg-white p-8">
+                <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">
+                  Scholarships
+                </h3>
+                <div className="mt-3 h-px w-10 bg-charcoal/40" />
+                <p className="text-body mt-5 text-sm">
                   Merit-based and need-based scholarships are available for
                   qualifying students. Contact the admissions office for current
                   criteria and deadlines.
@@ -224,27 +234,13 @@ export default function AdmissionsPage() {
             label="Common Questions"
             title="Everything you need to know."
           />
-          <div className="mt-10">
-            {faqs.map((faq, index) => (
-              <Reveal key={faq.question} delay={index * 0.04}>
-                <details className="group mt-4 cursor-pointer overflow-hidden rounded-lg border border-line bg-white transition-colors open:border-primary/30">
-                  <summary className="flex items-center justify-between gap-4 px-6 py-5 text-sm font-bold text-ink">
-                    {faq.question}
-                    <span className="shrink-0 text-primary transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <div className="border-t border-line px-6 pb-5 pt-4">
-                    <p className="text-body text-sm">{faq.answer}</p>
-                  </div>
-                </details>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <Accordion items={faqs} />
           </div>
-          <Reveal className="mt-10 text-center">
+          <Reveal className="mt-12 text-center">
             <p className="text-body text-sm">
               Still have questions?{" "}
-              <Link href="/contact" className="font-bold text-primary underline-offset-4 hover:underline">
+              <Link href="/contact" className="font-semibold text-ink underline decoration-line underline-offset-4 transition-colors hover:text-ink/70">
                 Contact our admissions team
               </Link>
             </p>

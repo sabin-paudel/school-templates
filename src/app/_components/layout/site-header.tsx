@@ -1,184 +1,210 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Menu, X, Phone, Mail, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 import { navigation, school } from "../../_data/site-content";
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "./social-icons";
 
 function Logo() {
   return (
     <Link
       href="/"
-      className="flex shrink-0 items-center gap-2.5"
+      className="flex shrink-0 items-center gap-3"
       aria-label={`${school.name} home`}
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-accent-dark/40 bg-accent text-white shadow-sm">
-        <GraduationCap size={24} />
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-charcoal font-display text-[15px] font-bold tracking-tight text-white">
+        AA
       </span>
-      <span className="whitespace-nowrap text-lg font-bold text-ink">
-        {school.name}
+      <span className="flex flex-col leading-none">
+        <span className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink">
+          {school.name}
+        </span>
+        <span className="mt-1 text-[10px] uppercase tracking-[0.26em] text-light">
+          {school.city}
+        </span>
       </span>
     </Link>
   );
 }
 
 export default function SiteHeader() {
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [mobileSub, setMobileSub] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white shadow-sm">
-      <div className="container flex h-[72px] items-center justify-between gap-6">
-        <Logo />
+    <>
+      <header
+        className={`sticky top-0 z-50 border-b border-line bg-white transition-shadow duration-500 ${
+          scrolled && !mobileOpen ? "shadow-md shadow-ink/5" : ""
+        }`}
+      >
+        {/* Main bar */}
+        <div className="container flex h-[68px] items-center justify-between gap-8 lg:h-[76px]">
+          <Logo />
 
-        {/* Desktop navigation */}
-        <nav aria-label="Primary" className="hidden items-center lg:flex">
-          <ul className="flex items-center">
-            {navigation.map((item) => (
-              <li
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => setOpenMenu(item.label)}
-                onMouseLeave={() => setOpenMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  aria-haspopup={item.children ? "true" : undefined}
-                  aria-expanded={
-                    item.children ? openMenu === item.label : undefined
-                  }
-                  className={`flex items-center gap-1 whitespace-nowrap px-3 py-2.5 text-sm font-semibold transition-colors xl:px-4 ${
-                    openMenu === item.label
-                      ? "text-primary"
-                      : "text-ink hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                  {item.children && (
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform ${
-                        openMenu === item.label
-                          ? "rotate-180 text-accent"
-                          : "text-light"
+          {/* Desktop nav */}
+          <nav aria-label="Primary" className="hidden lg:block">
+            <ul className="flex items-center gap-1">
+              {navigation.map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className={`group relative inline-block px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                        active ? "text-ink" : "text-ink/70 hover:text-ink"
                       }`}
-                    />
-                  )}
-                </Link>
+                    >
+                      {item.label}
+                      <span
+                        aria-hidden
+                        className="absolute inset-x-4 -bottom-px h-px origin-left scale-x-0 bg-charcoal transition-transform duration-300 ease-out group-hover:scale-x-100"
+                        style={active ? { transform: "scaleX(1)" } : undefined}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-                {item.children && (
-                  <div
-                    className={`absolute left-0 top-full pt-2 ${
-                      openMenu === item.label ? "block" : "hidden"
-                    }`}
-                  >
-                    <ul className="w-60 rounded-lg border border-line bg-white py-2 shadow-lg">
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="block border-l-2 border-transparent px-5 py-2.5 text-sm font-medium text-muted transition-colors hover:border-accent hover:bg-primary-light hover:text-primary"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <div className="hidden items-center gap-4 lg:flex">
+            <Link href="/admissions" className="btn btn-primary btn-sm">
+              Apply Now
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link href="/admissions" className="btn btn-accent text-white">
-            Apply Now
-          </Link>
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            className="flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink transition-colors hover:bg-warm lg:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
+      </header>
 
-        <button
-          type="button"
-          className="flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink transition-colors hover:bg-primary-light lg:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      {/* Mobile navigation */}
-      {mobileOpen && (
-        <nav
-          aria-label="Mobile"
-          className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-line bg-white lg:hidden"
-        >
-          <ul className="container py-3">
-            {navigation.map((item) => (
-              <li
-                key={item.label}
-                className="border-b border-line last:border-b-0"
-              >
-                <div className="flex items-center justify-between">
+      {/* Mobile menu overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-white transition-all duration-500 ease-out lg:hidden ${
+          mobileOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+        aria-hidden={!mobileOpen}
+      >
+        <div className="flex h-full flex-col overflow-y-auto pt-[120px]">
+          <nav aria-label="Mobile">
+            <ul className="container">
+              {navigation.map((item, i) => (
+                <li key={item.label} className="border-b border-line">
                   <Link
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex-1 py-3.5 text-sm font-semibold text-ink"
+                    className="group flex items-center justify-between py-5"
                   >
-                    {item.label}
+                    <span className="flex items-baseline gap-4">
+                      <span className="text-[11px] font-semibold tracking-[0.2em] text-light">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-display text-2xl font-semibold tracking-tight text-ink">
+                        {item.label}
+                      </span>
+                    </span>
+                    <ArrowUpRight
+                      size={20}
+                      className="text-light transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
+                    />
                   </Link>
-                  {item.children && (
-                    <button
-                      type="button"
-                      aria-label={`Toggle ${item.label} submenu`}
-                      aria-expanded={mobileSub === item.label}
-                      onClick={() =>
-                        setMobileSub(
-                          mobileSub === item.label ? null : item.label,
-                        )
-                      }
-                      className="p-3 text-light"
-                    >
-                      <ChevronDown
-                        size={18}
-                        className={`transition-transform ${
-                          mobileSub === item.label ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                  )}
-                </div>
-                {item.children && mobileSub === item.label && (
-                  <ul className="pb-3 pl-4">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="block border-l-2 border-line py-2.5 pl-4 text-sm font-medium text-muted hover:border-accent hover:text-primary"
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-            <li className="pt-4">
-              <Link
-                href="/admissions"
-                onClick={() => setMobileOpen(false)}
-                className="btn btn-accent w-full"
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Contact + socials */}
+          <div className="container mt-8 space-y-4 pb-12">
+            <p className="label">Contact</p>
+            <div className="grid gap-3 text-sm">
+              <a
+                href={`tel:${school.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-3 font-medium text-ink"
               >
-                Apply Now — Admissions Open
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      )}
-    </header>
+                <Phone size={15} className="text-light" aria-hidden />
+                {school.phone}
+              </a>
+              <a
+                href={`mailto:${school.email}`}
+                className="flex items-center gap-3 font-medium text-ink"
+              >
+                <Mail size={15} className="text-light" aria-hidden />
+                {school.email}
+              </a>
+              <span className="flex items-center gap-3 text-muted">
+                <MapPin size={15} className="text-light" aria-hidden />
+                {school.location}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              {[
+                {
+                  href: school.social.facebook,
+                  label: "Facebook",
+                  Icon: FacebookIcon,
+                },
+                {
+                  href: school.social.instagram,
+                  label: "Instagram",
+                  Icon: InstagramIcon,
+                },
+                {
+                  href: school.social.youtube,
+                  label: "YouTube",
+                  Icon: YoutubeIcon,
+                },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center border border-line text-ink transition-colors hover:border-ink"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+
+            <Link
+              href="/admissions"
+              onClick={() => setMobileOpen(false)}
+              className="btn btn-primary w-full"
+            >
+              Apply Now — Admissions Open {school.admissionSession}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

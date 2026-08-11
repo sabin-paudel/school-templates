@@ -38,7 +38,7 @@ export default function ContactPage() {
         description="Ask a question, arrange a school tour, or speak with our admissions office. We would be glad to hear from you."
       />
 
-      {/* Contact cards */}
+      {/* Contact details */}
       <section className="section-pad bg-white">
         <div className="container">
           <SectionHeading
@@ -46,30 +46,24 @@ export default function ContactPage() {
             title="We are here to help."
             description="Reach the right team quickly with the contact details below."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {contactItems.map(({ title, content, href, icon: Icon }, index) => (
               <Reveal key={title} delay={index * 0.06}>
-                <div className="card h-full flex flex-col justify-between p-7 text-center">
-                  <div>
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-light text-primary">
-                      <Icon size={22} />
-                    </div>
-                    <h3 className="wp-title mt-4 text-xl">{title}</h3>
-                  </div>
-                  <div className="mt-4">
-                    {href ? (
-                      <a
-                        href={href}
-                        className="text-sm font-medium text-muted transition-colors hover:text-primary"
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-medium text-muted">
-                        {content}
-                      </p>
-                    )}
-                  </div>
+                <div className="h-full border-t-2 border-ink pt-6">
+                  <Icon size={20} className="text-light" />
+                  <h3 className="heading-md mt-5 text-ink">{title}</h3>
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-body mt-2 block text-sm font-medium text-ink transition-colors hover:text-ink/60"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <p className="text-body mt-2 text-sm font-medium text-ink">
+                      {content}
+                    </p>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -80,62 +74,62 @@ export default function ContactPage() {
       {/* Form + Map & Campus Visit */}
       <section className="section-pad bg-warm">
         <div className="container">
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16 items-start">
+          <div className="grid items-start gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
             <Reveal>
-              <div className="rounded-lg border border-line bg-white p-8 sm:p-10 shadow-sm">
-                <p className="label">Send a Message</p>
-                <h2 className="wp-title mt-2 text-3xl">Send us a message</h2>
-                <p className="text-body mt-2 text-sm">
+              <div className="border border-line bg-white p-7 sm:p-12">
+                <p className="label-dark">Send a Message</p>
+                <h2 className="wp-title mt-3 text-3xl">Send us a message</h2>
+                <p className="text-body mt-3 text-sm">
                   We normally reply within one working day.
                 </p>
-                <div className="mt-8">
+                <div className="mt-9">
                   <ContactForm />
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="flex flex-col gap-6">
-                <div className="overflow-hidden rounded-lg border border-line img-frame">
+              <div className="flex flex-col gap-8">
+                <div className="border border-line bg-white p-2">
                   <iframe
                     title={`Map showing ${school.name} in ${school.city}`}
                     src={school.mapEmbedUrl}
                     width="100%"
-                    height="280"
+                    height="300"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="block w-full border-0"
+                    className="block w-full border-0 grayscale contrast-125"
                   />
                 </div>
-                <div className="rounded-lg bg-primary p-8 text-white shadow-sm flex flex-col justify-between">
-                  <div>
-                    <h3 className="wp-title text-2xl !text-white">
-                      Visit our campus
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-white/75">
-                      We welcome families to tour the campus, meet our
-                      educators, and experience the atmosphere that makes{" "}
-                      {school.name} unique. Appointments are available Sunday
-                      through Friday.
-                    </p>
-                    <p className="mt-4 text-sm font-semibold text-accent">
-                      {school.location}
-                    </p>
-                  </div>
-                  <div className="mt-6 flex flex-wrap gap-3">
+                <div className="bg-charcoal p-8 text-white sm:p-10">
+                  <h3 className="font-display text-2xl font-semibold tracking-tight text-white">
+                    Visit our campus
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-white/70">
+                    We welcome families to tour the campus, meet our
+                    educators, and experience the atmosphere that makes{" "}
+                    {school.name} unique. Appointments are available Sunday
+                    through Friday.
+                  </p>
+                  <p className="mt-5 flex items-start gap-2.5 text-sm font-semibold text-white">
+                    <MapPin size={16} className="mt-0.5 shrink-0 text-white/45" />
+                    {school.location}
+                  </p>
+                  <div className="mt-7 flex flex-wrap gap-3">
                     <a
                       href={`tel:${school.phone.replace(/\s/g, "")}`}
-                      className="btn btn-accent"
+                      className="btn btn-white btn-arrow group"
                     >
                       Call the School
+                      <ArrowRight size={16} className="btn-arrow-icon" />
                     </a>
                     <a
                       href={school.mapEmbedUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="btn btn-white-outline"
+                      className="btn btn-outline-light"
                     >
-                      Get Directions <ArrowRight size={16} />
+                      Get Directions
                     </a>
                   </div>
                 </div>

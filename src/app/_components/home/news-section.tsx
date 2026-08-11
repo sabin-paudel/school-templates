@@ -1,100 +1,80 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { news, events, slugify } from "../../_data/site-content";
+import { news, slugify } from "../../_data/site-content";
 import SectionHeading from "../ui/section-heading";
-import Reveal from "../ui/reveal";
+import Carousel from "../ui/carousel";
+
+const NEWS_PER_VIEW = { 0: 1, 640: 2, 1024: 3 } as const;
 
 export default function NewsSection() {
+  const posts = news.slice(0, 6);
+
   return (
     <section className="section-pad bg-white">
-      <div className="container grid gap-12 lg:grid-cols-[1.9fr_1fr] lg:gap-16">
-        {/* Blog preview */}
-        <div>
-          <SectionHeading
-            align="left"
-            label="News & Events"
-            title="Latest from the school."
-            action={
-              <Link href="/news" className="btn btn-outline group">
-                View All News
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            }
-          />
+      <div className="container">
+        <SectionHeading
+          align="left"
+          label="News & Events"
+          title="Latest from the school."
+          action={
+            <Link href="/news" className="btn btn-outline btn-arrow group">
+              View All News
+              <ArrowRight size={16} className="btn-arrow-icon" />
+            </Link>
+          }
+        />
 
-          <div className="mt-10 space-y-8">
-            {news.slice(0, 3).map((post, i) => (
-              <Reveal key={post.title} delay={i * 0.06}>
-                <article className="group grid gap-6 border-b border-line pb-8 last:border-b-0 sm:grid-cols-[240px_1fr]">
-                  <div className="relative h-44 overflow-hidden rounded-lg border border-line sm:h-auto sm:min-h-36">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 240px"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex flex-wrap items-center gap-3 text-xs">
-                      <span className="rounded bg-primary px-2 py-0.5 font-bold uppercase tracking-wider text-white">
-                        {post.category}
-                      </span>
-                      <span className="font-medium text-light">{post.date}</span>
-                    </div>
-                    <h3 className="heading-md mt-3 leading-snug text-ink transition-colors group-hover:text-primary">
-                      <Link href={`/news/${slugify(post.title)}`}>{post.title}</Link>
-                    </h3>
-                    <p className="text-body mt-2 text-sm">{post.excerpt}</p>
-                    <Link
-                      href={`/news/${slugify(post.title)}`}
-                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
-                    >
-                      Read More
-                      <ArrowRight size={15} />
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        {/* Upcoming events widget */}
-        <aside>
-          <Reveal>
-            <div className="wp-widget p-6">
-              <h3 className="wp-title text-xl">Upcoming Events</h3>
-              <div className="mt-2 h-0.5 w-10 bg-accent" />
-              <ul className="mt-6 space-y-5">
-                {events.map((event) => (
-                  <li key={event.title} className="flex gap-4">
-                    <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-md border border-line bg-warm">
-                      <p className="text-lg font-bold leading-none text-primary">
-                        {event.date.split(" ")[0]}
-                      </p>
-                      <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-light">
-                        {event.month}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-ink">{event.title}</p>
-                      <p className="mt-0.5 text-sm text-muted">{event.venue}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/academic-calendar"
-                className="mt-7 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
-              >
-                View Full Calendar
-                <ArrowRight size={15} />
+        <Carousel
+          auto={6000}
+          loop
+          indicator="dots"
+          ariaLabel="Latest school news"
+          perView={NEWS_PER_VIEW}
+          slideClassName="px-2.5"
+          className="mt-12"
+        >
+          {posts.map((post) => (
+            <article
+              key={post.title}
+              className="group flex h-full flex-col overflow-hidden border border-line bg-white transition-colors duration-300 hover:border-ink"
+            >
+              <Link href={`/news/${slugify(post.title)}`} className="block">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                  />
+                </div>
               </Link>
-            </div>
-          </Reveal>
-        </aside>
+              <div className="flex flex-1 flex-col p-6">
+                <p className="post-meta">
+                  <span className="post-category">{post.category}</span>
+                  <span className="post-date">{post.date}</span>
+                </p>
+                <h3 className="mt-3 font-display text-lg font-semibold leading-snug tracking-tight text-ink">
+                  <Link
+                    href={`/news/${slugify(post.title)}`}
+                    className="transition-colors hover:text-ink/70"
+                  >
+                    {post.title}
+                  </Link>
+                </h3>
+                <p className="text-body mt-2 line-clamp-2 text-sm">{post.excerpt}</p>
+                <Link
+                  href={`/news/${slugify(post.title)}`}
+                  className="nav-arrow mt-auto pt-5"
+                >
+                  Read More
+                  <ArrowRight size={15} />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </Carousel>
       </div>
     </section>
   );

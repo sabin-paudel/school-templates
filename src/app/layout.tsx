@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import TopBar from "./_components/layout/top-bar";
 import SiteHeader from "./_components/layout/site-header";
 import SiteFooter from "./_components/layout/site-footer";
 import { school } from "./_data/site-content";
@@ -39,11 +38,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="bg-white font-sans text-ink antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-charcoal focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to main content
         </a>
-        <TopBar />
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />

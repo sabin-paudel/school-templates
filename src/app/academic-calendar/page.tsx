@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, ArrowRight } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
 import CtaSection from "../_components/ui/cta-section";
@@ -32,33 +32,38 @@ export default function AcademicCalendarPage() {
                 description="All events take place at our main campus unless stated otherwise."
               />
 
-              <div className="mt-10 space-y-6">
+              <div className="mt-12">
                 {events.map((event, index) => (
-                  <Reveal key={event.title} delay={index * 0.05}>
-                    <div className="card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6">
-                      <div className="flex items-center gap-5">
-                        <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg bg-primary text-white">
-                          <span className="font-display text-xl font-bold leading-none">{event.date.split(" ")[0]}</span>
-                          <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-accent">{event.date.split(" ")[1]}</span>
-                        </div>
-                        <div>
-                          <span className="rounded-full border border-line bg-warm px-2.5 py-0.5 text-xs font-semibold text-primary">
-                            {event.month} 2026
+                  <Reveal key={event.title} delay={index * 0.04}>
+                    <div className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-b border-line py-6 sm:gap-10">
+                      <div className="flex w-20 flex-col items-start sm:w-24">
+                        <span className="font-display text-4xl font-semibold leading-none text-ink">
+                          {event.date.split(" ")[0]}
+                        </span>
+                        <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-light">
+                          {event.date.split(" ")[1]} {event.month}
+                        </span>
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="heading-md text-ink">{event.title}</h3>
+                        <div className="mt-1.5 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
+                          <span className="flex items-center gap-1.5">
+                            <MapPin size={13} className="text-light" />
+                            {event.venue}
                           </span>
-                          <h3 className="wp-title mt-2 text-xl">{event.title}</h3>
-                          <div className="mt-2 flex flex-wrap items-center gap-4 text-xs text-muted">
-                            <span className="flex items-center gap-1.5">
-                              <MapPin size={14} className="text-primary" />
-                              {event.venue}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                              <Clock size={14} className="text-primary" />
-                              {school.hoursShort}
-                            </span>
-                          </div>
+                          <span className="flex items-center gap-1.5">
+                            <Clock size={13} className="text-light" />
+                            {school.hoursShort}
+                          </span>
                         </div>
                       </div>
-                      <span className="btn btn-outline text-xs">Add to Calendar</span>
+                      <button
+                        type="button"
+                        className="hidden items-center gap-1.5 border border-line px-4 py-2 text-xs font-semibold text-ink transition-colors hover:border-ink sm:inline-flex"
+                      >
+                        Add to Calendar
+                        <ArrowRight size={13} />
+                      </button>
                     </div>
                   </Reveal>
                 ))}

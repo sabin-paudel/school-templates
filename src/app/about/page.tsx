@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
 import CtaSection from "../_components/ui/cta-section";
 import Counter from "../_components/ui/counter";
 import Reveal from "../_components/ui/reveal";
-import { Sidebar } from "../_components/layout/sidebar";
 import { school, values, stats, principal, teachers } from "../_data/site-content";
 
 export const metadata: Metadata = {
   title: "About Us",
   description: `Learn about ${school.name}'s story, values, principal's message, and teaching staff in Pokhara.`,
 };
+
+const storyPoints = [
+  "National curriculum with global outlook",
+  "Experienced, dedicated faculty",
+  "Strong partnership with families",
+  "Safe and inclusive campus",
+];
 
 export default function AboutPage() {
   return (
@@ -27,15 +33,14 @@ export default function AboutPage() {
       {/* Our Story */}
       <section id="story" className="section-pad scroll-mt-24 bg-white">
         <div className="container">
-          <div className="content-sidebar">
-            <div>
-              <SectionHeading
-                align="left"
-                label="Our Story"
-                title="A school where every learner is known."
-              />
-              <div className="mt-6 space-y-4">
-                <p className="text-base leading-relaxed text-ink">
+          <div className="max-w-3xl">
+            <SectionHeading
+              align="left"
+              label="Our Story"
+              title="A school where every learner is known."
+            />
+            <div className="mt-8 space-y-4">
+                <p className="drop-cap font-display text-xl font-medium leading-relaxed text-ink">
                   {school.name} began in {school.founded} with a clear idea:
                   children do their best work when expectations are high,
                   relationships are strong, and learning connects to real life.
@@ -52,26 +57,20 @@ export default function AboutPage() {
                   arts, and a global outlook — so students leave ready to lead.
                 </p>
               </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {[
-                  "National curriculum with global outlook",
-                  "Experienced, dedicated faculty",
-                  "Strong partnership with families",
-                  "Safe and inclusive campus",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 size={19} className="mt-0.5 shrink-0 text-success" />
+              <ul className="mt-10 grid sm:grid-cols-2 sm:gap-x-10">
+                {storyPoints.map((item, i) => (
+                  <li key={item} className="flex items-baseline gap-4 border-t border-line py-4">
+                    <span className="text-xs font-semibold tracking-[0.14em] text-light">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <span className="text-sm font-medium text-ink">{item}</span>
-                  </div>
+                  </li>
                 ))}
-              </div>
-              <Link href="/contact" className="btn btn-primary mt-9 group">
+              </ul>
+              <Link href="/contact" className="btn btn-primary btn-arrow mt-10 group">
                 Visit Our Campus
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                <ArrowUpRight size={17} className="btn-arrow-icon" />
               </Link>
-            </div>
-
-            <Sidebar />
           </div>
         </div>
       </section>
@@ -84,11 +83,14 @@ export default function AboutPage() {
             title="Values made visible every day."
             description="Three simple commitments shape every lesson, every relationship, and every decision at Aatreya Academy."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.07}>
-                <div className="card h-full p-8 text-center">
-                  <h3 className="wp-title mt-4 text-2xl">{value.title}</h3>
+                <div className="h-full border-t-2 border-ink pt-7">
+                  <p className="font-display text-5xl font-semibold leading-none text-line">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="heading-lg mt-6 text-ink">{value.title}</h3>
                   <p className="text-body mt-3 text-sm">{value.description}</p>
                 </div>
               </Reveal>
@@ -98,23 +100,34 @@ export default function AboutPage() {
       </section>
 
       {/* Principal's Message */}
-      <section id="principal" className="section-pad scroll-mt-24 bg-primary-darker text-white">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="label !text-accent">Principal&rsquo;s Message</p>
-            <h2 className="display-md mt-3 text-balance text-white">
-              A word from our leadership.
-            </h2>
+      <section id="principal" className="scroll-mt-24 bg-charcoal py-20 text-white lg:py-28">
+        <div className="container grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <Reveal>
+            <div className="relative aspect-[4/5] max-w-sm overflow-hidden lg:ml-auto">
+              <Image
+                src={principal.image}
+                alt={principal.name}
+                fill
+                sizes="(max-width: 1024px) 80vw, 40vw"
+                className="object-cover grayscale"
+              />
+            </div>
+          </Reveal>
+          <div>
+            <p className="label mb-5 !text-white/50">Principal&rsquo;s Message</p>
+            <h2 className="display-md text-white">A word from our leadership.</h2>
             <blockquote className="mt-8">
-              <p className="font-display text-xl italic leading-relaxed text-white/85 lg:text-2xl">
+              <p className="pullquote border-l-white text-white/90">
                 &ldquo;{principal.message}&rdquo;
               </p>
             </blockquote>
-            <div className="mt-9 flex items-center justify-center gap-4">
-              <div className="text-left">
-                <p className="text-lg font-bold text-white">{principal.name}</p>
-                <p className="text-sm text-accent">{principal.title} · {principal.degree}</p>
-              </div>
+            <div className="mt-9 border-t border-white/15 pt-6">
+              <p className="font-display text-xl font-semibold text-white">
+                {principal.name}
+              </p>
+              <p className="mt-1 text-sm text-white/60">
+                {principal.title} · {principal.degree}
+              </p>
             </div>
           </div>
         </div>
@@ -128,30 +141,32 @@ export default function AboutPage() {
             title="Meet the people who make Aatreya special."
             description="Our educators bring deep subject knowledge, warm relationships, and a shared commitment to every child."
           />
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {teachers.map((teacher, i) => (
               <Reveal key={teacher.name} delay={i * 0.05}>
-                <article className="card group flex h-full items-start gap-5 p-6">
-                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-primary-light transition-colors group-hover:border-accent img-frame">
+                <article className="group flex h-full flex-col">
+                  <div className="relative aspect-[4/4.4] overflow-hidden">
                     <Image
                       src={teacher.image}
                       alt={teacher.name}
                       fill
-                      sizes="80px"
-                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
                     />
                   </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink transition-colors group-hover:text-primary">
+                  <div className="mt-5 border-t border-line pt-4">
+                    <h3 className="font-display text-lg font-semibold tracking-tight text-ink">
                       {teacher.name}
                     </h3>
-                    <p className="mt-0.5 text-xs font-bold uppercase tracking-widest text-accent-dark">
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                       {teacher.role}
                     </p>
-                    <p className="mt-0.5 text-sm font-semibold text-primary">
+                    <p className="mt-1 text-sm font-medium text-ink/70">
                       {teacher.subject}
                     </p>
-                    <p className="text-body mt-2 text-sm leading-relaxed">{teacher.bio}</p>
+                    <p className="text-body mt-3 text-sm leading-relaxed">
+                      {teacher.bio}
+                    </p>
                   </div>
                 </article>
               </Reveal>
@@ -161,8 +176,8 @@ export default function AboutPage() {
       </section>
 
       {/* Stats band */}
-      <section className="border-y border-line bg-warm py-14">
-        <div className="container grid grid-cols-2 gap-y-10 lg:grid-cols-4">
+      <section className="border-y border-line bg-warm py-16">
+        <div className="container grid grid-cols-2 gap-y-12 lg:grid-cols-4">
           {stats.map((stat) => (
             <Counter key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} />
           ))}

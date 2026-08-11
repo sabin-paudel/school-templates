@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 type CtaSectionProps = {
   label?: string;
@@ -24,64 +24,44 @@ export default function CtaSection({
 }: CtaSectionProps) {
   return (
     <section
-      className={`relative overflow-hidden ${
-        variant === "accent" ? "bg-accent" : "bg-primary"
+      className={`relative overflow-hidden border-t border-white/10 ${
+        variant === "accent" ? "bg-graphite" : "bg-charcoal"
       }`}
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 14px)",
-        }}
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.07),transparent_55%)]"
       />
-      <div className="container relative flex flex-col items-start justify-between gap-8 py-14 lg:flex-row lg:items-center lg:py-16">
-        <div className="max-w-2xl">
-          {label && (
-            <p
-              className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                variant === "accent" ? "text-white/80" : "text-accent"
-              }`}
-            >
-              {label}
-            </p>
-          )}
-          <h2
-            className={`display-md mt-2 ${
-              variant === "accent" ? "text-white" : "text-white"
-            }`}
-          >
-            {title}
-          </h2>
-          {description && (
-            <p
-              className={`mt-3 text-base ${
-                variant === "accent" ? "text-white/80" : "text-white/70"
-              }`}
-            >
-              {description}
-            </p>
-          )}
-        </div>
-        <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-          <Link
-            href={primaryHref}
-            className={`btn btn-lg ${
-              variant === "accent" ? "btn-primary" : "btn-accent"
-            } group`}
-          >
-            {primaryText}
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </Link>
-          {secondaryHref && secondaryText && (
+      <div className="container relative py-20 lg:py-28">
+        <div className="grid items-end gap-12 lg:grid-cols-[1.5fr_1fr]">
+          <div>
+            {label && (
+              <p className="label mb-5 !text-white/50">{label}</p>
+            )}
+            <h2 className="display-lg text-white">{title}</h2>
+            {description && (
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+                {description}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:items-end">
             <Link
-              href={secondaryHref}
-              className="btn btn-lg btn-white-outline"
+              href={primaryHref}
+              className="btn btn-white btn-lg btn-arrow group"
             >
-              {secondaryText}
+              {primaryText}
+              <ArrowUpRight
+                size={18}
+                className="btn-arrow-icon"
+              />
             </Link>
-          )}
+            {secondaryHref && secondaryText && (
+              <Link href={secondaryHref} className="btn btn-outline-light btn-lg">
+                {secondaryText}
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { programs } from "../../_data/site-content";
 import SectionHeading from "../ui/section-heading";
 import Reveal from "../ui/reveal";
 
 export default function ProgramsSection() {
+  const [featured, ...rest] = programs;
+
   return (
     <section className="section-pad bg-warm">
       <div className="container">
@@ -14,57 +16,111 @@ export default function ProgramsSection() {
           title="A clear path from first questions to bold ambitions."
           description="Three stages. One continuous journey of discovery, from playful first steps to confident readiness for national examinations."
           action={
-            <Link href="/academics" className="btn btn-outline group">
+            <Link href="/academics" className="btn btn-outline btn-arrow group">
               View All Programs
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight size={16} className="btn-arrow-icon" />
             </Link>
           }
         />
 
-        <div className="mt-12 flex overflow-x-auto gap-6 snap-x snap-mandatory pb-4 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
-          {programs.map((program, i) => (
-            <Reveal key={program.id} delay={i * 0.08} className="w-[300px] md:w-auto shrink-0 snap-start h-full flex">
-              <article className="card group h-full flex flex-col w-full">
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={program.image}
-                    alt={program.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
-                  <span className="absolute right-4 top-4 rounded bg-white/95 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-primary shadow-sm">
-                    {program.ages}
-                  </span>
-                  <span className="absolute left-4 top-4 font-display text-5xl font-bold text-white/25">
-                    {program.stage}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-6 justify-between">
-                  <div>
-                    <h3 className="heading-md text-ink transition-colors group-hover:text-primary">
-                      {program.title}
-                    </h3>
-                    <p className="text-body mt-2 text-sm line-clamp-3">{program.description}</p>
-                    <ul className="mt-4 space-y-2">
-                      {program.highlights.map((h) => (
-                        <li key={h} className="flex items-start gap-2 text-sm text-muted">
-                          <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-success" aria-hidden />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Link
-                    href={`/academics#${program.id}`}
-                    className="mt-6 inline-flex items-center gap-1.5 pt-4 text-sm font-bold text-primary transition-all hover:gap-2.5"
+        {/* Featured program spotlight */}
+        <Reveal>
+          <div className="relative mt-14 grid overflow-hidden bg-charcoal text-white lg:mt-20 lg:grid-cols-2">
+            <div className="relative min-h-[320px] sm:min-h-[420px]">
+              <Image
+                src={featured.image}
+                alt={featured.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover grayscale transition-all duration-700 hover:grayscale-0"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/10 to-transparent lg:bg-gradient-to-r"
+              />
+              <span className="absolute left-6 top-6 border border-white/30 bg-charcoal/30 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/80 backdrop-blur-sm">
+                Featured
+              </span>
+              <span
+                aria-hidden
+                className="absolute bottom-5 right-6 font-display text-8xl font-semibold leading-none text-white/10"
+              >
+                {featured.stage}
+              </span>
+            </div>
+
+            <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
+                {featured.ages}
+              </p>
+              <h3 className="display-lg mt-3 text-white">{featured.title}</h3>
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70">
+                {featured.description}
+              </p>
+
+              <dl className="mt-8 border-t border-white/10">
+                {featured.learning.map((row) => (
+                  <div
+                    key={row.subject}
+                    className="flex items-center justify-between gap-6 border-b border-white/10 py-3.5"
                   >
-                    Explore {program.title}
-                    <ArrowRight size={16} />
-                  </Link>
+                    <dt className="text-sm font-medium text-white/85">{row.subject}</dt>
+                    <dd className="shrink-0 text-xs uppercase tracking-[0.14em] text-white/50">
+                      {row.hours}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <ul className="mt-8 flex flex-wrap gap-2">
+                {featured.highlights.map((h) => (
+                  <li
+                    key={h}
+                    className="border border-white/20 px-3.5 py-1 text-xs font-medium text-white/75"
+                  >
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-9 flex flex-wrap gap-4">
+                <Link
+                  href={`/academics#${featured.id}`}
+                  className="btn btn-white btn-arrow group"
+                >
+                  Explore {featured.title}
+                  <ArrowUpRight size={16} className="btn-arrow-icon" />
+                </Link>
+                <Link href="/admissions" className="btn btn-outline-light">
+                  Apply Now
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Remaining programs */}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {rest.map((program, i) => (
+            <Reveal key={program.id} delay={i * 0.08}>
+              <Link
+                href={`/academics#${program.id}`}
+                className="group flex h-full items-center justify-between gap-6 border border-line bg-white p-7 transition-colors duration-300 hover:border-ink sm:p-9"
+              >
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-light">
+                    {program.ages}
+                  </p>
+                  <h4 className="heading-lg mt-2 text-ink">{program.title}</h4>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
+                    {program.description}
+                  </p>
                 </div>
-              </article>
+                <ArrowUpRight
+                  size={22}
+                  className="shrink-0 text-light transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+                />
+              </Link>
             </Reveal>
           ))}
         </div>

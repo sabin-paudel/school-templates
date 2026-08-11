@@ -30,7 +30,7 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
           return;
         }
 
-        const duration = 1400;
+        const duration = 1500;
         const start = performance.now();
 
         function tick(now: number) {
@@ -52,16 +52,16 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
   return (
     <div ref={ref} className="text-center">
       <p
-        className={`whitespace-nowrap font-display text-4xl font-bold tracking-tight lg:text-5xl ${
-          light ? "text-white" : "text-primary"
+        className={`whitespace-nowrap font-display text-5xl font-semibold tracking-tight lg:text-6xl ${
+          light ? "text-white" : "text-ink"
         }`}
       >
         {display}
-        <span className={light ? "text-accent" : "text-accent-dark"}>{suffix}</span>
+        <span className={light ? "text-white/45" : "text-light"}>{suffix}</span>
       </p>
       <p
-        className={`mt-2 text-xs font-semibold uppercase tracking-[0.14em] ${
-          light ? "text-white/60" : "text-muted"
+        className={`mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] ${
+          light ? "text-white/55" : "text-light"
         }`}
       >
         {label}

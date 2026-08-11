@@ -4,15 +4,15 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15";
+  "mt-1.5 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-light focus:border-ink";
 const labelClass = "block text-sm font-semibold text-ink";
 
 function SuccessMessage({ title }: { title: string }) {
   return (
-    <div className="rounded-lg border border-success/30 bg-success/5 p-8 text-center">
-      <CheckCircle2 className="mx-auto text-success" size={40} />
-      <h3 className="wp-title mt-4 text-xl">{title}</h3>
-      <p className="text-body mt-2 text-sm">
+    <div className="border border-line bg-warm p-10 text-center">
+      <CheckCircle2 className="mx-auto text-ink" size={40} />
+      <h3 className="wp-title mt-5 text-2xl">{title}</h3>
+      <p className="text-body mt-3 text-sm">
         This demo saved no personal data. Connect the form to your school backend
         before launch.
       </p>
@@ -122,13 +122,13 @@ export function AdmissionForm() {
         <input
           type="checkbox"
           required
-          className="mt-1 size-4 accent-[#1e5a38]"
+          className="mt-1 size-4 accent-ink"
         />
         I confirm that the information provided is correct and agree to be
         contacted about this application.
       </label>
-      <button type="submit" className="btn btn-primary w-fit">
-        Submit application <Send size={16} />
+      <button type="submit" className="btn btn-primary w-fit btn-arrow">
+        Submit application <Send size={15} />
       </button>
     </form>
   );
@@ -191,8 +191,8 @@ export function ContactForm() {
           required
         />
       </label>
-      <button type="submit" className="btn btn-primary w-fit">
-        Send message <Send size={16} />
+      <button type="submit" className="btn btn-primary w-fit btn-arrow">
+        Send message <Send size={15} />
       </button>
     </form>
   );

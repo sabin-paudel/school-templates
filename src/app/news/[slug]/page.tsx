@@ -42,7 +42,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
       <article className="section-pad bg-white">
         <div className="container max-w-3xl">
-          <div className="img-frame relative aspect-video overflow-hidden rounded-lg">
+          <div className="relative aspect-video overflow-hidden">
             <Image
               src={post.image}
               alt={post.title}
@@ -52,24 +52,24 @@ export default async function NewsArticlePage({ params }: PageProps) {
             />
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 text-xs">
-            <span className="rounded-full bg-primary px-3 py-1 font-bold text-white">
+          <div className="mt-8 flex flex-wrap items-center gap-4 text-xs">
+            <span className="bg-charcoal px-3 py-1 font-semibold uppercase tracking-[0.16em] text-white">
               {post.category}
             </span>
-            <span className="flex items-center gap-1.5 font-medium text-light">
+            <span className="flex items-center gap-1.5 font-medium uppercase tracking-[0.14em] text-light">
               <CalendarDays size={13} aria-hidden />
               {post.date}
             </span>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-8">
             <p className="text-body leading-relaxed text-ink">{post.body}</p>
           </div>
 
-          <div className="mt-10 flex items-center justify-between gap-4 border-t border-line pt-6">
+          <div className="mt-12 flex items-center justify-between gap-4 border-t border-line pt-7">
             <Link
               href="/news"
-              className="group inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-ink"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-ink/60"
             >
               <ArrowLeft
                 size={16}
@@ -79,7 +79,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
             </Link>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-ink"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-ink/60"
             >
               Enquire About This Story
               <ArrowRight

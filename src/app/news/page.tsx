@@ -26,21 +26,21 @@ export default function NewsPage() {
         description="Stories from across our community — achievements, campus life, sports, and important updates — all in one place."
       />
 
-      <section className="section-pad bg-warm">
+      <section className="section-pad bg-white">
         <div className="container">
           <div className="content-sidebar">
             {/* Posts */}
             <div>
               {/* Category filter */}
-              <div className="mb-8 flex flex-wrap gap-2">
+              <div className="mb-10 flex flex-wrap gap-x-8 gap-y-3 border-b border-line pb-5">
                 {categories.map((category) => (
                   <button
                     key={category}
                     type="button"
-                    className={`rounded-full px-4 py-1.5 text-xs font-bold transition-colors ${
+                    className={`text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
                       category === "All"
-                        ? "bg-primary text-white"
-                        : "border border-line bg-white text-muted hover:border-primary hover:text-primary"
+                        ? "text-ink"
+                        : "text-light hover:text-ink"
                     }`}
                   >
                     {category}
@@ -50,35 +50,35 @@ export default function NewsPage() {
 
               {/* Featured post */}
               <Reveal>
-                <article className="card group overflow-hidden">
-                  <div className="relative h-72 sm:h-80 img-frame">
+                <article className="group">
+                  <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
                       src={featured.image}
                       alt={featured.title}
                       fill
                       sizes="(max-width: 1024px) 100vw, 60vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
-                    <div className="absolute bottom-5 left-5 right-5 text-white">
-                      <span className="rounded bg-accent px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
-                        Featured · {featured.category}
-                      </span>
-                      <h2 className="heading-lg mt-3 leading-tight">
-                        <Link href={`/news/${slugify(featured.title)}`} className="hover:text-accent">
-                          {featured.title}
-                        </Link>
-                      </h2>
-                      <p className="mt-1 text-xs font-medium text-white/70">
-                        {featured.date}
-                      </p>
-                    </div>
+                    <span className="absolute left-5 top-5 bg-white/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
+                      Featured · {featured.category}
+                    </span>
                   </div>
-                  <div className="p-7">
-                    <p className="text-body">{featured.body}</p>
+                  <div className="mt-7">
+                    <p className="post-meta">
+                      <span className="post-date">{featured.date}</span>
+                    </p>
+                    <h2 className="display-md mt-3 max-w-2xl text-ink">
+                      <Link
+                        href={`/news/${slugify(featured.title)}`}
+                        className="transition-colors hover:text-ink/70"
+                      >
+                        {featured.title}
+                      </Link>
+                    </h2>
+                    <p className="text-body mt-4 max-w-2xl">{featured.body}</p>
                     <Link
                       href={`/news/${slugify(featured.title)}`}
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-all hover:gap-2.5"
+                      className="nav-arrow mt-6"
                     >
                       Continue Reading <ArrowRight size={15} />
                     </Link>
@@ -87,34 +87,38 @@ export default function NewsPage() {
               </Reveal>
 
               {/* Archive grid */}
-              <div className="mt-10 grid gap-7 sm:grid-cols-2">
+              <div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2">
                 {rest.map((post, i) => (
-                  <Reveal key={post.title} delay={i * 0.06}>
-                    <article className="card group flex h-full flex-col">
-                      <div className="relative h-44 overflow-hidden img-frame">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, 30vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <span className="absolute left-4 top-4 rounded bg-primary px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
-                          {post.category}
-                        </span>
-                      </div>
-                      <div className="flex flex-1 flex-col p-6">
+                  <Reveal key={post.title} delay={i * 0.05}>
+                    <article className="group flex h-full flex-col">
+                      <Link href={`/news/${slugify(post.title)}`} className="block">
+                        <div className="relative aspect-[4/3] overflow-hidden">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 30vw"
+                            className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                          />
+                        </div>
+                      </Link>
+                      <div className="mt-5 flex flex-1 flex-col">
                         <p className="post-meta">
                           <span className="post-category">{post.category}</span>
                           <span className="post-date">{post.date}</span>
                         </p>
-                        <h3 className="heading-md mt-3 leading-snug text-ink transition-colors group-hover:text-primary">
-                          <Link href={`/news/${slugify(post.title)}`}>{post.title}</Link>
+                        <h3 className="mt-3 font-display text-xl font-semibold leading-snug tracking-tight text-ink">
+                          <Link
+                            href={`/news/${slugify(post.title)}`}
+                            className="transition-colors hover:text-ink/70"
+                          >
+                            {post.title}
+                          </Link>
                         </h3>
                         <p className="text-body mt-2 text-sm">{post.excerpt}</p>
                         <Link
                           href={`/news/${slugify(post.title)}`}
-                          className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-bold text-primary transition-all hover:gap-2.5"
+                          className="nav-arrow mt-auto pt-4"
                         >
                           Read More <ArrowRight size={15} />
                         </Link>
@@ -125,28 +129,37 @@ export default function NewsPage() {
               </div>
 
               {/* Pagination */}
-              <nav aria-label="Pagination" className="mt-12 flex items-center justify-center gap-2">
-                {["1", "2", "3"].map((page) => (
+              <nav
+                aria-label="Pagination"
+                className="mt-16 flex items-center justify-between border-t border-line pt-8"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-light">
+                  Page 1 of 3
+                </p>
+                <div className="flex items-center gap-2">
+                  {["1", "2", "3"].map((page) => (
+                    <a
+                      key={page}
+                      href="#"
+                      aria-current={page === "1" ? "page" : undefined}
+                      className={`flex h-10 w-10 items-center justify-center border text-sm font-semibold transition-colors ${
+                        page === "1"
+                          ? "border-ink bg-charcoal text-white"
+                          : "border-line text-muted hover:border-ink hover:text-ink"
+                      }`}
+                    >
+                      {page}
+                    </a>
+                  ))}
                   <a
-                    key={page}
                     href="#"
-                    aria-current={page === "1" ? "page" : undefined}
-                    className={`flex h-10 w-10 items-center justify-center rounded-md border text-sm font-bold transition-colors ${
-                      page === "1"
-                        ? "border-primary bg-primary text-white"
-                        : "border-line bg-white text-muted hover:border-primary hover:text-primary"
-                    }`}
+                    className="flex h-10 items-center justify-center gap-1.5 border border-line px-3 text-sm font-semibold text-muted transition-colors hover:border-ink hover:text-ink"
+                    aria-label="Next page"
                   >
-                    {page}
+                    Next
+                    <ArrowRight size={14} />
                   </a>
-                ))}
-                <a
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-md border border-line bg-white text-muted transition-colors hover:border-primary hover:text-primary"
-                  aria-label="Next page"
-                >
-                  <ArrowRight size={16} />
-                </a>
+                </div>
               </nav>
             </div>
 

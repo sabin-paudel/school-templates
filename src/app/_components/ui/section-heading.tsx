@@ -20,26 +20,34 @@ export default function SectionHeading({
   className = "",
 }: SectionHeadingProps) {
   const alignClasses =
-    align === "center" ? "items-center text-center mx-auto" : "items-start text-left";
+    align === "center"
+      ? "items-center text-center mx-auto"
+      : "items-start text-left";
+  const ruleColor = light ? "bg-white/50" : "bg-charcoal";
   return (
-    <div className={`flex max-w-2xl flex-col gap-3 ${alignClasses} ${className}`}>
+    <div className={`flex max-w-3xl flex-col gap-4 ${alignClasses} ${className}`}>
       {label && (
-        <p className={`label flex items-center gap-2 ${align === "center" ? "justify-center" : ""}`}>
-          <span className="h-px w-8 bg-accent" aria-hidden />
+        <p
+          className={`flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] ${
+            light ? "text-white/55" : "text-light"
+          }`}
+        >
+          <span className={`h-px w-8 ${ruleColor}`} aria-hidden />
           {label}
-          {align === "center" && <span className="h-px w-8 bg-accent" aria-hidden />}
+          {align === "center" && <span className={`h-px w-8 ${ruleColor}`} aria-hidden />}
         </p>
       )}
-      <h2 className={`wp-title display-md ${light ? "text-white" : "text-ink"}`}>{title}</h2>
-      <span className="wp-rule" aria-hidden>
-        <span />
-      </span>
+      <h2 className={`display-md ${light ? "text-white" : "text-ink"}`}>{title}</h2>
       {description && (
-        <p className={`text-body max-w-xl text-base ${light ? "!text-white/65" : ""}`}>
+        <p
+          className={`text-body mt-1 max-w-xl text-base ${
+            light ? "!text-white/65" : ""
+          } ${align === "center" ? "mx-auto" : ""}`}
+        >
           {description}
         </p>
       )}
-      {action && <div className="mt-2">{action}</div>}
+      {action && <div className="mt-5">{action}</div>}
     </div>
   );
 }
