@@ -4,9 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CalendarDays } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
-import CtaSection from "../_components/ui/cta-section";
 import Reveal from "../_components/ui/reveal";
-import { Sidebar } from "../_components/layout/sidebar";
 import { programs, events, facilities, school } from "../_data/site-content";
 
 export const metadata: Metadata = {
@@ -32,9 +30,8 @@ export default function AcademicsPage() {
       {/* Programs */}
       <section className="section-pad bg-white">
         <div className="container">
-          <div className="content-sidebar">
-            <div>
-              <SectionHeading
+          <div>
+            <SectionHeading
                 label="The Learning Journey"
                 title="Three stages. One continuous path."
                 description="From first steps in the classroom to confident readiness for national examinations, every stage builds on the last."
@@ -102,10 +99,7 @@ export default function AcademicsPage() {
                 })}
               </div>
             </div>
-
-            <Sidebar />
           </div>
-        </div>
       </section>
 
       {/* Academic calendar */}
@@ -189,15 +183,6 @@ export default function AcademicsPage() {
         </div>
       </section>
 
-      <CtaSection
-        label="A Balanced Curriculum"
-        title="Knowledge, skills, and character."
-        description="Give your child an education that prepares them for examinations and for life."
-        primaryHref="/admissions"
-        primaryText="Apply to Aatreya Academy"
-        secondaryHref="/facilities"
-        secondaryText="Explore Facilities"
-      />
     </>
   );
 }

@@ -4,7 +4,6 @@ import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
 import CtaSection from "../_components/ui/cta-section";
 import Reveal from "../_components/ui/reveal";
-import { Sidebar } from "../_components/layout/sidebar";
 import { events, school } from "../_data/site-content";
 
 export const metadata: Metadata = {
@@ -23,9 +22,8 @@ export default function AcademicCalendarPage() {
 
       <section className="section-pad bg-white">
         <div className="container">
-          <div className="content-sidebar">
-            <div>
-              <SectionHeading
+          <div>
+            <SectionHeading
                 align="left"
                 label="Calendar 2026"
                 title="Upcoming Activities & Dates"
@@ -69,10 +67,7 @@ export default function AcademicCalendarPage() {
                 ))}
               </div>
             </div>
-
-            <Sidebar />
           </div>
-        </div>
       </section>
 
       <CtaSection

@@ -13,7 +13,7 @@ const slides = [
   { src: nepaliSchoolImages.campus, alt: "School campus" },
 ];
 
-const INTERVAL = 3500;
+const INTERVAL = 2000;
 
 export default function PageBannerSlider() {
   const [current, setCurrent] = useState(0);

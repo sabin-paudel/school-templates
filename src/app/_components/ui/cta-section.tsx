@@ -30,7 +30,7 @@ export default function CtaSection({
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.06),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(234,245,222,0.06),transparent_55%)]"
       />
       <div className="container relative py-24 lg:py-32">
         <div className="grid items-end gap-12 lg:grid-cols-[1.5fr_1fr]">

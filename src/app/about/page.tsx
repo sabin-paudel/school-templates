@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import SectionHeading from "../_components/ui/section-heading";
-import CtaSection from "../_components/ui/cta-section";
 import Counter from "../_components/ui/counter";
 import Reveal from "../_components/ui/reveal";
 import { school, values, stats, principal, teachers } from "../_data/site-content";
@@ -183,16 +182,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
-      <CtaSection
-        label="Visit Us"
-        title="Experience our campus firsthand."
-        description="Tour the school, meet our educators, and see everyday learning in action."
-        primaryHref="/contact"
-        primaryText="Schedule a Visit"
-        secondaryHref="/admissions"
-        secondaryText="Apply for Admission"
-      />
     </>
   );
 }

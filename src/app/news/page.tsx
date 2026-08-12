@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import PageBanner from "../_components/ui/page-banner";
 import CtaSection from "../_components/ui/cta-section";
 import Reveal from "../_components/ui/reveal";
-import { Sidebar } from "../_components/layout/sidebar";
 import { news, school, slugify } from "../_data/site-content";
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ export default function NewsPage() {
 
       <section className="section-pad bg-white">
         <div className="container">
-          <div className="content-sidebar">
+          <div>
             {/* Posts */}
             <div>
               {/* Category filter */}
@@ -162,8 +161,6 @@ export default function NewsPage() {
                 </div>
               </nav>
             </div>
-
-            <Sidebar />
           </div>
         </div>
       </section>
