@@ -49,8 +49,8 @@ export default function ContactPage() {
           <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {contactItems.map(({ title, content, href, icon: Icon }, index) => (
               <Reveal key={title} delay={index * 0.06}>
-                <div className="h-full border-t-2 border-ink pt-6">
-                  <Icon size={20} className="text-light" />
+                <div className="group h-full border-t-2 border-transparent pt-6 transition-colors duration-500 hover:border-ink">
+                  <Icon size={20} className="text-light transition-colors duration-500 group-hover:text-ink" />
                   <h3 className="heading-md mt-5 text-ink">{title}</h3>
                   {href ? (
                     <a

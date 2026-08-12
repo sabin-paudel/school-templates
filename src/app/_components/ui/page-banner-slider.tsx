@@ -13,7 +13,7 @@ const slides = [
   { src: nepaliSchoolImages.campus, alt: "School campus" },
 ];
 
-const INTERVAL = 2000;
+const INTERVAL = 3500;
 
 export default function PageBannerSlider() {
   const [current, setCurrent] = useState(0);
@@ -38,7 +38,7 @@ export default function PageBannerSlider() {
         <div
           key={slide.src}
           aria-hidden={i !== current}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-out ${
+          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
             i === current ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -54,10 +54,23 @@ export default function PageBannerSlider() {
 
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-charcoal/55 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent"
       />
 
-      <div className="absolute bottom-4 left-4 flex items-baseline gap-2 text-white">
+      {/* Progress dots */}
+      <div className="absolute bottom-4 right-4 flex items-center gap-2">
+        {slides.map((_, i) => (
+          <span
+            key={i}
+            aria-hidden
+            className={`h-1 rounded-full transition-all duration-500 ${
+              i === current ? "w-6 bg-white" : "w-1.5 bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+
+      <div className="absolute bottom-4 left-5 flex items-baseline gap-2 text-white">
         <span className="font-display text-xl font-semibold leading-none">
           {String(current + 1).padStart(2, "0")}
         </span>

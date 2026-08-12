@@ -42,13 +42,13 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
       <article className="section-pad bg-white">
         <div className="container max-w-3xl">
-          <div className="relative aspect-video overflow-hidden">
+          <div className="kinetic relative aspect-video overflow-hidden">
             <Image
               src={post.image}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, 768px"
-              className="object-cover"
+              className="img-duotone object-cover"
             />
           </div>
 

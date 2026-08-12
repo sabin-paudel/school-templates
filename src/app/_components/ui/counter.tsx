@@ -52,7 +52,7 @@ export default function Counter({ value, suffix = "", label, light = false }: Co
   return (
     <div ref={ref} className="text-center">
       <p
-        className={`whitespace-nowrap font-display text-5xl font-semibold tracking-tight lg:text-6xl ${
+        className={`whitespace-nowrap font-display text-6xl font-semibold tracking-tight lg:text-7xl ${
           light ? "text-white" : "text-ink"
         }`}
       >

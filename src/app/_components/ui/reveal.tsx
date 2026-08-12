@@ -6,9 +6,16 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** "fade" slides up with a soft fade; "clip" reveals via clip-path (great for imagery). */
+  variant?: "fade" | "clip";
 };
 
-export default function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+export default function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  variant = "fade",
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,7 +29,7 @@ export default function Reveal({ children, className = "", delay = 0 }: RevealPr
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
     );
 
     observer.observe(el);
@@ -32,7 +39,9 @@ export default function Reveal({ children, className = "", delay = 0 }: RevealPr
   return (
     <div
       ref={ref}
-      className={`reveal-on-scroll ${className}`}
+      className={`${
+        variant === "clip" ? "clip-reveal" : "reveal-on-scroll"
+      } ${className}`}
       style={{ transitionDelay: `${delay}s` }}
     >
       {children}

@@ -86,8 +86,8 @@ export default function AboutPage() {
           <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
             {values.map((value, index) => (
               <Reveal key={value.title} delay={index * 0.07}>
-                <div className="h-full border-t-2 border-ink pt-7">
-                  <p className="font-display text-5xl font-semibold leading-none text-line">
+                <div className="group h-full border-t-2 border-transparent pt-7 transition-colors duration-500 hover:border-ink">
+                  <p className="font-display text-5xl font-semibold leading-none text-line transition-colors duration-500 group-hover:text-ink">
                     {String(index + 1).padStart(2, "0")}
                   </p>
                   <h3 className="heading-lg mt-6 text-ink">{value.title}</h3>
@@ -103,13 +103,13 @@ export default function AboutPage() {
       <section id="principal" className="scroll-mt-24 bg-charcoal py-20 text-white lg:py-28">
         <div className="container grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <Reveal>
-            <div className="relative aspect-[4/5] max-w-sm overflow-hidden lg:ml-auto">
+            <div className="kinetic relative aspect-[4/5] max-w-sm overflow-hidden lg:ml-auto">
               <Image
                 src={principal.image}
                 alt={principal.name}
                 fill
                 sizes="(max-width: 1024px) 80vw, 40vw"
-                className="object-cover grayscale"
+                className="img-duotone object-cover"
               />
             </div>
           </Reveal>
@@ -145,13 +145,13 @@ export default function AboutPage() {
             {teachers.map((teacher, i) => (
               <Reveal key={teacher.name} delay={i * 0.05}>
                 <article className="group flex h-full flex-col">
-                  <div className="relative aspect-[4/4.4] overflow-hidden">
+                  <div className="kinetic relative aspect-[4/4.4] overflow-hidden">
                     <Image
                       src={teacher.image}
                       alt={teacher.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
+                      className="img-duotone object-cover"
                     />
                   </div>
                   <div className="mt-5 border-t border-line pt-4">

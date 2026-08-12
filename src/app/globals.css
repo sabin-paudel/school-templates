@@ -1,31 +1,43 @@
-/* Aatreya Academy — Premium grayscale editorial theme */
+/* =========================================================================
+   Aatreya Academy — Premium grayscale editorial design system
+   ========================================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  /* Neutral monochrome palette */
-  --ink: #21252b;         /* primary text */
-  --muted: #4a5158;       /* secondary text */
-  --light: #686f77;       /* tertiary text */
-  --warm: #f5f5f3;        /* off-white surface */
-  --line: #e3e3e0;        /* hairline borders */
+  /* Neutral monochrome palette — warm charcoal scale */
+  --ink: #1a1c1f;          /* near-black primary text */
+  --muted: #474c52;        /* secondary text */
+  --light: #6c7278;        /* tertiary text */
+  --warm: #f4f4f1;         /* off-white editorial surface */
+  --paper: #fafaf8;        /* softer off-white */
+  --line: #e1e1dd;         /* hairline borders */
   --white: #ffffff;
 
   /* Action / emphasis grays */
-  --primary: #33383e;     /* gray buttons */
-  --primary-hover: #292e34;
-  --primary-light: #ececea;
+  --primary: #2a2e33;      /* charcoal buttons */
+  --primary-hover: #1d2024;
+  --primary-light: #e9e9e6;
   --primary-dark: #ffffff;
-  --primary-darker: #23282d;
+  --primary-darker: #202328;
 
-  --accent: #5f666e;      /* neutral mid-gray accent */
-  --accent-dark: #3c4249;
-  --accent-soft: rgba(58, 64, 70, 0.08);
-  --success: #3d434a;     /* neutral checkmark */
+  --accent: #565d64;       /* neutral mid-gray accent */
+  --accent-dark: #33383e;
+  --accent-soft: rgba(30, 34, 39, 0.06);
+  --success: #3a4148;      /* neutral checkmark */
 
-  --graphite: #3a4046;
-  --charcoal: #2e3338;
+  --graphite: #31363c;
+  --charcoal: #23262b;
+  --near-black: #17191c;
+
+  /* Film-style overlay tints */
+  --overlay-deep: rgba(17, 19, 22, 0.82);
+  --overlay-mid: rgba(17, 19, 22, 0.55);
+  --overlay-light: rgba(17, 19, 22, 0.28);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme {
@@ -33,6 +45,7 @@
   --color-muted: var(--muted);
   --color-light: var(--light);
   --color-warm: var(--warm);
+  --color-paper: var(--paper);
   --color-line: var(--line);
   --color-white: var(--white);
   --color-primary: var(--primary);
@@ -46,14 +59,15 @@
   --color-success: var(--success);
   --color-graphite: var(--graphite);
   --color-charcoal: var(--charcoal);
+  --color-near-black: var(--near-black);
   --color-border: var(--line);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Instrument Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-sm: 0 1px 2px rgb(17 19 22 / 0.05);
-  --shadow-md: 0 10px 30px rgb(17 19 22 / 0.08);
-  --shadow-lg: 0 30px 60px rgb(17 19 22 / 0.14);
+  --shadow-sm: 0 1px 2px rgb(17 19 22 / 0.06);
+  --shadow-md: 0 14px 40px rgb(17 19 22 / 0.1);
+  --shadow-lg: 0 40px 90px rgb(17 19 22 / 0.18);
 
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
@@ -81,6 +95,8 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   font-feature-settings: "ss01" on, "cv11" on;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -98,17 +114,43 @@ img {
   outline-offset: 3px;
 }
 
+/* Slim monochrome scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--warm);
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c9c4;
+  border: 2px solid var(--warm);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9c9c96;
+}
+
 /* =========================================================================
    Layout
    ========================================================================= */
 
 .container {
-  width: min(100% - 3rem, 80rem);
+  width: min(100% - 3rem, 82rem);
+  margin-inline: auto;
+}
+
+.container-wide {
+  width: min(100% - 2rem, 100rem);
   margin-inline: auto;
 }
 
 .section-pad {
-  padding-block: clamp(4.5rem, 9vw, 8rem);
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.section-pad-lg {
+  padding-block: clamp(7rem, 14vw, 13rem);
 }
 
 /* Editorial two-column layout (kept for compatibility) */
@@ -127,84 +169,99 @@ img {
   }
 }
 
+/* Horizontal rule used between editorial sections */
+.hairline {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+}
+
 /* =========================================================================
    Typography
    ========================================================================= */
 
 .display-xl {
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 7vw, 6.25rem);
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.display-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.2vw, 4.75rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
-.display-hero {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5.5vw, 4.75rem);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.display-lg {
-  font-family: var(--font-display);
-  font-size: clamp(2.3rem, 5vw, 4.25rem);
-  font-weight: 600;
-  line-height: 1.06;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
 .display-md {
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  font-size: clamp(1.95rem, 3.6vw, 3.25rem);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
   text-wrap: balance;
 }
 
 .heading-lg {
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
   font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
 }
 
 .heading-md {
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
 }
 
 /* Small uppercase eyebrow label */
 .label {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--light);
 }
 
 .label-dark {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .text-body {
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.85;
+}
+
+/* Editorial ghost label */
+.label-ghost {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
 }
 
 /* =========================================================================
@@ -217,11 +274,11 @@ img {
   justify-content: center;
   gap: 0.6rem;
   border-radius: var(--radius-md);
-  padding: 0.9rem 1.9rem;
-  font-size: 0.82rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  letter-spacing: 0.03em;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
   text-decoration: none;
   border: 1px solid transparent;
@@ -291,13 +348,13 @@ img {
 }
 
 .btn-lg {
-  padding: 1.05rem 2.3rem;
-  font-size: 0.9rem;
+  padding: 1.1rem 2.4rem;
+  font-size: 0.88rem;
 }
 
 .btn-sm {
-  padding: 0.65rem 1.25rem;
-  font-size: 0.76rem;
+  padding: 0.7rem 1.3rem;
+  font-size: 0.75rem;
 }
 
 /* Arrow that slides on hover */
@@ -305,16 +362,17 @@ img {
   gap: 0.4rem;
 }
 .btn-arrow .btn-arrow-icon {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn:hover .btn-arrow-icon {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* =========================================================================
-   Text link with sliding arrow
+   Text links
    ========================================================================= */
 
+/* Sliding-arrow link */
 .nav-arrow {
   display: inline-flex;
   align-items: center;
@@ -322,14 +380,37 @@ img {
   font-weight: 600;
   font-size: 0.88rem;
   letter-spacing: 0.01em;
-  transition: gap 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: gap 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   color: var(--ink);
 }
 .nav-arrow:hover {
-  gap: 0.85rem;
+  gap: 0.9rem;
 }
 .nav-arrow--light {
   color: var(--white);
+}
+
+/* Animated underline link */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.link-underline:hover::after,
+.link-underline.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 /* =========================================================================
@@ -340,7 +421,7 @@ img {
   font-family: var(--font-display);
   font-weight: 600;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
@@ -352,7 +433,7 @@ img {
 }
 .rule::before {
   content: "";
-  width: 2rem;
+  width: 2.25rem;
   height: 1px;
   background: var(--ink);
 }
@@ -369,11 +450,11 @@ img {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.9rem;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--light);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
 }
 .post-meta .post-category {
   display: inline-block;
@@ -381,7 +462,7 @@ img {
   background: var(--primary);
   color: var(--white);
   border-radius: var(--radius-sm);
-  font-size: 0.64rem;
+  font-size: 0.63rem;
   letter-spacing: 0.16em;
 }
 .post-meta .post-date {
@@ -392,7 +473,7 @@ img {
 .drop-cap::first-letter {
   float: left;
   font-family: var(--font-display);
-  font-size: 3.4rem;
+  font-size: 3.6rem;
   line-height: 0.82;
   padding-right: 0.65rem;
   padding-top: 0.15rem;
@@ -406,23 +487,61 @@ img {
   padding-left: 1.75rem;
   margin: 2.5rem 0;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--ink);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
-/* Hairline divider */
+/* =========================================================================
+   Image treatments
+   ========================================================================= */
+
+/* Default grayscale treatment for imagery */
+.img-duotone {
+  filter: grayscale(100%) contrast(1.04);
+  transition: filter 0.7s ease;
+}
+.group:hover .img-duotone {
+  filter: grayscale(20%) contrast(1.02);
+}
+
+/* Kinetic hover zoom */
+.kinetic {
+  overflow: hidden;
+}
+.kinetic img,
+.kinetic .kinetic-media {
+  transform: scale(1.001);
+  transition: transform 1.1s var(--ease-out-expo), filter 0.7s ease;
+  will-change: transform;
+}
+.kinetic:hover img,
+.kinetic:hover .kinetic-media {
+  transform: scale(1.05);
+}
+
+/* Caption reveal on hover */
+.caption-reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+}
+.group:hover .caption-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* =========================================================================
    Motion
    ========================================================================= */
 
+/* Fade-up reveal */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
 }
 
 .reveal-on-scroll.active {
@@ -430,13 +549,36 @@ img {
   transform: translateY(0);
 }
 
+/* Clip-path reveal (image slides up into place) */
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s var(--ease-out-expo);
+}
+.clip-reveal.active {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Staggered line reveal for headings */
+.line-reveal {
+  overflow: hidden;
+}
+.line-reveal > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease-out-expo);
+}
+.line-reveal.active > span {
+  transform: translateY(0);
+}
+
 /* Hero ken-burns */
 @keyframes kenburns {
-  0% { transform: scale(1.02); }
-  100% { transform: scale(1.14); }
+  0% { transform: scale(1.04); }
+  100% { transform: scale(1.16); }
 }
 .hero-kenburns {
-  animation: kenburns 10s ease-out forwards;
+  animation: kenburns 9s var(--ease-quart) forwards;
+  will-change: transform;
 }
 
 /* Hero progress bar */
@@ -445,9 +587,54 @@ img {
   to { width: 100%; }
 }
 .hero-progress {
-  animation: slide-progress 5s linear forwards;
+  animation: slide-progress 6s linear forwards;
 }
 
+/* Slow pan used for video/poster areas */
+@keyframes slow-pan {
+  0% { transform: scale(1.08) translateY(-1.5%); }
+  100% { transform: scale(1.18) translateY(1.5%); }
+}
+.slow-pan {
+  animation: slow-pan 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Horizontal marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Custom cursor dot used on gallery hover zones */
+.cursor-dot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background: var(--white);
+  color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.35s ease, transform 0.35s var(--ease-out-expo);
+  z-index: 20;
+}
+.group:hover .cursor-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-delay: -1ms !important;

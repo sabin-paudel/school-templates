@@ -58,11 +58,13 @@ export default function GalleryPage() {
                         alt={photo.title}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
+                        className="img-duotone object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105"
                       />
-                      <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-charcoal/85 via-charcoal/40 to-transparent p-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p className="text-sm font-semibold">{photo.title}</p>
-                        <p className="mt-0.5 text-[11px] text-white/70">
+                      <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-near-black/80 via-near-black/40 to-transparent p-4">
+                        <p className="caption-reveal text-sm font-semibold text-white">
+                          {photo.title}
+                        </p>
+                        <p className="caption-reveal mt-0.5 text-[11px] text-white/70 [transition-delay:60ms]">
                           {photo.credit} · Wikimedia Commons
                         </p>
                       </figcaption>

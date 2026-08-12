@@ -35,7 +35,7 @@ export default function AcademicCalendarPage() {
               <div className="mt-12">
                 {events.map((event, index) => (
                   <Reveal key={event.title} delay={index * 0.04}>
-                    <div className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-b border-line py-6 sm:gap-10">
+                    <div className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-b border-line py-6 transition-colors duration-300 hover:bg-warm sm:gap-10 sm:px-5">
                       <div className="flex w-20 flex-col items-start sm:w-24">
                         <span className="font-display text-4xl font-semibold leading-none text-ink">
                           {event.date.split(" ")[0]}

@@ -48,13 +48,13 @@ export default function AcademicsPage() {
                       <article id={program.id} className="scroll-mt-28">
                         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
                           <div className={right ? "lg:order-2" : ""}>
-                            <div className="group relative aspect-[4/3] overflow-hidden">
+                            <div className="group kinetic relative aspect-[4/3] overflow-hidden">
                               <Image
                                 src={program.image}
                                 alt={program.title}
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 42vw"
-                                className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                                className="img-duotone object-cover"
                               />
                             </div>
                           </div>
@@ -169,7 +169,7 @@ export default function AcademicsPage() {
                       alt={facility.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                      className="img-duotone object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-105"
                     />
                   </div>
                   <div className="mt-5 flex items-start justify-between gap-4 border-t border-line pt-4">

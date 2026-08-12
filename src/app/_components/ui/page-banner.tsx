@@ -14,8 +14,8 @@ export default function PageBanner({
   description,
 }: PageBannerProps) {
   return (
-    <section className="border-b border-line bg-warm">
-      <div className="container grid items-center gap-12 pb-14 pt-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:pb-20 lg:pt-16">
+    <section className="border-b border-line bg-warm pt-[72px] lg:pt-[80px]">
+      <div className="container grid items-center gap-12 pb-16 pt-10 lg:grid-cols-[1.15fr_1fr] lg:gap-24 lg:pb-24 lg:pt-14">
         <div>
           <nav
             aria-label="Breadcrumb"
@@ -30,21 +30,21 @@ export default function PageBanner({
             <span className="text-ink">{breadcrumb}</span>
           </nav>
 
-          <div className="mt-7 max-w-2xl">
-            <p className="label mb-5 flex items-center gap-3">
-              <span className="h-px w-8 bg-charcoal/70" aria-hidden />
+          <div className="mt-8 max-w-2xl">
+            <p className="label mb-6 flex items-center gap-4">
+              <span className="h-px w-10 bg-charcoal/70" aria-hidden />
               {school.name}
             </p>
             <h1 className="display-lg text-ink">{title}</h1>
             {description && (
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted">
                 {description}
               </p>
             )}
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden lg:aspect-[4/3.4]">
+        <div className="relative aspect-[4/3] overflow-hidden lg:aspect-[4/3.2]">
           <PageBannerSlider />
         </div>
       </div>

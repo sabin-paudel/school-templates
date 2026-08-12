@@ -1,7 +1,7 @@
 "use client";
 
 import { Children, useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 type CarouselProps = {
   children: ReactNode;
@@ -15,6 +15,8 @@ type CarouselProps = {
   className?: string;
   /** Class applied to each slide wrapper (useful for gutters). */
   slideClassName?: string;
+  /** Light-on-dark variant for dark sections. */
+  dark?: boolean;
   /**
    * Number of slides visible at once. Accepts a fixed number or a
    * breakpoint map keyed by min container width, e.g. `{ 0: 1, 640: 2, 1024: 3 }`.
@@ -33,6 +35,7 @@ export default function Carousel({
   ariaLabel = "Carousel",
   className = "",
   slideClassName = "",
+  dark = false,
   perView = 1,
 }: CarouselProps) {
   const slides = Children.toArray(children);
@@ -166,7 +169,7 @@ export default function Carousel({
   const transition =
     dragging || noTransition
       ? "none"
-      : "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)";
+      : "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)";
 
   const visible = new Set<number>();
   for (let i = pos; i < pos + spare; i++) {
@@ -217,32 +220,52 @@ export default function Carousel({
             type="button"
             aria-label="Previous slide"
             onClick={prev}
-            className="group absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-white/90 text-ink shadow-sm backdrop-blur transition-all duration-300 hover:bg-white hover:shadow-md sm:left-5"
+            className={`group absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border transition-all duration-300 lg:left-6 ${
+              dark
+                ? "border-white/20 text-white hover:border-white hover:bg-white hover:text-ink"
+                : "border-ink/12 bg-white/90 text-ink shadow-sm backdrop-blur hover:bg-white"
+            }`}
           >
-            <ChevronLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
+            <ArrowUpRight
+              size={19}
+              className="rotate-[135deg] transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+            />
           </button>
           <button
             type="button"
             aria-label="Next slide"
             onClick={next}
-            className="group absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-white/90 text-ink shadow-sm backdrop-blur transition-all duration-300 hover:bg-white hover:shadow-md sm:right-5"
+            className={`group absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border transition-all duration-300 lg:right-6 ${
+              dark
+                ? "border-white/20 text-white hover:border-white hover:bg-white hover:text-ink"
+                : "border-ink/12 bg-white/90 text-ink shadow-sm backdrop-blur hover:bg-white"
+            }`}
           >
-            <ChevronRight size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+            <ArrowUpRight
+              size={19}
+              className="-rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
+            />
           </button>
         </>
       )}
 
       {indicator === "count" && count > 1 && (
-        <p className="absolute bottom-2 right-4 z-10 flex items-baseline gap-1 font-display text-sm tracking-tight text-ink">
-          <span className="text-xl font-semibold">
+        <p
+          className={`absolute bottom-3 right-5 z-10 flex items-baseline gap-1.5 font-display tracking-tight ${
+            dark ? "text-white" : "text-ink"
+          }`}
+        >
+          <span className="text-2xl font-semibold">
             {String(active + 1).padStart(2, "0")}
           </span>
-          <span className="text-light">/ {String(count).padStart(2, "0")}</span>
+          <span className={dark ? "text-white/45" : "text-light"}>
+            / {String(count).padStart(2, "0")}
+          </span>
         </p>
       )}
 
       {indicator === "dots" && count > 1 && (
-        <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -250,7 +273,13 @@ export default function Carousel({
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => goTo(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === active ? "w-6 bg-charcoal" : "w-1.5 bg-charcoal/25 hover:bg-charcoal/40"
+                dark
+                  ? i === active
+                    ? "w-8 bg-white"
+                    : "w-1.5 bg-white/30 hover:bg-white/50"
+                  : i === active
+                    ? "w-8 bg-charcoal"
+                    : "w-1.5 bg-charcoal/25 hover:bg-charcoal/40"
               }`}
             />
           ))}

@@ -25,22 +25,20 @@ export default function CtaSection({
   return (
     <section
       className={`relative overflow-hidden border-t border-white/10 ${
-        variant === "accent" ? "bg-graphite" : "bg-charcoal"
+        variant === "accent" ? "bg-graphite" : "bg-near-black"
       }`}
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.07),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.06),transparent_55%)]"
       />
-      <div className="container relative py-20 lg:py-28">
+      <div className="container relative py-24 lg:py-32">
         <div className="grid items-end gap-12 lg:grid-cols-[1.5fr_1fr]">
           <div>
-            {label && (
-              <p className="label mb-5 !text-white/50">{label}</p>
-            )}
+            {label && <p className="label mb-6 !text-white/45">{label}</p>}
             <h2 className="display-lg text-white">{title}</h2>
             {description && (
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/65">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/60">
                 {description}
               </p>
             )}
@@ -51,10 +49,7 @@ export default function CtaSection({
               className="btn btn-white btn-lg btn-arrow group"
             >
               {primaryText}
-              <ArrowUpRight
-                size={18}
-                className="btn-arrow-icon"
-              />
+              <ArrowUpRight size={18} className="btn-arrow-icon" />
             </Link>
             {secondaryHref && secondaryText && (
               <Link href={secondaryHref} className="btn btn-outline-light btn-lg">

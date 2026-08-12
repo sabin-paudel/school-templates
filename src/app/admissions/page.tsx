@@ -75,12 +75,12 @@ export default function AdmissionsPage() {
           <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
             {steps.map(({ step, icon: Icon, title, text }, index) => (
               <Reveal key={step} delay={index * 0.08}>
-                <div className="h-full border-t-2 border-ink pt-7">
+                <div className="group h-full border-t-2 border-transparent pt-7 transition-colors duration-300 hover:border-ink">
                   <div className="flex items-center justify-between">
-                    <span className="font-display text-5xl font-semibold leading-none text-line">
+                    <span className="font-display text-5xl font-semibold leading-none text-line transition-colors duration-300 group-hover:text-ink">
                       {step}
                     </span>
-                    <span className="flex h-12 w-12 items-center justify-center border border-line text-ink">
+                    <span className="flex h-12 w-12 items-center justify-center border border-line text-ink transition-colors duration-300 group-hover:border-ink">
                       <Icon size={20} />
                     </span>
                   </div>

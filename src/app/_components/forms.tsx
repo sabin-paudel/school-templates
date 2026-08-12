@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const fieldClass =
-  "mt-1.5 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-light focus:border-ink";
+  "mt-1.5 w-full border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-light focus:border-ink focus:ring-2 focus:ring-ink/5";
 const labelClass = "block text-sm font-semibold text-ink";
 
 function SuccessMessage({ title }: { title: string }) {

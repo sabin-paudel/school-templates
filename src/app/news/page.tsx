@@ -51,13 +51,13 @@ export default function NewsPage() {
               {/* Featured post */}
               <Reveal>
                 <article className="group">
-                  <div className="relative aspect-[16/9] overflow-hidden">
+                  <div className="kinetic relative aspect-[16/9] overflow-hidden">
                     <Image
                       src={featured.image}
                       alt={featured.title}
                       fill
                       sizes="(max-width: 1024px) 100vw, 60vw"
-                      className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                      className="object-cover"
                     />
                     <span className="absolute left-5 top-5 bg-white/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
                       Featured · {featured.category}
@@ -92,13 +92,13 @@ export default function NewsPage() {
                   <Reveal key={post.title} delay={i * 0.05}>
                     <article className="group flex h-full flex-col">
                       <Link href={`/news/${slugify(post.title)}`} className="block">
-                        <div className="relative aspect-[4/3] overflow-hidden">
+                        <div className="kinetic relative aspect-[4/3] overflow-hidden">
                           <Image
                             src={post.image}
                             alt={post.title}
                             fill
                             sizes="(max-width: 640px) 100vw, 30vw"
-                            className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                            className="object-cover"
                           />
                         </div>
                       </Link>

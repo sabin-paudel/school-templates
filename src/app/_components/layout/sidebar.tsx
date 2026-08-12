@@ -7,7 +7,7 @@ import { navigation, news, notices, slugify } from "../../_data/site-content";
 
 function WidgetTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-ink">
+    <h3 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink">
       <span className="h-px w-6 bg-charcoal" aria-hidden />
       {children}
     </h3>
@@ -16,11 +16,14 @@ function WidgetTitle({ children }: { children: React.ReactNode }) {
 
 export function Sidebar() {
   return (
-    <aside className="space-y-10">
+    <aside className="space-y-12">
       {/* Search widget */}
-      <div className="border-t-2 border-ink pt-6">
+      <div className="border-t-2 border-ink pt-7">
         <WidgetTitle>Search</WidgetTitle>
-        <form className="mt-5 flex border border-line focus-within:border-ink" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="mt-5 flex border border-line transition-colors focus-within:border-ink"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <label htmlFor="sidebar-search" className="sr-only">
             Search this site
           </label>
@@ -41,16 +44,16 @@ export function Sidebar() {
       </div>
 
       {/* Pages widget */}
-      <div className="border-t-2 border-ink pt-6">
+      <div className="border-t-2 border-ink pt-7">
         <WidgetTitle>Pages</WidgetTitle>
         <ul className="mt-4">
           {navigation.map((item) => (
             <li key={item.href} className="border-b border-line">
               <Link
                 href={item.href}
-                className="group flex items-center justify-between py-3 text-sm font-medium text-ink transition-colors hover:text-ink"
+                className="group flex items-center justify-between py-3.5 text-sm font-medium text-ink transition-colors hover:text-ink"
               >
-                {item.label}
+                <span className="link-underline">{item.label}</span>
                 <ArrowUpRight
                   size={14}
                   className="text-light transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
@@ -62,12 +65,12 @@ export function Sidebar() {
       </div>
 
       {/* Recent Posts widget */}
-      <div className="border-t-2 border-ink pt-6">
+      <div className="border-t-2 border-ink pt-7">
         <WidgetTitle>Recent Posts</WidgetTitle>
         <ul className="mt-5 space-y-5">
           {news.slice(0, 4).map((post) => (
-            <li key={post.title} className="flex gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-line">
+            <li key={post.title} className="group flex gap-4">
+              <div className="kinetic relative h-16 w-16 shrink-0 overflow-hidden border border-line">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -93,7 +96,7 @@ export function Sidebar() {
       </div>
 
       {/* Categories widget */}
-      <div className="border-t-2 border-ink pt-6">
+      <div className="border-t-2 border-ink pt-7">
         <WidgetTitle>Categories</WidgetTitle>
         <ul className="mt-4 flex flex-wrap gap-2">
           {["Achievement", "Campus", "Sports", "Community"].map((cat) => (
@@ -110,11 +113,11 @@ export function Sidebar() {
       </div>
 
       {/* Notices widget */}
-      <div className="border-t-2 border-ink pt-6">
+      <div className="border-t-2 border-ink pt-7">
         <WidgetTitle>Notices</WidgetTitle>
         <ul className="mt-5 space-y-4">
           {notices.slice(0, 3).map((notice) => (
-            <li key={notice.title} className="flex items-start gap-3 text-sm">
+            <li key={notice.title} className="group flex items-start gap-3 text-sm">
               <StickyNote size={15} className="mt-0.5 shrink-0 text-light" />
               <Link
                 href="/news"
